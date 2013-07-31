@@ -573,7 +573,14 @@ bool CTxMemPool::accept(CTxDB& txdb, CTransaction &tx, bool fCheckInputs,
         // Continuously rate-limit free transactions
         // This mitigates 'penny-flooding' -- sending thousands of free transactions just to
         // be annoying or make other's transactions take longer to confirm.
-        if (nFees < MIN_RELAY_TX_FEE)
+
+		int64 newMinRelayTxFee = MIN_RELAY_TX_FEE;
+		if(GetAdjustedTime() > IFC_SWITCH_TIME)
+		{
+			newMinRelayTxFee *= IFC_FEE_MULTIPLICATOR;
+		}
+
+        if (nFees < newMinRelayTxFee)
         {
             static CCriticalSection cs;
             static double dFreeCount;
@@ -1638,7 +1645,7 @@ bool CBlock::SetBestChain(CTxDB& txdb, CBlockIndex* pindexNew)
     nTimeBestReceived = GetTime();
     nTransactionsUpdated++;
     printf("SetBestChain: new best=%s  height=%d  work=%s  date=%s\n",
-      hashBestChain.ToString().substr(0,20).c_str(), nBestHeight, bnBestChainWork.ToString().c_str(),
+      hashBestChain.ToString().c_str(), nBestHeight, bnBestChainWork.ToString().c_str(),
       DateTimeStrFormat("%x %H:%M:%S", pindexBest->GetBlockTime()).c_str());
 
     // Check the version of the last 100 blocks to see if we need to upgrade:

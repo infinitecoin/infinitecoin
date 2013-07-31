@@ -1,6 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
 // Copyright (c) 2011-2012 Litecoin Developers
+// Copyright (c) 2013 Infinitecoin Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -1125,9 +1126,16 @@ bool CWallet::CreateTransaction(const vector<pair<CScript, int64> >& vecSend, CW
                 // if sub-cent change is required, the fee must be raised to at least MIN_TX_FEE
                 // or until nChange becomes zero
                 // NOTE: this depends on the exact behaviour of GetMinFee
-                if (nFeeRet < MIN_TX_FEE && nChange > 0 && nChange < CENT)
+
+				int64 newMinTxFee = MIN_TX_FEE;
+				if(GetAdjustedTime() > IFC_SWITCH_TIME)
+				{
+					newMinTxFee *= IFC_FEE_MULTIPLICATOR;
+				}
+
+                if (nFeeRet < newMinTxFee && nChange > 0 && nChange < CENT)
                 {
-                    int64 nMoveToFee = min(nChange, MIN_TX_FEE - nFeeRet);
+                    int64 nMoveToFee = min(nChange, newMinTxFee - nFeeRet);
                     nChange -= nMoveToFee;
                     nFeeRet += nMoveToFee;
                 }

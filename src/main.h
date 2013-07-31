@@ -38,6 +38,11 @@ inline bool MoneyRange(int64 nValue) { return (nValue >= 0 && nValue <= MAX_MONE
 static const int COINBASE_MATURITY = 60;
 // Threshold for nLockTime: below this value it is interpreted as block number, otherwise as UNIX timestamp.
 static const unsigned int LOCKTIME_THRESHOLD = 500000000; // Tue Nov  5 00:53:20 1985 UTC
+
+
+static const unsigned int IFC_SWITCH_TIME = 1377993600;		// Sept 1, 2013 00:00:00 GMT
+static const unsigned int IFC_FEE_MULTIPLICATOR = 100;		// Transaction Fee Multiplicator
+
 #ifdef USE_UPNP
 static const int fHaveUPnP = true;
 #else
@@ -535,6 +540,10 @@ public:
     {
         // Base fee is either MIN_TX_FEE or MIN_RELAY_TX_FEE
         int64 nBaseFee = (mode == GMF_RELAY) ? MIN_RELAY_TX_FEE : MIN_TX_FEE;
+		if(GetAdjustedTime() > IFC_SWITCH_TIME)
+		{
+			nBaseFee *= IFC_FEE_MULTIPLICATOR;
+		}
 
         unsigned int nBytes = ::GetSerializeSize(*this, SER_NETWORK, PROTOCOL_VERSION);
         unsigned int nNewBlockSize = nBlockSize + nBytes;
