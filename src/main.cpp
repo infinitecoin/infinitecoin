@@ -575,10 +575,6 @@ bool CTxMemPool::accept(CTxDB& txdb, CTransaction &tx, bool fCheckInputs,
         // be annoying or make other's transactions take longer to confirm.
 
 		int64 newMinRelayTxFee = MIN_RELAY_TX_FEE;
-		if(GetAdjustedTime() > IFC_SWITCH_TIME)
-		{
-			newMinRelayTxFee *= IFC_FEE_MULTIPLICATOR;
-		}
 
         if (nFees < newMinRelayTxFee)
         {

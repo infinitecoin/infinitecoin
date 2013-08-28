@@ -1128,10 +1128,6 @@ bool CWallet::CreateTransaction(const vector<pair<CScript, int64> >& vecSend, CW
                 // NOTE: this depends on the exact behaviour of GetMinFee
 
 				int64 newMinTxFee = MIN_TX_FEE;
-				if(GetAdjustedTime() > IFC_SWITCH_TIME)
-				{
-					newMinTxFee *= IFC_FEE_MULTIPLICATOR;
-				}
 
                 if (nFeeRet < newMinTxFee && nChange > 0 && nChange < CENT)
                 {

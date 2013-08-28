@@ -540,10 +540,6 @@ public:
     {
         // Base fee is either MIN_TX_FEE or MIN_RELAY_TX_FEE
         int64 nBaseFee = (mode == GMF_RELAY) ? MIN_RELAY_TX_FEE : MIN_TX_FEE;
-		if(GetAdjustedTime() > IFC_SWITCH_TIME)
-		{
-			nBaseFee *= IFC_FEE_MULTIPLICATOR;
-		}
 
         unsigned int nBytes = ::GetSerializeSize(*this, SER_NETWORK, PROTOCOL_VERSION);
         unsigned int nNewBlockSize = nBlockSize + nBytes;

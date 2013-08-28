@@ -64,10 +64,6 @@ static bool ThreadSafeAskFee(int64 nFeeRequired, const std::string& strCaption)
         return false;
 
 	int64 nBaseFee = MIN_TX_FEE;
-	if(GetAdjustedTime() > IFC_SWITCH_TIME)
-	{
-		nBaseFee *= IFC_FEE_MULTIPLICATOR;
-	}
 
     if(nFeeRequired < nBaseFee || nFeeRequired <= nTransactionFee || fDaemon)
         return true;
