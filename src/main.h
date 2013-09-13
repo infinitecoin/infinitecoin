@@ -43,6 +43,9 @@ static const unsigned int LOCKTIME_THRESHOLD = 500000000; // Tue Nov  5 00:53:20
 static const unsigned int IFC_SWITCH_TIME = 1377993600;		// Sept 1, 2013 00:00:00 GMT
 static const unsigned int IFC_FEE_MULTIPLICATOR = 100;		// Transaction Fee Multiplicator
 
+static const unsigned int IFC_RETARGET_SWITCH_BLOCK = 251000;		
+
+
 #ifdef USE_UPNP
 static const int fHaveUPnP = true;
 #else
