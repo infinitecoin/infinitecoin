@@ -840,8 +840,6 @@ int64 static GetBlockValue(int nHeight, int64 nFees)
 {
     int64 nSubsidy = 524288 * COIN;
 
-	printf(">> Height = %d\n", nHeight);
-
 	// Subsidy is cut in half every 86400 blocks, which will occur approximately every 1 month
     nSubsidy >>= (nHeight / 86400); // Infinitecoin: 86400 blocks in ~1 month
     return nSubsidy + nFees;
@@ -851,6 +849,7 @@ int64 static GetBlockValue(int nHeight, int64 nFees)
 static const int64 nTargetTimespan = 60 * 60; // Infinitecoin: 1 hr
 static const int64 nTargetSpacing = 30; // Infinitecoin: 30 sec
 static const int64 nInterval = nTargetTimespan / nTargetSpacing;
+static const int64 nIntervalPPC = 30;
 
 //
 // minimum amount of work that could possibly be required nTime after
@@ -926,7 +925,8 @@ unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast, const CBl
 
 	// Limit adjustment step
 	int64 nActualTimespan = pindexLast->GetBlockTime() - pindexFirst->GetBlockTime();
-	printf("  nActualTimespan = %"PRI64d"  before bounds\n", nActualTimespan);
+	// printf("  nActualTimespan = %"PRI64d"  before bounds\n", nActualTimespan);
+
 	if((pindexLast->nHeight+1) < 1500)
 	{
 		if (nActualTimespan < nTargetTimespan/16)
@@ -943,17 +943,29 @@ unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast, const CBl
 
 	// Retarget
 	bnNew.SetCompact(pindexLast->nBits);
-	bnNew *= nActualTimespan;
-	bnNew /= nTargetTimespan;
+
+	if((pindexLast->nHeight+1) < IFC_RETARGET_SWITCH_BLOCK2)	// switch to PPCoin retarget algorithm
+	{
+		bnNew *= nActualTimespan;
+		bnNew /= nTargetTimespan;
+	}
+	else
+	{
+		bnNew *= ((nIntervalPPC - 1) * nTargetTimespan + nActualTimespan + nActualTimespan);
+		bnNew /= ((nIntervalPPC + 1) * nTargetTimespan);
+	}
 
 	if (bnNew > bnProofOfWorkLimit)
 		bnNew = bnProofOfWorkLimit;
 
 	// debug print
+	printf("nTargetTimespan = %"PRI64d"    nActualTimespan = %"PRI64d"\n", nTargetTimespan, nActualTimespan);
+	/*
 	printf("GetNextWorkRequired RETARGET\n");
 	printf("nTargetTimespan = %"PRI64d"    nActualTimespan = %"PRI64d"\n", nTargetTimespan, nActualTimespan);
 	printf("Before: %08x  %s\n", pindexLast->nBits, CBigNum().SetCompact(pindexLast->nBits).getuint256().ToString().c_str());
 	printf("After:  %08x  %s\n", bnNew.GetCompact(), bnNew.getuint256().ToString().c_str());
+	*/
 
     return bnNew.GetCompact();
 }
