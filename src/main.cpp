@@ -944,12 +944,12 @@ unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast, const CBl
 	// Retarget
 	bnNew.SetCompact(pindexLast->nBits);
 
-	if((pindexLast->nHeight+1) < IFC_RETARGET_SWITCH_BLOCK2)	// switch to PPCoin retarget algorithm
+	if((pindexLast->nHeight+1) < IFC_RETARGET_SWITCH_BLOCK2)	// linear retarget algorithm	
 	{
 		bnNew *= nActualTimespan;
 		bnNew /= nTargetTimespan;
 	}
-	else
+	else														// switch to PPCoin retarget algorithm
 	{
 		bnNew *= ((nIntervalPPC - 1) * nTargetTimespan + nActualTimespan + nActualTimespan);
 		bnNew /= ((nIntervalPPC + 1) * nTargetTimespan);
