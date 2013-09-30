@@ -846,9 +846,9 @@ int64 static GetBlockValue(int nHeight, int64 nFees)
 }
 
 
-static const int64 nTargetTimespan = 60 * 60; // Infinitecoin: 1 hr
-static const int64 nTargetSpacing = 30; // Infinitecoin: 30 sec
-static const int64 nInterval = nTargetTimespan / nTargetSpacing;
+static const int64 nTargetTimespan = 60 * 60;	// Infinitecoin: 1 hr
+static const int64 nTargetSpacing = 30;			// Infinitecoin: 30 sec
+static const int64 nInterval = nTargetTimespan / nTargetSpacing;	// 120
 static const int64 nIntervalPPC = 30;
 
 //
@@ -911,61 +911,88 @@ unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast, const CBl
 		}
 	}
 
-	// Infinitecoin: This fixes an issue where a 51% attack can change difficulty at will.
-	// Go back the full period unless it's the first retarget after genesis. Code courtesy of Art Forz
-	int blockstogoback = nInterval-1;
-	if ((pindexLast->nHeight+1) != nInterval)
-		blockstogoback = nInterval;
-
-	// Go back by what we want to be blockstogoback worth of blocks
+	int64 nActualTimespan = 30 * 120;
 	const CBlockIndex* pindexFirst = pindexLast;
-	for (int i = 0; pindexFirst && i < blockstogoback; i++)
-		pindexFirst = pindexFirst->pprev;
-	assert(pindexFirst);
 
-	// Limit adjustment step
-	int64 nActualTimespan = pindexLast->GetBlockTime() - pindexFirst->GetBlockTime();
-	// printf("  nActualTimespan = %"PRI64d"  before bounds\n", nActualTimespan);
+	int64 nActualTimespan0 = 30 * 120;
+	double ratio = 0.0;
 
-	if((pindexLast->nHeight+1) < 1500)
+	if((pindexLast->nHeight+1) < IFC_RETARGET_SWITCH_BLOCK3)	// this is based on 120 blocks
 	{
+		// Infinitecoin: This fixes an issue where a 51% attack can change difficulty at will.
+		// Go back the full period unless it's the first retarget after genesis. Code courtesy of Art Forz
+		int blockstogoback = nInterval-1;
+		if ((pindexLast->nHeight+1) != nInterval)
+			blockstogoback = nInterval;
+
+		// Go back by what we want to be blockstogoback worth of blocks
+		for (int i = 0; pindexFirst && i < blockstogoback; i++)
+			pindexFirst = pindexFirst->pprev;
+		assert(pindexFirst);
+
+		// Limit adjustment step
+		nActualTimespan = pindexLast->GetBlockTime() - pindexFirst->GetBlockTime();
+		// printf("  nActualTimespan = %"PRI64d"  before bounds\n", nActualTimespan);
+
+		if((pindexLast->nHeight+1) < 1500)
+		{
+			if (nActualTimespan < nTargetTimespan/16)
+				nActualTimespan = nTargetTimespan/16;
+		}
+		else
+		{
+			if (nActualTimespan < nTargetTimespan/4)
+				nActualTimespan = nTargetTimespan/4;
+		}
+
+		if (nActualTimespan > nTargetTimespan*4)
+			nActualTimespan = nTargetTimespan*4;
+
+		// just to verify, to remove
+		pindexFirst = pindexLast->pprev;
+		nActualTimespan0 = (pindexLast->GetBlockTime() - pindexFirst->GetBlockTime()) * nInterval;
+		// limit the adjustment
+		if (nActualTimespan0 < nTargetTimespan/16)
+			nActualTimespan0 = nTargetTimespan/16;
+		if (nActualTimespan0 > nTargetTimespan*16)
+			nActualTimespan0 = nTargetTimespan*16;
+	}
+	else	// PPCoin formula with 1 block time
+	{
+		// get the previous block
+		pindexFirst = pindexLast->pprev;
+		nActualTimespan = (pindexLast->GetBlockTime() - pindexFirst->GetBlockTime()) * nInterval;
+
+		// limit the adjustment
 		if (nActualTimespan < nTargetTimespan/16)
 			nActualTimespan = nTargetTimespan/16;
+		if (nActualTimespan > nTargetTimespan*16)
+			nActualTimespan = nTargetTimespan*16;
 	}
-	else
-	{
-		if (nActualTimespan < nTargetTimespan/4)
-			nActualTimespan = nTargetTimespan/4;
-	}
-
-	if (nActualTimespan > nTargetTimespan*4)
-		nActualTimespan = nTargetTimespan*4;
 
 	// Retarget
 	bnNew.SetCompact(pindexLast->nBits);
 
-	if((pindexLast->nHeight+1) < IFC_RETARGET_SWITCH_BLOCK2)	// linear retarget algorithm	
+	if((pindexLast->nHeight+1) < IFC_RETARGET_SWITCH_BLOCK2)		// 120-block linear retarget
 	{
 		bnNew *= nActualTimespan;
 		bnNew /= nTargetTimespan;
 	}
-	else														// switch to PPCoin retarget algorithm
+	else 															// PPCoin retarget algorithm
 	{
 		bnNew *= ((nIntervalPPC - 1) * nTargetTimespan + nActualTimespan + nActualTimespan);
 		bnNew /= ((nIntervalPPC + 1) * nTargetTimespan);
+
+		ratio = ((double)((nIntervalPPC - 1) * nTargetTimespan + nActualTimespan0 + nActualTimespan0)) /
+			((double)((nIntervalPPC - 1) * nTargetTimespan + nActualTimespan + nActualTimespan));
 	}
 
 	if (bnNew > bnProofOfWorkLimit)
 		bnNew = bnProofOfWorkLimit;
 
 	// debug print
-	printf("nTargetTimespan = %"PRI64d"    nActualTimespan = %"PRI64d"\n", nTargetTimespan, nActualTimespan);
-	/*
-	printf("GetNextWorkRequired RETARGET\n");
-	printf("nTargetTimespan = %"PRI64d"    nActualTimespan = %"PRI64d"\n", nTargetTimespan, nActualTimespan);
-	printf("Before: %08x  %s\n", pindexLast->nBits, CBigNum().SetCompact(pindexLast->nBits).getuint256().ToString().c_str());
-	printf("After:  %08x  %s\n", bnNew.GetCompact(), bnNew.getuint256().ToString().c_str());
-	*/
+	printf("nTargetTimespan = %"PRI64d", nActualTimespan = %"PRI64d", nActualTimespan0 = %"PRI64d", ratio = %f\n", 
+		nTargetTimespan, nActualTimespan, nActualTimespan0, ratio);
 
     return bnNew.GetCompact();
 }
@@ -2759,12 +2786,12 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
         if (pindex)
             pindex = pindex->pnext;
         int nLimit = 500;
-        printf("getblocks %d to %s limit %d\n", (pindex ? pindex->nHeight : -1), hashStop.ToString().substr(0,20).c_str(), nLimit);
+        // printf("getblocks %d to %s limit %d\n", (pindex ? pindex->nHeight : -1), hashStop.ToString().substr(0,20).c_str(), nLimit);
         for (; pindex; pindex = pindex->pnext)
         {
             if (pindex->GetBlockHash() == hashStop)
             {
-                printf("  getblocks stopping at %d %s\n", pindex->nHeight, pindex->GetBlockHash().ToString().substr(0,20).c_str());
+                // printf("  getblocks stopping at %d %s\n", pindex->nHeight, pindex->GetBlockHash().ToString().substr(0,20).c_str());
                 break;
             }
             pfrom->PushInventory(CInv(MSG_BLOCK, pindex->GetBlockHash()));
@@ -2772,7 +2799,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
             {
                 // When this block is requested, we'll send an inv that'll make them
                 // getblocks the next batch of inventory.
-                printf("  getblocks stopping at limit %d %s\n", pindex->nHeight, pindex->GetBlockHash().ToString().substr(0,20).c_str());
+                // printf("  getblocks stopping at limit %d %s\n", pindex->nHeight, pindex->GetBlockHash().ToString().substr(0,20).c_str());
                 pfrom->hashContinue = pindex->GetBlockHash();
                 break;
             }

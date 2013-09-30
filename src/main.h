@@ -45,7 +45,7 @@ static const unsigned int IFC_FEE_MULTIPLICATOR = 100;		// Transaction Fee Multi
 
 static const unsigned int IFC_RETARGET_SWITCH_BLOCK		= 245000;		
 static const unsigned int IFC_RETARGET_SWITCH_BLOCK2	= 248000;		
-
+static const unsigned int IFC_RETARGET_SWITCH_BLOCK3	= 272000;	
 
 #ifdef USE_UPNP
 static const int fHaveUPnP = true;
