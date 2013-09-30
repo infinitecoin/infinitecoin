@@ -914,9 +914,6 @@ unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast, const CBl
 	int64 nActualTimespan = 30 * 120;
 	const CBlockIndex* pindexFirst = pindexLast;
 
-	int64 nActualTimespan0 = 30 * 120;
-	double ratio = 0.0;
-
 	if((pindexLast->nHeight+1) < IFC_RETARGET_SWITCH_BLOCK3)	// this is based on 120 blocks
 	{
 		// Infinitecoin: This fixes an issue where a 51% attack can change difficulty at will.
@@ -947,15 +944,6 @@ unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast, const CBl
 
 		if (nActualTimespan > nTargetTimespan*4)
 			nActualTimespan = nTargetTimespan*4;
-
-		// just to verify, to remove
-		pindexFirst = pindexLast->pprev;
-		nActualTimespan0 = (pindexLast->GetBlockTime() - pindexFirst->GetBlockTime()) * nInterval;
-		// limit the adjustment
-		if (nActualTimespan0 < nTargetTimespan/16)
-			nActualTimespan0 = nTargetTimespan/16;
-		if (nActualTimespan0 > nTargetTimespan*16)
-			nActualTimespan0 = nTargetTimespan*16;
 	}
 	else	// PPCoin formula with 1 block time
 	{
@@ -982,17 +970,13 @@ unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast, const CBl
 	{
 		bnNew *= ((nIntervalPPC - 1) * nTargetTimespan + nActualTimespan + nActualTimespan);
 		bnNew /= ((nIntervalPPC + 1) * nTargetTimespan);
-
-		ratio = ((double)((nIntervalPPC - 1) * nTargetTimespan + nActualTimespan0 + nActualTimespan0)) /
-			((double)((nIntervalPPC - 1) * nTargetTimespan + nActualTimespan + nActualTimespan));
 	}
 
 	if (bnNew > bnProofOfWorkLimit)
 		bnNew = bnProofOfWorkLimit;
 
 	// debug print
-	printf("nTargetTimespan = %"PRI64d", nActualTimespan = %"PRI64d", nActualTimespan0 = %"PRI64d", ratio = %f\n", 
-		nTargetTimespan, nActualTimespan, nActualTimespan0, ratio);
+	// printf("nTargetTimespan = %"PRI64d", nActualTimespan = %"PRI64d"\n", nTargetTimespan, nActualTimespan);
 
     return bnNew.GetCompact();
 }
