@@ -13,8 +13,8 @@
 #include <boost/algorithm/string/replace.hpp>
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/fstream.hpp>
-#include <boost/random/mersenne_twister.hpp>
-#include <boost/random/uniform_int_distribution.hpp>
+//#include <boost/random/mersenne_twister.hpp>
+//#include <boost/random/uniform_int_distribution.hpp>
 
 using namespace std;
 using namespace boost;
@@ -2069,6 +2069,14 @@ bool LoadBlockIndex(bool fAllowNew)
         printf("hashGenesisBlock = %s\n", hashGenesisBlock.ToString().c_str());
         printf("block.hashMerkleRoot = %s\n", block.hashMerkleRoot.ToString().c_str());
         assert(block.hashMerkleRoot == uint256("0x87605f6741961e869237b3d78fb271cdca70c67f1bb876992fda97ccd9036220"));
+		
+		
+		uint256 hashTarget = CBigNum().SetCompact(block.nBits).getuint256();
+        uint256 thash;
+        char scratchpad[SCRYPT_SCRATCHPAD_SIZE];
+        scrypt_1024_1_1_256_sp(BEGIN(block.nVersion), BEGIN(thash), scratchpad);
+		
+        printf("nonce %08X: hash = %s (target = %s)\n", block.nNonce, thash.ToString().c_str(), hashTarget.ToString().c_str());
 
         // If genesis block hash does not match, then generate new genesis hash.
         if (false && block.GetHash() != hashGenesisBlock)
@@ -2470,7 +2478,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
         CAddress addrFrom;
         uint64 nNonce = 1;
         vRecv >> pfrom->nVersion >> pfrom->nServices >> nTime >> addrMe;
-        if (pfrom->nVersion < MIN_PROTO_VERSION)
+        if (pfrom->nVersion < MIN_PEER_PROTO_VERSION)
         {
             // Since February 20, 2012, the protocol is initiated at version 209,
             // and earlier versions are no longer supported
@@ -2487,6 +2495,18 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
             vRecv >> pfrom->strSubVer;
         if (!vRecv.empty())
             vRecv >> pfrom->nStartingHeight;
+
+
+        // A check to make sure only the most recent versions of infinitecoin can connect
+        // this is a temporary hack for the time being and will be corrected in the next version
+        if( pfrom->strSubVer.find( "Satoshi:1.8" ) == std::string::npos )
+        {
+
+            printf("peer %s not using Infinitecoin, Client: %s Protocol %i; disconnecting\n", pfrom->addr.ToString().c_str(), pfrom->strSubVer.c_str(), pfrom->nVersion);
+            pfrom->Misbehaving(100);
+            pfrom->fDisconnect = true;
+            return false;
+        }
 
         if (pfrom->fInbound && addrMe.IsRoutable())
         {
@@ -3120,6 +3140,7 @@ bool ProcessMessages(CNode* pfrom)
             {
                 // Allow exceptions from underlength message on vRecv
                 printf("ProcessMessages(%s, %u bytes) : Exception '%s' caught, normally caused by a message being shorter than its stated length\n", strCommand.c_str(), nMessageSize, e.what());
+
             }
             else if (strstr(e.what(), "size too large"))
             {
@@ -3138,7 +3159,10 @@ bool ProcessMessages(CNode* pfrom)
         }
 
         if (!fRet)
+        {
             printf("ProcessMessage(%s, %u bytes) FAILED\n", strCommand.c_str(), nMessageSize);
+            pfrom->Misbehaving(10);
+        }
     }
 
     vRecv.Compact();
