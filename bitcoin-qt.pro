@@ -130,6 +130,7 @@ HEADERS += src/qt/bitcoingui.h \
     src/base58.h \
     src/bignum.h \
     src/checkpoints.h \
+    src/checkpointsync.h \
     src/compat.h \
     src/sync.h \
     src/util.h \
@@ -208,6 +209,7 @@ SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp \
     src/net.cpp \
     src/irc.cpp \
     src/checkpoints.cpp \
+    src/checkpointsync.cpp \
     src/addrman.cpp \
     src/db.cpp \
     src/walletdb.cpp \

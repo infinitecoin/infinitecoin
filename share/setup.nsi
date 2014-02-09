@@ -5,9 +5,9 @@ SetCompressor /SOLID lzma
 
 # General Symbol Definitions
 !define REGKEY "SOFTWARE\$(^Name)"
-!define VERSION 1.9.0.0
+!define VERSION 1.8.6.0
 !define COMPANY "Infinitecoin"
-!define URL http://www.infiniteco.in/
+!define URL http://www.infinitecoin.com/
 
 # MUI Symbol Definitions
 !define MUI_ICON "../share/pixmaps/bitcoin.ico"
@@ -45,13 +45,13 @@ Var StartMenuGroup
 !insertmacro MUI_LANGUAGE English
 
 # Installer attributes
-OutFile infinitecoin-1.9.0.0-win32-setup.exe
+OutFile infinitecoin-1.8.6.0-win32-setup.exe
 InstallDir $PROGRAMFILES\Infinitecoin
 CRCCheck on
 XPStyle on
 BrandingText " "
 ShowInstDetails show
-VIProductVersion 1.9.0.0
+VIProductVersion 1.8.6.0
 VIAddVersionKey ProductName Infinitecoin
 VIAddVersionKey ProductVersion "${VERSION}"
 VIAddVersionKey CompanyName "${COMPANY}"
@@ -98,8 +98,8 @@ Section -post SEC0001
     WriteRegStr HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" UninstallString $INSTDIR\uninstall.exe
     WriteRegDWORD HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" NoModify 1
     WriteRegDWORD HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" NoRepair 1
-    WriteRegStr HKCR "infcoin" "URL Protocol" ""
-    WriteRegStr HKCR "infcoin" "" "URL:Infinitecoin"
+    WriteRegStr HKCR "ifc" "URL Protocol" ""
+    WriteRegStr HKCR "ifc" "" "URL:Infinitecoin"
     WriteRegStr HKCR "infinitecoin\DefaultIcon" "" $INSTDIR\infinitecoin-qt.exe
     WriteRegStr HKCR "infinitecoin\shell\open\command" "" '"$INSTDIR\infinitecoin-qt.exe" "%1"'
 SectionEnd

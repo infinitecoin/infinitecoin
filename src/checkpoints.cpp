@@ -44,6 +44,7 @@ namespace Checkpoints
             (282045, uint256("0x271abe1c26daf5a684034529befb217e16f87e1af779c0e63bdd971def3d8ba5"))
 			(380962, uint256("0xa032a87b430091fbb4faa20f16c8247f93cfcc1854bd49a19c3c9fc3a0c43634"))
 			(453211, uint256("0xea08eace1b78c5513d74750c7cfc01d0c1f3789fc650ccce197b85497405ce56"))
+            (647000, uint256("0x667fc19d6066d472176136f2a34dac9b2662e9d7212df3679e56042d8b198906"))
 			;
 			
 		
@@ -76,5 +77,11 @@ namespace Checkpoints
                 return t->second;
         }
         return NULL;
+    }
+
+    uint256 GetLatestHardenedCheckpoint()
+    {
+        const MapCheckpoints& checkpoints = mapCheckpoints;
+        return (checkpoints.rbegin()->second);
     }
 }

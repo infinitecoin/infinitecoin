@@ -11,6 +11,7 @@
 #include "init.h"
 #include "util.h"
 #include "ui_interface.h"
+#include "checkpointsync.h"
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/fstream.hpp>
 #include <boost/filesystem/convenience.hpp>
@@ -151,7 +152,7 @@ bool AppInit(int argc, char* argv[])
 
         // Command-line RPC
         for (int i = 1; i < argc; i++)
-            if (!IsSwitchChar(argv[i][0]) && !boost::algorithm::istarts_with(argv[i], "infinitecoin:"))
+            if (!IsSwitchChar(argv[i][0]) && !boost::algorithm::istarts_with(argv[i], "ifc:"))
                 fCommandLine = true;
 
         if (fCommandLine)
@@ -330,7 +331,8 @@ bool AppInit2()
 #endif
 
     // ********************************************************* Step 2: parameter interactions
-
+	
+	
     fTestNet = GetBoolArg("-testnet");
     // Infinitecoin: Keep irc seeding on by default for now.
 //    if (fTestNet)
@@ -410,20 +412,34 @@ bool AppInit2()
     const char* pszP2SH = "/P2SH/";
     COINBASE_FLAGS << std::vector<unsigned char>(pszP2SH, pszP2SH+strlen(pszP2SH));
 
-
+	nTransactionFee = 10.0 * COIN;
+    
     if (mapArgs.count("-paytxfee"))
     {
         if (!ParseMoney(mapArgs["-paytxfee"], nTransactionFee))
             return InitError(strprintf(_("Invalid amount for -paytxfee=<amount>: '%s'"), mapArgs["-paytxfee"].c_str()));
-        if (nTransactionFee > 0.25 * COIN)
+        if (nTransactionFee > 25.0 * COIN)
             InitWarning(_("Warning: -paytxfee is set very high. This is the transaction fee you will pay if you send a transaction."));
     }
+    
 
     if (mapArgs.count("-mininput"))
     {
         if (!ParseMoney(mapArgs["-mininput"], nMinimumInputValue))
             return InitError(strprintf(_("Invalid amount for -mininput=<amount>: '%s'"), mapArgs["-mininput"].c_str()));
     }
+   
+
+        if (mapArgs.count("-checkpointkey")) // ppcoin: checkpoint master priv key
+        {
+            #ifndef MASTER_NODE
+                throw InitError(_(" Currently this feature is disabled."));
+            #endif
+
+            if (!SetCheckpointPrivKey(GetArg("-checkpointkey", "")))
+                return InitError(_("Unable to sign checkpoint, wrong checkpointkey?"));
+        }
+
 
     // ********************************************************* Step 4: application initialization: dir lock, daemonize, pidfile, debug log
 

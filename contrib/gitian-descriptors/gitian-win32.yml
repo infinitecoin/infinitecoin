@@ -13,7 +13,7 @@ packages:
 - "faketime"
 reference_datetime: "2011-01-30 00:00:00"
 remotes:
-- "url": "https://github.com/uRndUsr/infinitecoin.git"
+- "url": "https://github.com/infinitecoin/infinitecoin.git"
   "dir": "infinitecoin"
 files:
 - "qt-win32-4.8.3-gitian-r4.zip"

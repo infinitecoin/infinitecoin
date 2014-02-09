@@ -6,7 +6,7 @@
 # Mac OS X makefile for infinitecoin
 # Originally by Laszlo Hanyecz (solar@heliacal.net)
 
-CXX=llvm-g++
+CXX=g++
 DEPSDIR=/opt/local
 
 INCLUDEPATHS= \
@@ -60,9 +60,9 @@ ifdef RELEASE
 # Compile for maximum compatibility and smallest size.
 # This requires that dependencies are compiled
 # the same way.
-CFLAGS = -mmacosx-version-min=10.5 -arch i386 -O3
+CFLAGS = -mmacosx-version-min=10.8 -arch i386 -O3 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk
 else
-CFLAGS = -g
+CFLAGS = -g -mmacosx-version-min=10.8 -arch i386 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk
 endif
 
 # ppc doesn't work because we don't support big-endian
@@ -72,6 +72,7 @@ CFLAGS += -Wall -Wextra -Wformat -Wformat-security -Wno-unused-parameter \
 OBJS= \
     obj/version.o \
     obj/checkpoints.o \
+   	obj/checkpointsync.o \
     obj/netbase.o \
     obj/addrman.o \
     obj/crypter.o \

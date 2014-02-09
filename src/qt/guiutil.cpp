@@ -132,9 +132,10 @@ bool parseBitcoinURI(QString uri, SendCoinsRecipient *out)
     //
     //    Cannot handle this later, because infinitecoin:// will cause Qt to see the part after // as host,
     //    which will lowercase it (and thus invalidate the address).
-    if(uri.startsWith("infinitecoin://"))
+    if(uri.startsWith("ifc://"))
     {
-        uri.replace(0, 11, "infinitecoin:");
+
+        uri.replace(0, 6, "ifc:");
     }
     QUrl uriInstance(uri);
     return parseBitcoinURI(uriInstance, out);

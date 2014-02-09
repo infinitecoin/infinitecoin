@@ -83,7 +83,7 @@ void QRCodeDialog::genCode()
 
 QString QRCodeDialog::getURI()
 {
-    QString ret = QString("infinitecoin:%1").arg(address);
+    QString ret = QString("ifc:%1").arg(address);
     int paramCount = 0;
 
     ui->outUri->clear();
