@@ -14,7 +14,7 @@
 // These need to be macro's, as version.cpp's voodoo requires it
 #define CLIENT_VERSION_MAJOR       1
 #define CLIENT_VERSION_MINOR       8
-#define CLIENT_VERSION_REVISION    6
+#define CLIENT_VERSION_REVISION    7
 #define CLIENT_VERSION_BUILD       0
 
 static const int CLIENT_VERSION =
