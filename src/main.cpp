@@ -2557,8 +2557,8 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
 
         int cVersion = MIN_PEER_PROTO_VERSION;
 
-        if(GetTime() >= IFC_SWITCH_VER )
-            cVersion = PROTOCOL_VERSION;
+        //if(GetTime() >= IFC_SWITCH_VER )
+        //    cVersion = PROTOCOL_VERSION;
 
         if (pfrom->nVersion < cVersion)
         {

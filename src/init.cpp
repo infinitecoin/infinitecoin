@@ -412,7 +412,7 @@ bool AppInit2()
     const char* pszP2SH = "/P2SH/";
     COINBASE_FLAGS << std::vector<unsigned char>(pszP2SH, pszP2SH+strlen(pszP2SH));
 
-	nTransactionFee = 10.0 * COIN;
+
     
     if (mapArgs.count("-paytxfee"))
     {
