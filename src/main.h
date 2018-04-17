@@ -38,12 +38,15 @@ static const unsigned int MAX_ORPHAN_TRANSACTIONS = MAX_BLOCK_SIZE/100; // 10KB
 /** The maximum size for transactions we're willing to relay/mine */
 static const unsigned int MAX_STANDARD_TX_SIZE = 100000;
 
-
+//min tx fee
 static const int64 MIN_TX_FEE = 100.0 * COIN;
+
+
 static const int64 MIN_RELAY_TX_FEE = MIN_TX_FEE;
 
+//soft limit
 static const int64 DUST_SOFT_LIMIT = 100.0 * COIN;
-static const int64 DUST_HARD_LIMIT = 1000.0 * COIN; 
+static const int64 DUST_HARD_LIMIT = 1000.0 * COIN;
 
 
 static const int64 MAX_MONEY = 90600000000 * COIN; // Infinitecoin: maximum of 90600M coins
@@ -55,6 +58,8 @@ static const unsigned int LOCKTIME_THRESHOLD = 500000000; // Tue Nov  5 00:53:20
 
 static const unsigned int IFC_SWITCH_TIME = 1377993600;		// Sept 1, 2013 00:00:00 GMT
 static const unsigned int IFC_SWITCH_VER = 1392336000;     // Sept 1, 2013 00:00:00 GMT
+
+//multiple
 static const unsigned int IFC_FEE_MULTIPLICATOR = 100;		// Transaction Fee Multiplicator
 
 static const unsigned int IFC_RETARGET_SWITCH_BLOCK		= 245000;		
@@ -562,6 +567,7 @@ public:
         return dPriority > COIN * 2880 / 250; // Infinitecoin: 2880 blocks found a day. Priority cutoff is 1 infinitecoin day / 250 bytes.
     }
 
+//get min fee
     int64 GetMinFee(unsigned int nBlockSize=1, bool fAllowFree=true, enum GetMinFee_mode mode=GMF_BLOCK) const
     {
         // Base fee is either MIN_TX_FEE or MIN_RELAY_TX_FEE

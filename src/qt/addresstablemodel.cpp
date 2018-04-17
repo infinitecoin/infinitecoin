@@ -1,3 +1,7 @@
+//shenjinqiang 2018-3-22 19:30
+
+
+
 #include "addresstablemodel.h"
 #include "guiutil.h"
 #include "walletmodel.h"
@@ -69,6 +73,9 @@ public:
                                   QString::fromStdString(address.ToString())));
             }
         }
+		//shenjinqiang 2018-3-22 19:29
+        // qLowerBound() and qUpperBound() require our cachedAddressTable list to be sorted in asc order
+        qSort(cachedAddressTable.begin(), cachedAddressTable.end(), AddressTableEntryLessThan());
     }
 
     void updateEntry(const QString &address, const QString &label, bool isMine, int status)
@@ -221,18 +228,36 @@ bool AddressTableModel::setData(const QModelIndex & index, const QVariant & valu
         switch(index.column())
         {
         case Label:
+            // Do nothing, if old label == new label
+            if(rec->label == value.toString())
+            {
+                editStatus = NO_CHANGES;
+                return false;
+            }
             wallet->SetAddressBookName(CBitcoinAddress(rec->address.toStdString()).Get(), value.toString().toStdString());
-            rec->label = value.toString();
             break;
         case Address:
+            // Do nothing, if old address == new address
+            if(CBitcoinAddress(rec->address.toStdString()) == CBitcoinAddress(value.toString().toStdString()))
+            {
+                editStatus = NO_CHANGES;
+                return false;
+            }
             // Refuse to set invalid address, set error status and return false
-            if(!walletModel->validateAddress(value.toString()))
+            else if(!walletModel->validateAddress(value.toString()))
             {
                 editStatus = INVALID_ADDRESS;
                 return false;
             }
+            // Check for duplicate addresses to prevent accidental deletion of addresses, if you try
+            // to paste an existing address over another address (with a different label)
+            else if(wallet->mapAddressBook.count(CBitcoinAddress(value.toString().toStdString()).Get()))
+            {
+                editStatus = DUPLICATE_ADDRESS;
+                return false;
+            }
             // Double-check that we're not overwriting a receiving address
-            if(rec->type == AddressTableEntry::Sending)
+            else if(rec->type == AddressTableEntry::Sending)
             {
                 {
                     LOCK(wallet->cs_wallet);

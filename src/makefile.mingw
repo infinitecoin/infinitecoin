@@ -18,20 +18,24 @@
 CXX ?= g++
 
 USE_UPNP:=-
+USE_IPV6:=0
 
-
-DEPSDIR?=/usr/local
-BOOST_SUFFIX?=-mgw46-mt-sd-1_52
+BOOST_SUFFIX?=-mgw48-mt-s-1_55
 
 INCLUDEPATHS= \
- -I"$(CURDIR)" \
- -I"$(DEPSDIR)/include"
+-I"$(CURDIR)" \
+-I"C:/deps/miniupnpc" \
+-I"C:/deps/boost_1_55_0" \
+-I"C:/deps/db-4.8.30.NC/build_unix" \
+-I"C:/deps/openssl-1.0.1g/include"
 
 LIBPATHS= \
- -L"$(DEPSDIR)/lib"
+-L"C:/deps/miniupnpc/miniupnpc" \
+-L"C:/deps/boost_1_55_0/stage/lib" \
+-L"C:/deps/db-4.8.30.NC/build_unix" \
+-L"C:/deps/openssl-1.0.1g"
 
 LIBS= \
- -l memenv \
  -l boost_system$(BOOST_SUFFIX) \
  -l boost_filesystem$(BOOST_SUFFIX) \
  -l boost_program_options$(BOOST_SUFFIX) \
@@ -53,6 +57,8 @@ ifndef USE_UPNP
 	override USE_UPNP = -
 endif
 ifneq (${USE_UPNP}, -)
+INCLUDEPATHS += -I"C:\"
+LIBPATHS += -L"C:\miniupnpc"
  LIBS += -l miniupnpc -l iphlpapi
  DEFS += -DSTATICLIB -DUSE_UPNP=$(USE_UPNP)
 endif
@@ -79,6 +85,7 @@ OBJS= \
     obj/bitcoinrpc.o \
     obj/rpcdump.o \
     obj/rpcnet.o \
+    obj/rpcrawtransaction.o \
     obj/script.o \
     obj/scrypt.o \
     obj/sync.o \

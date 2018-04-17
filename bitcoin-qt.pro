@@ -1,13 +1,17 @@
 TEMPLATE = app
 TARGET = infinitecoin-qt
 macx:TARGET = "Infinitecoin-Qt"
-VERSION = 1.8.0.0
+VERSION = 1.8.8.2
 INCLUDEPATH += src src/json src/qt
 QT += core gui network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-DEFINES += QT_GUI BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE
+DEFINES += QT_GUI BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE BOOST_THREAD_PROVIDES_GENERIC_SHARED_MUTEX_ON_WIN __NO_SYSTEM_INCLUDES
+
 CONFIG += no_include_pwd
 CONFIG += thread
+
+
+# DEPS_DIR = E:/workspaces/projects/deps
 
 # for boost 1.37, add -mt to the boost libraries
 # use: qmake BOOST_LIB_SUFFIX=-mt
@@ -18,12 +22,40 @@ CONFIG += thread
 # Dependency library locations can be customized with:
 #    BOOST_INCLUDE_PATH, BOOST_LIB_PATH, BDB_INCLUDE_PATH,
 #    BDB_LIB_PATH, OPENSSL_INCLUDE_PATH and OPENSSL_LIB_PATH respectively
+#BOOST_THREAD_LIB_SUFFIX=_win32-mt-s
+
+
+BOOST_LIB_SUFFIX=-mt-s
+BOOST_INCLUDE_PATH=E:/workspaces/projects/deps/boost_1_55_0
+BOOST_LIB_PATH=E:/workspaces/projects/deps/boost_1_55_0/stage/lib
+BDB_INCLUDE_PATH=E:/workspaces/projects/deps/db-4.8.30.NC/build_unix
+BDB_LIB_PATH=E:/workspaces/projects/deps/db-4.8.30.NC/build_unix
+OPENSSL_INCLUDE_PATH=E:/workspaces/projects/deps/openssl-1.0.1g/include
+OPENSSL_LIB_PATH=E:/workspaces/projects/deps/openssl-1.0.1g
+MINIUPNPC_INCLUDE_PATH=E:/workspaces/projects/deps
+MINIUPNPC_LIB_PATH=E:/workspaces/projects/deps]/miniupnpc
+QRENCODE_INCLUDE_PATH=E:/workspaces/projects/deps/qrencode-3.4.3
+QRENCODE_LIB_PATH=E:/workspaces/projects/deps/qrencode-3.4.3/.libs
+
+#uncomment the following section to enable building on windows:
+win32:LIBS += -lshlwapi
+LIBS += $$join(BOOST_LIB_PATH,,-L,) $$join(BDB_LIB_PATH,,-L,) $$join(OPENSSL_LIB_PATH,,-L,) $$join(QRENCODE_LIB_PATH,,-L,)
+LIBS += -lssl -lcrypto -ldb_cxx$$BDB_LIB_SUFFIX
+win32:LIBS += -lws2_32 -lole32 -loleaut32 -luuid -lgdi32
+
 
 OBJECTS_DIR = build
 MOC_DIR = build
 UI_DIR = build
+USE_QRCODE=1
+USE_UPNP=-
 
+#QMAKE_CXXFLAGS=-frandom-seed=infinitecoin
+#USE_BUILD_INFO=1
+#USE_SSE2=0
 # use: qmake "RELEASE=1"
+
+RELEASE=1
 contains(RELEASE, 1) {
     # Mac: compile for maximum compatibility (10.5, 32-bit)
     macx:QMAKE_CXXFLAGS += -mmacosx-version-min=10.5 -arch i386 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk
@@ -44,20 +76,22 @@ contains(RELEASE, 1) {
     # This can be enabled for Windows, when we switch to MinGW >= 4.4.x.
 }
 # for extra security (see: https://wiki.debian.org/Hardening): this flag is GCC compiler-specific
-QMAKE_CXXFLAGS *= -D_FORTIFY_SOURCE=2
+QMAKE_CXXFLAGS *= -D_FORTIFY_SOURCE=2 -static
 # for extra security on Windows: enable ASLR and DEP via GCC linker flags
 win32:QMAKE_LFLAGS *= -Wl,--dynamicbase -Wl,--nxcompat
 # on Windows: enable GCC large address aware linker flag
 win32:QMAKE_LFLAGS *= -Wl,--large-address-aware
 # i686-w64-mingw32
-win32:QMAKE_LFLAGS *= -static-libgcc -static-libstdc++
+win32:QMAKE_LFLAGS *=-static-libgcc -static-libstdc++
 
-# use: qmake "USE_QRCODE=1"
-# libqrencode (http://fukuchi.org/works/qrencode/index.en.html) must be installed for support
-contains(USE_QRCODE, 1) {
-    message(Building with QRCode support)
-    DEFINES += USE_QRCODE
-    LIBS += -lqrencode
+
+static { # everything below takes effect with CONFIG ''= static
+ CONFIG+= static
+ CONFIG += staticlib # this is needed if you create a static library, not a static executable
+ DEFINES+= STATIC
+ message("~~~ static build ~~~") # this is for information, that the static build is done
+ mac: TARGET = $$join(TARGET,,,_static) #this adds an _static in the end, so you can seperate static build from non static build
+ win32: TARGET = $$join(TARGET,,,s) #this adds an s in the end, so you can seperate static build from non static build
 }
 
 # use: qmake "USE_UPNP=1" ( enabled by default; default)
@@ -111,8 +145,10 @@ contains(BITCOIN_NEED_QT_PLUGINS, 1) {
     QMAKE_EXTRA_TARGETS += genbuild
     DEFINES += HAVE_BUILD_INFO
 }
+QMAKE_CXXFLAGS += -msse2
+QMAKE_CFLAGS += -msse2
 
-QMAKE_CXXFLAGS_WARN_ON = -fdiagnostics-show-option -Wall -Wextra -Wformat -Wformat-security -Wno-unused-parameter -Wstack-protector
+QMAKE_CXXFLAGS_WARN_ON = -fexceptions -fdiagnostics-show-option -Wall -Wextra -Wformat -Wformat-security -Wno-unused-parameter -Wstack-protector
 
 # Input
 DEPENDPATH += src src/json src/qt
@@ -267,10 +303,15 @@ FORMS += \
     src/qt/forms/miningpage.ui \
     src/qt/forms/optionsdialog.ui
 
+# use: qmake "USE_QRCODE=1"
+# libqrencode (http://fukuchi.org/works/qrencode/index.en.html) must be installed for support
 contains(USE_QRCODE, 1) {
 HEADERS += src/qt/qrcodedialog.h
 SOURCES += src/qt/qrcodedialog.cpp
 FORMS += src/qt/forms/qrcodedialog.ui
+    message(Building with QRCode support)
+    DEFINES += USE_QRCODE
+    LIBS += -lqrencode -lpthread
 }
 
 contains(BITCOIN_QT_TEST, 1) {
@@ -318,10 +359,6 @@ OTHER_FILES += README.md \
     src/qt/macnotificationhandler.mm
 
 # platform specific defaults, if not overridden on command line
-isEmpty(BOOST_LIB_SUFFIX) {
-    macx:BOOST_LIB_SUFFIX = -mt
-    win32:BOOST_LIB_SUFFIX = -mgw44-mt-s-1_50
-}
 
 isEmpty(BOOST_THREAD_LIB_SUFFIX) {
     BOOST_THREAD_LIB_SUFFIX = $$BOOST_LIB_SUFFIX

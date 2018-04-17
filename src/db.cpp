@@ -689,7 +689,7 @@ bool CTxDB::LoadBlockIndexGuts()
 
     // Load mapBlockIndex
     unsigned int fFlags = DB_SET_RANGE;
-    loop
+    while(1)
     {
         // Read next record
         CDataStream ssKey(SER_DISK, CLIENT_VERSION);
