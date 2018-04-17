@@ -25,3 +25,5 @@ debug
 release
 debug/*.*
 release/*.*
+.vscode
+.svn
