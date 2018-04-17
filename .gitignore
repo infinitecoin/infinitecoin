@@ -27,3 +27,4 @@ debug/*.*
 release/*.*
 .vscode
 .svn
+object_script.*
