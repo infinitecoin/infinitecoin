@@ -9,7 +9,33 @@ Infinitecoin - a fork of Litecoin version. Like Litecoin it uses scrypt as a pro
 
 Development process
 ===================
+2018-04-10
+1, Fix the problem that IFC can't start after Linux system is turned off IPv6.
 
+2018-03-22 community official version 1.8.8.2, this version is modified and compiled based on the original 1.8.8.0 source code.
+1, increased direct click transactions in transaction records, ID can jump to block browser query transaction records.
+2, repair the receiving currency form, modify the first label in the address book form, cause the second tags to be modified bug.
+3, about page image replacement, and increased the community's official website link.
+4, repair of the lower right corner in the state of typos "kind" correct "clock"
+5, improve the mining state of the lower right corner of Chinese display
+6, verify that all English in the message window is translated into Chinese.
+7, perfect the Chinese tray right click menu language display
+8, improve the Chinese language display page.
+9. The options page improves the Chinese language display
+10. Improve the Chinese language display in the rest of the warning box
+11, increase the number of connections to the default network nodes to 32, improve the block synchronization speed.
+12. Upgrade the QT version to 4.8.7 to improve security
+13, modify the default location of block data, which is the Infinitecoin folder under the current software running directory.
+14, there will be vc++ rumtime error error when repairing json-rpc and console.
+
+2018-3-15
+1, increase the number of connections to the default network nodes to 32, improve the block synchronization speed.
+2, perfect Chinese Translation
+3. Upgrade the QT version to 4.8.7 to improve security
+4, modify the default location of block data, which is the Infinitecoin folder under the current software running directory.
+
+
+2015-4
 Developers work in their own trees, then submit pull requests when
 they think their feature or bug fix is ready.
 
