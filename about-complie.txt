@@ -1,5 +1,5 @@
-2018-03-15 v1.8.8.1 Ò»Â·ÓĞÄã
-¸Ã°æ±¾´Ó https://github.com/infinitecoin/infinitecoin ´´½¨µÄ·ÖÖ§
+2018-03-15 v1.8.8.3 ä¸€è·¯æœ‰ä½ 
+è¯¥ç‰ˆæœ¬ä» https://github.com/infinitecoin/infinitecoin åˆ›å»ºçš„åˆ†æ”¯
 db-4.8.30.NC
 qrencode-3.4.3
 openssl-1.0.1g
@@ -8,19 +8,19 @@ mingw32 4.8.6
 gcc version 4.8.2
 qt 4.8.7
 
-ÉçÇø¼¼ÊõÕ¾
+ç¤¾åŒºæŠ€æœ¯ç«™
 https://ifc.1e9.cc/
 
-ÉçÇø¹ÙÍø
+ç¤¾åŒºå®˜ç½‘
 https://www.infinitecoin.in/
 
-ÉçÇøÇø¿éä¯ÀÀÆ÷
+ç¤¾åŒºåŒºå—æµè§ˆå™¨
 https://ifc.1e9.cc/ifc/
 
-ÉçÇø½Úµã×ÔÖúÏµÍ³
+ç¤¾åŒºèŠ‚ç‚¹è‡ªåŠ©ç³»ç»Ÿ
 https://ifc.1e9.cc/ifc/peers
 
 
-¼¼ÊõÌ½ÌÖ£º
+æŠ€æœ¯æ¢è®¨ï¼š
 https://www.infinitecoin.in/article-48-1.html
-Çë¼ÓÈëÉçÇøQÈº£¬²éÕÒ Ò»Â·ÓĞÄã
+è¯·åŠ å…¥ç¤¾åŒºQç¾¤ï¼ŒæŸ¥æ‰¾ ä¸€è·¯æœ‰ä½ 
