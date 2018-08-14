@@ -24,6 +24,7 @@ Infinitecoin is a fork of Litecoin version. Like Litecoin it uses scrypt as a pr
 Development process
 ===================
 2018-08-14
+----
 community official version 1.9.0 :
 1. Change the transfer fee, from the original block size kb to the actual transfer amount, the rules are as follows:
 The handling fee is charged at 2% (0.2%) of the transfer amount, the minimum is 0.01, the maximum is 10,000, and the block size is no longer judged.
