@@ -61,7 +61,7 @@ double dHashesPerSec;
 int64 nHPSTimerStart;
 
 // Settings
-int64 nTransactionFee = 10.0 * COIN;
+int64 nTransactionFee = 1.0 * COIN;
 int64 nMinimumInputValue = CENT;
 
 

@@ -12,7 +12,7 @@ src/build.h
 .bitcoin
 #compilation and Qt preprocessor part
 *.qm
-Makefile
+Makefile*
 infinitecoin-qt
 #resources cpp
 qrc_*.cpp
