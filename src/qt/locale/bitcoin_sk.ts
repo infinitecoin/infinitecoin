@@ -152,17 +152,17 @@
 <context>
     <name>AddressTableModel</name>
     <message>
-        <location filename="../addresstablemodel.cpp" line="142"/>
+        <location filename="../addresstablemodel.cpp" line="149"/>
         <source>Label</source>
         <translation>Popis</translation>
     </message>
     <message>
-        <location filename="../addresstablemodel.cpp" line="142"/>
+        <location filename="../addresstablemodel.cpp" line="149"/>
         <source>Address</source>
         <translation>Adresa</translation>
     </message>
     <message>
-        <location filename="../addresstablemodel.cpp" line="178"/>
+        <location filename="../addresstablemodel.cpp" line="185"/>
         <source>(no label)</source>
         <translation>(bez popisu)</translation>
     </message>
@@ -745,7 +745,8 @@ Adresa: %4</translation>
         <translation>Nastala chyba pri pokuse uložiť peňaženku na nové miesto.</translation>
     </message>
     <message>
-        <location filename="../bitcoin.cpp" line="116"/>
+        <location filename="../bitcoin.cpp" line="118"/>
+        <location filename="../bitcoin.cpp" line="125"/>
         <source>A fatal error occured. Infinitecoin can no longer continue safely and will quit.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -797,42 +798,48 @@ Adresa: %4</translation>
         <translation>Adresa spojená s týmto záznamom v adresári. Možno upravovať len pre odosielajúce adresy.</translation>
     </message>
     <message>
+        <location filename="../forms/editaddressdialog.ui" line="55"/>
+        <location filename="../editaddressdialog.cpp" line="22"/>
+        <source>Automatic generated</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../editaddressdialog.cpp" line="20"/>
         <source>New receiving address</source>
         <translation>Nová adresa pre prijímanie</translation>
     </message>
     <message>
-        <location filename="../editaddressdialog.cpp" line="24"/>
+        <location filename="../editaddressdialog.cpp" line="25"/>
         <source>New sending address</source>
         <translation>Nová adresa pre odoslanie</translation>
     </message>
     <message>
-        <location filename="../editaddressdialog.cpp" line="27"/>
+        <location filename="../editaddressdialog.cpp" line="29"/>
         <source>Edit receiving address</source>
         <translation>Upraviť prijímacie adresy</translation>
     </message>
     <message>
-        <location filename="../editaddressdialog.cpp" line="31"/>
+        <location filename="../editaddressdialog.cpp" line="34"/>
         <source>Edit sending address</source>
         <translation>Upraviť odosielaciu adresu</translation>
     </message>
     <message>
-        <location filename="../editaddressdialog.cpp" line="91"/>
+        <location filename="../editaddressdialog.cpp" line="95"/>
         <source>The entered address &quot;%1&quot; is already in the address book.</source>
         <translation>Vložená adresa &quot;%1&quot; sa už nachádza v adresári.</translation>
     </message>
     <message>
-        <location filename="../editaddressdialog.cpp" line="96"/>
+        <location filename="../editaddressdialog.cpp" line="100"/>
         <source>The entered address &quot;%1&quot; is not a valid Infinitecoin address.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../editaddressdialog.cpp" line="101"/>
+        <location filename="../editaddressdialog.cpp" line="105"/>
         <source>Could not unlock wallet.</source>
         <translation>Nepodarilo sa odomknúť peňaženku.</translation>
     </message>
     <message>
-        <location filename="../editaddressdialog.cpp" line="106"/>
+        <location filename="../editaddressdialog.cpp" line="110"/>
         <source>New key generation failed.</source>
         <translation>Generovanie nového kľúča zlyhalo.</translation>
     </message>
@@ -1269,7 +1276,7 @@ Adresa: %4</translation>
         <translation>Zostatok:</translation>
     </message>
     <message>
-        <location filename="../forms/overviewpage.ui" line="147"/>
+        <location filename="../forms/overviewpage.ui" line="173"/>
         <source>Number of transactions:</source>
         <translation>Počet transakcií:</translation>
     </message>
@@ -1285,22 +1292,32 @@ Adresa: %4</translation>
     </message>
     <message>
         <location filename="../forms/overviewpage.ui" line="47"/>
-        <location filename="../forms/overviewpage.ui" line="230"/>
+        <location filename="../forms/overviewpage.ui" line="297"/>
         <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Infinitecoin network after a connection is established, but this process has not completed yet.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/overviewpage.ui" line="164"/>
+        <location filename="../forms/overviewpage.ui" line="147"/>
         <source>Immature:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/overviewpage.ui" line="177"/>
+        <location filename="../forms/overviewpage.ui" line="160"/>
         <source>Mined balance that has not yet matured</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/overviewpage.ui" line="223"/>
+        <location filename="../forms/overviewpage.ui" line="217"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;http://www.ifc123.top/?r=ifc1910&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Navigation Site&lt;/span&gt;&lt;/a&gt; | &lt;a href=&quot;https://chainz.cryptoid.info/ifc/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Blockchain Explorer&lt;/span&gt;&lt;/a&gt; | &lt;a href=&quot;https://www.ifc123.net/archives/147.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Pool List&lt;/span&gt;&lt;/a&gt; | &lt;a href=&quot;https://github.com/withu2018/infinitecoin&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Github&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../forms/overviewpage.ui" line="382"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://www.ifc123.net/archives/108.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Version 1.9.1 (2018-08-16)&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../forms/overviewpage.ui" line="290"/>
         <source>&lt;b&gt;Recent transactions&lt;/b&gt;</source>
         <translation>&lt;b&gt;Nedávne transakcie&lt;/b&gt;</translation>
     </message>
@@ -1315,7 +1332,7 @@ Adresa: %4</translation>
         <translation>Suma transakcií ktoré ešte neboli potvrdené a nezapočítavaju sa do celkového zostatku.</translation>
     </message>
     <message>
-        <location filename="../forms/overviewpage.ui" line="154"/>
+        <location filename="../forms/overviewpage.ui" line="180"/>
         <source>Total number of transactions in wallet</source>
         <translation>Celkový počet transakcií v peňaženke</translation>
     </message>
@@ -1395,91 +1412,91 @@ Adresa: %4</translation>
 <context>
     <name>RPCConsole</name>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="46"/>
+        <location filename="../forms/rpcconsole.ui" line="49"/>
         <source>Client name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="56"/>
-        <location filename="../forms/rpcconsole.ui" line="79"/>
-        <location filename="../forms/rpcconsole.ui" line="105"/>
-        <location filename="../forms/rpcconsole.ui" line="128"/>
-        <location filename="../forms/rpcconsole.ui" line="151"/>
-        <location filename="../forms/rpcconsole.ui" line="187"/>
-        <location filename="../forms/rpcconsole.ui" line="240"/>
-        <location filename="../forms/rpcconsole.ui" line="263"/>
-        <location filename="../forms/rpcconsole.ui" line="286"/>
-        <location filename="../rpcconsole.cpp" line="246"/>
+        <location filename="../forms/rpcconsole.ui" line="59"/>
+        <location filename="../forms/rpcconsole.ui" line="82"/>
+        <location filename="../forms/rpcconsole.ui" line="108"/>
+        <location filename="../forms/rpcconsole.ui" line="131"/>
+        <location filename="../forms/rpcconsole.ui" line="154"/>
+        <location filename="../forms/rpcconsole.ui" line="190"/>
+        <location filename="../forms/rpcconsole.ui" line="243"/>
+        <location filename="../forms/rpcconsole.ui" line="266"/>
+        <location filename="../forms/rpcconsole.ui" line="289"/>
+        <location filename="../rpcconsole.cpp" line="330"/>
         <source>N/A</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="69"/>
+        <location filename="../forms/rpcconsole.ui" line="72"/>
         <source>Client version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="24"/>
+        <location filename="../forms/rpcconsole.ui" line="27"/>
         <source>&amp;Information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="141"/>
+        <location filename="../forms/rpcconsole.ui" line="144"/>
         <source>Startup time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="170"/>
+        <location filename="../forms/rpcconsole.ui" line="173"/>
         <source>Network</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="177"/>
+        <location filename="../forms/rpcconsole.ui" line="180"/>
         <source>Number of connections</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="200"/>
+        <location filename="../forms/rpcconsole.ui" line="203"/>
         <source>On testnet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="223"/>
+        <location filename="../forms/rpcconsole.ui" line="226"/>
         <source>Block chain</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="230"/>
+        <location filename="../forms/rpcconsole.ui" line="233"/>
         <source>Current number of blocks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="253"/>
+        <location filename="../forms/rpcconsole.ui" line="256"/>
         <source>Estimated total blocks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="276"/>
+        <location filename="../forms/rpcconsole.ui" line="279"/>
         <source>Last block time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="318"/>
+        <location filename="../forms/rpcconsole.ui" line="321"/>
         <source>Debug logfile</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="328"/>
+        <location filename="../forms/rpcconsole.ui" line="331"/>
         <source>&amp;Open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="381"/>
+        <location filename="../forms/rpcconsole.ui" line="384"/>
         <source>&amp;Console</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="118"/>
+        <location filename="../forms/rpcconsole.ui" line="121"/>
         <source>Build date</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1489,52 +1506,52 @@ Adresa: %4</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="39"/>
+        <location filename="../forms/rpcconsole.ui" line="42"/>
         <source>Bitcoin Core</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="92"/>
+        <location filename="../forms/rpcconsole.ui" line="95"/>
         <source>Using OpenSSL version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="325"/>
+        <location filename="../forms/rpcconsole.ui" line="328"/>
         <source>Open the Infinitecoin debug logfile from the current data directory. This can take a few seconds for large logfiles.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="344"/>
+        <location filename="../forms/rpcconsole.ui" line="347"/>
         <source>Command-line options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="351"/>
+        <location filename="../forms/rpcconsole.ui" line="354"/>
         <source>Show the Infinitecoin-Qt help message to get a list with possible Infinitecoin command-line options.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="354"/>
+        <location filename="../forms/rpcconsole.ui" line="357"/>
         <source>&amp;Show</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="430"/>
+        <location filename="../forms/rpcconsole.ui" line="437"/>
         <source>Clear console</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rpcconsole.cpp" line="213"/>
+        <location filename="../rpcconsole.cpp" line="297"/>
         <source>Welcome to the Infinitecoin RPC console.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rpcconsole.cpp" line="214"/>
+        <location filename="../rpcconsole.cpp" line="298"/>
         <source>Use up and down arrows to navigate history, and &lt;b&gt;Ctrl-L&lt;/b&gt; to clear screen.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rpcconsole.cpp" line="215"/>
+        <location filename="../rpcconsole.cpp" line="299"/>
         <source>Type &lt;b&gt;help&lt;/b&gt; for an overview of available commands.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1554,32 +1571,38 @@ Adresa: %4</translation>
         <translation>Poslať Bitcoins</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsdialog.ui" line="64"/>
+        <location filename="../forms/sendcoinsdialog.ui" line="73"/>
+        <source>The fee is charged at 0.2% of the transfer amount, with a minimum of 0.01IFC and a maximum of 10000IFC.</source>
+        <extracomment>111</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../forms/sendcoinsdialog.ui" line="90"/>
         <source>Send to multiple recipients at once</source>
         <translation>Poslať viacerým príjemcom naraz</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsdialog.ui" line="67"/>
+        <location filename="../forms/sendcoinsdialog.ui" line="93"/>
         <source>&amp;Add Recipient</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsdialog.ui" line="87"/>
+        <location filename="../forms/sendcoinsdialog.ui" line="113"/>
         <source>Remove all transaction fields</source>
         <translation>Odobrať všetky políčka transakcie</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsdialog.ui" line="90"/>
+        <location filename="../forms/sendcoinsdialog.ui" line="116"/>
         <source>Clear &amp;All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsdialog.ui" line="112"/>
+        <location filename="../forms/sendcoinsdialog.ui" line="138"/>
         <source>Balance:</source>
         <translation>Zostatok:</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsdialog.ui" line="122"/>
+        <location filename="../forms/sendcoinsdialog.ui" line="148"/>
         <source>123.456 IFC</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1588,12 +1611,12 @@ Adresa: %4</translation>
         <translation type="obsolete">123.456 BTC</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsdialog.ui" line="153"/>
+        <location filename="../forms/sendcoinsdialog.ui" line="179"/>
         <source>Confirm the send action</source>
         <translation>Potvrďte odoslanie</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsdialog.ui" line="156"/>
+        <location filename="../forms/sendcoinsdialog.ui" line="182"/>
         <source>&amp;Send</source>
         <translation>&amp;Odoslať</translation>
     </message>
@@ -1661,63 +1684,80 @@ Adresa: %4</translation>
         <translation>Forma</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsentry.ui" line="29"/>
+        <location filename="../forms/sendcoinsentry.ui" line="94"/>
         <source>A&amp;mount:</source>
         <translation>Su&amp;ma:</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsentry.ui" line="42"/>
+        <location filename="../forms/sendcoinsentry.ui" line="107"/>
         <source>Pay &amp;To:</source>
         <translation>Zapla&amp;tiť:</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsentry.ui" line="66"/>
-        <location filename="../sendcoinsentry.cpp" line="25"/>
+        <location filename="../forms/sendcoinsentry.ui" line="128"/>
+        <location filename="../sendcoinsentry.cpp" line="26"/>
         <source>Enter a label for this address to add it to your address book</source>
         <translation>Vložte popis pre túto adresu aby sa pridala do adresára</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsentry.ui" line="75"/>
+        <location filename="../forms/sendcoinsentry.ui" line="137"/>
         <source>&amp;Label:</source>
         <translation>&amp;Popis:</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsentry.ui" line="93"/>
+        <location filename="../forms/sendcoinsentry.ui" line="34"/>
         <source>The address to send the payment to  (e.g. 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</source>
         <translation>Adresa pre odoslanie platby je (napr. 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsentry.ui" line="103"/>
+        <location filename="../forms/sendcoinsentry.ui" line="44"/>
         <source>Choose address from address book</source>
         <translation>Zvoľte adresu z adresára</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsentry.ui" line="113"/>
+        <location filename="../forms/sendcoinsentry.ui" line="54"/>
         <source>Alt+A</source>
         <translation>Alt+A</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsentry.ui" line="120"/>
+        <location filename="../forms/sendcoinsentry.ui" line="61"/>
         <source>Paste address from clipboard</source>
         <translation>Vložiť adresu z klipbordu</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsentry.ui" line="130"/>
+        <location filename="../forms/sendcoinsentry.ui" line="71"/>
         <source>Alt+P</source>
         <translation>Alt+P</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsentry.ui" line="137"/>
+        <location filename="../forms/sendcoinsentry.ui" line="78"/>
         <source>Remove this recipient</source>
         <translation>Odstrániť tohto príjemcu</translation>
+    </message>
+    <message>
+        <location filename="../forms/sendcoinsentry.ui" line="170"/>
+        <source>0.0</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../forms/sendcoinsentry.ui" line="183"/>
+        <source>Fee Calc</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Enter a Bitcoin address (e.g. 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</source>
         <translation type="obsolete">Zadajte Bitcoin adresu (napr. 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</translation>
     </message>
     <message>
-        <location filename="../sendcoinsentry.cpp" line="26"/>
+        <location filename="../sendcoinsentry.cpp" line="27"/>
         <source>Enter a Infinitecoin address (starts with i)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../sendcoinsentry.cpp" line="186"/>
+        <location filename="../sendcoinsentry.cpp" line="188"/>
+        <location filename="../sendcoinsentry.cpp" line="192"/>
+        <source>Fee:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2166,14 +2206,18 @@ Adresa: %4</translation>
 <context>
     <name>TransactionDescDialog</name>
     <message>
-        <location filename="../forms/transactiondescdialog.ui" line="14"/>
+        <location filename="../forms/transactiondescdialog.ui" line="26"/>
         <source>Transaction details</source>
         <translation>Detaily transakcie</translation>
     </message>
     <message>
-        <location filename="../forms/transactiondescdialog.ui" line="20"/>
+        <location filename="../forms/transactiondescdialog.ui" line="154"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>This pane shows a detailed description of the transaction</source>
-        <translation>Táto časť obrazovky zobrazuje detailný popis transakcie</translation>
+        <translation type="obsolete">Táto časť obrazovky zobrazuje detailný popis transakcie</translation>
     </message>
 </context>
 <context>

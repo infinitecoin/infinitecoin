@@ -51,6 +51,9 @@
        <property name="toolTip">
         <string>The address associated with this address book entry. This can only be modified for sending addresses.</string>
        </property>
+       <property name="placeholderText">
+        <string>Automatic generated</string>
+       </property>
       </widget>
      </item>
     </layout>

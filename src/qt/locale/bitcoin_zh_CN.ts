@@ -51,7 +51,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location filename="../forms/addressbookpage.ui" line="14"/>
         <source>Address Book</source>
-        <translation>地址薄</translation>
+        <translation type="unfinished">地址簿</translation>
     </message>
     <message>
         <source>These are your Bitcoin addresses for receiving payments.  You may want to give a different one to each sender so you can keep track of who is paying you.</source>
@@ -60,7 +60,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location filename="../forms/addressbookpage.ui" line="36"/>
         <source>Double-click to edit address or label</source>
-        <translation>双击以编辑地址或标签</translation>
+        <translation type="unfinished">双击以编辑地址或账户名</translation>
     </message>
     <message>
         <location filename="../forms/addressbookpage.ui" line="63"/>
@@ -95,16 +95,20 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location filename="../forms/addressbookpage.ui" line="102"/>
         <source>Sign a message to prove you own a Bitcoin address</source>
-        <translation type="unfinished">发送签名消息以证明您是该无限币地址的拥有者</translation>
-    </message>
-    <message>
-        <source>Sign a message to prove you own this address</source>
-        <translation type="obsolete">发送签名消息以证明您是该无限币地址的拥有者</translation>
+        <translation type="unfinished">验证消息以证明您是该无限币地址的拥有者</translation>
     </message>
     <message>
         <location filename="../forms/addressbookpage.ui" line="105"/>
         <source>&amp;Sign Message</source>
-        <translation>&amp;发送签名消息</translation>
+        <translation type="unfinished">&amp;签名消息</translation>
+    </message>
+    <message>
+        <source>Sign a message to prove you own this address</source>
+        <translation type="obsolete">验证消息以证明您是该无限币地址的拥有者</translation>
+    </message>
+    <message>
+        <source>&amp;age</source>
+        <translation type="obsolete">&amp;验证消息</translation>
     </message>
     <message>
         <location filename="../forms/addressbookpage.ui" line="116"/>
@@ -119,7 +123,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location filename="../forms/addressbookpage.ui" line="130"/>
         <source>Delete the currently selected address from the list. Only sending addresses can be deleted.</source>
-        <translation>从列表中删除当前选中地址。只有发送地址可以被删除。</translation>
+        <translation type="unfinished">从列表中删除当前选中地址。只有转出地址可以被删除。</translation>
     </message>
     <message>
         <location filename="../forms/addressbookpage.ui" line="133"/>
@@ -129,7 +133,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location filename="../addressbookpage.cpp" line="65"/>
         <source>Copy &amp;Label</source>
-        <translation>复制 &amp;标签</translation>
+        <translation type="unfinished">复制 &amp;账户名</translation>
     </message>
     <message>
         <location filename="../addressbookpage.cpp" line="67"/>
@@ -160,19 +164,19 @@ This product includes software developed by the OpenSSL Project for use in the O
 <context>
     <name>AddressTableModel</name>
     <message>
-        <location filename="../addresstablemodel.cpp" line="142"/>
+        <location filename="../addresstablemodel.cpp" line="149"/>
         <source>Label</source>
-        <translation>标签</translation>
+        <translation type="unfinished">账户名</translation>
     </message>
     <message>
-        <location filename="../addresstablemodel.cpp" line="142"/>
+        <location filename="../addresstablemodel.cpp" line="149"/>
         <source>Address</source>
         <translation>地址</translation>
     </message>
     <message>
-        <location filename="../addresstablemodel.cpp" line="178"/>
+        <location filename="../addresstablemodel.cpp" line="185"/>
         <source>(no label)</source>
-        <translation>(没有标签)</translation>
+        <translation type="unfinished">(没有账户名)</translation>
     </message>
 </context>
 <context>
@@ -185,22 +189,22 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location filename="../forms/askpassphrasedialog.ui" line="47"/>
         <source>Enter passphrase</source>
-        <translation>输入口令</translation>
+        <translation type="unfinished">输入密码</translation>
     </message>
     <message>
         <location filename="../forms/askpassphrasedialog.ui" line="61"/>
         <source>New passphrase</source>
-        <translation>新口令</translation>
+        <translation type="unfinished">新密码</translation>
     </message>
     <message>
         <location filename="../forms/askpassphrasedialog.ui" line="75"/>
         <source>Repeat new passphrase</source>
-        <translation>重复新口令</translation>
+        <translation type="unfinished">再输一遍</translation>
     </message>
     <message>
         <location filename="../askpassphrasedialog.cpp" line="33"/>
         <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;10 or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
-        <translation>输入钱包的新口令。&lt;br/&gt;使用的口令请至少包含&lt;b&gt;10个以上随机字符&lt;/&gt;，或者是&lt;b&gt;8个以上的单词&lt;/b&gt;。</translation>
+        <translation type="unfinished">输入钱包的新密码。&lt;br/&gt;使用的密码请至少包含&lt;b&gt;10个以上随机字符&lt;/&gt;，或者是&lt;b&gt;8个以上的单词&lt;/b&gt;。</translation>
     </message>
     <message>
         <location filename="../askpassphrasedialog.cpp" line="34"/>
@@ -210,7 +214,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location filename="../askpassphrasedialog.cpp" line="37"/>
         <source>This operation needs your wallet passphrase to unlock the wallet.</source>
-        <translation>该操作需要您首先使用口令解锁钱包。</translation>
+        <translation type="unfinished">该操作需要您首先使用密码解锁钱包。</translation>
     </message>
     <message>
         <location filename="../askpassphrasedialog.cpp" line="42"/>
@@ -220,7 +224,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location filename="../askpassphrasedialog.cpp" line="45"/>
         <source>This operation needs your wallet passphrase to decrypt the wallet.</source>
-        <translation>该操作需要您首先使用口令解密钱包。</translation>
+        <translation type="unfinished">该操作需要您首先使用密码解密钱包。</translation>
     </message>
     <message>
         <location filename="../askpassphrasedialog.cpp" line="50"/>
@@ -230,12 +234,12 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location filename="../askpassphrasedialog.cpp" line="53"/>
         <source>Change passphrase</source>
-        <translation>修改口令</translation>
+        <translation type="unfinished">修改密码</translation>
     </message>
     <message>
         <location filename="../askpassphrasedialog.cpp" line="54"/>
         <source>Enter the old and new passphrase to the wallet.</source>
-        <translation>请输入钱包的旧口令与新口令。</translation>
+        <translation type="unfinished">请输入钱包的旧密码与新密码。</translation>
     </message>
     <message>
         <location filename="../askpassphrasedialog.cpp" line="100"/>
@@ -281,7 +285,7 @@ Are you sure you wish to encrypt your wallet?</source>
         <location filename="../askpassphrasedialog.cpp" line="101"/>
         <source>WARNING: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR INFINITECOINS&lt;/b&gt;!
 Are you sure you wish to encrypt your wallet?</source>
-        <translation type="unfinished">警告：如果您加密了您的钱包之后忘记了口令，您将会&lt;b&gt;失去所有的无限币&lt;/b&gt;！
+        <translation type="unfinished">警告：如果您加密了您的钱包之后忘记了密码，您将会&lt;b&gt;失去所有的无限币&lt;/b&gt;！
 确定要加密钱包吗？</translation>
     </message>
     <message>
@@ -298,7 +302,7 @@ Are you sure you wish to encrypt your wallet?</source>
         <location filename="../askpassphrasedialog.cpp" line="124"/>
         <location filename="../askpassphrasedialog.cpp" line="172"/>
         <source>The supplied passphrases do not match.</source>
-        <translation>口令不匹配。</translation>
+        <translation type="unfinished">密码不匹配。</translation>
     </message>
     <message>
         <location filename="../askpassphrasedialog.cpp" line="135"/>
@@ -310,7 +314,7 @@ Are you sure you wish to encrypt your wallet?</source>
         <location filename="../askpassphrasedialog.cpp" line="147"/>
         <location filename="../askpassphrasedialog.cpp" line="166"/>
         <source>The passphrase entered for the wallet decryption was incorrect.</source>
-        <translation>用于解密钱包的口令不正确。</translation>
+        <translation type="unfinished">用于解密钱包的密码不正确。</translation>
     </message>
     <message>
         <location filename="../askpassphrasedialog.cpp" line="146"/>
@@ -375,7 +379,7 @@ Are you sure you wish to encrypt your wallet?</source>
     <message>
         <location filename="../bitcoingui.cpp" line="208"/>
         <source>&amp;Transactions</source>
-        <translation>&amp;交易</translation>
+        <translation type="unfinished">&amp;交易记录</translation>
     </message>
     <message>
         <location filename="../bitcoingui.cpp" line="209"/>
@@ -390,12 +394,12 @@ Are you sure you wish to encrypt your wallet?</source>
     <message>
         <location filename="../bitcoingui.cpp" line="215"/>
         <source>Edit the list of stored addresses and labels</source>
-        <translation>修改存储的地址和标签列表</translation>
+        <translation type="unfinished">修改存储的地址和账户列表</translation>
     </message>
     <message>
         <location filename="../bitcoingui.cpp" line="220"/>
         <source>&amp;Receive coins</source>
-        <translation>&amp;接收货币</translation>
+        <translation type="unfinished">&amp;我的地址</translation>
     </message>
     <message>
         <location filename="../bitcoingui.cpp" line="221"/>
@@ -405,7 +409,7 @@ Are you sure you wish to encrypt your wallet?</source>
     <message>
         <location filename="../bitcoingui.cpp" line="226"/>
         <source>&amp;Send coins</source>
-        <translation>&amp;发送货币</translation>
+        <translation type="unfinished">&amp;转账</translation>
     </message>
     <message>
         <source>Prove you control an address</source>
@@ -571,7 +575,7 @@ Are you sure you wish to encrypt your wallet?</source>
     <message>
         <location filename="../bitcoingui.cpp" line="227"/>
         <source>Send coins to a Infinitecoin address</source>
-        <translation type="unfinished">向一个无限币地址发送无限币</translation>
+        <translation type="unfinished">向一个无限币地址转账无限币</translation>
     </message>
     <message>
         <location filename="../bitcoingui.cpp" line="233"/>
@@ -702,7 +706,7 @@ Are you sure you wish to encrypt your wallet?</source>
     <message>
         <location filename="../bitcoingui.cpp" line="715"/>
         <source>Sent transaction</source>
-        <translation>已发送交易</translation>
+        <translation type="unfinished">已转账交易</translation>
     </message>
     <message>
         <location filename="../bitcoingui.cpp" line="716"/>
@@ -769,7 +773,8 @@ Address: %4
         <translation type="obsolete">发生致命错误. 无限币客户端的安全存在问题，将退出.</translation>
     </message>
     <message>
-        <location filename="../bitcoin.cpp" line="116"/>
+        <location filename="../bitcoin.cpp" line="118"/>
+        <location filename="../bitcoin.cpp" line="125"/>
         <source>A fatal error occured. Infinitecoin can no longer continue safely and will quit.</source>
         <translation type="unfinished">发生了致命错误。Infinitecoin 无法继续运行，即将退出。</translation>
     </message>
@@ -835,12 +840,12 @@ Address: %4
     <message>
         <location filename="../forms/editaddressdialog.ui" line="25"/>
         <source>&amp;Label</source>
-        <translation>&amp;标签</translation>
+        <translation type="unfinished">&amp;账户名</translation>
     </message>
     <message>
         <location filename="../forms/editaddressdialog.ui" line="35"/>
         <source>The label associated with this address book entry</source>
-        <translation>与此地址条目关联的标签</translation>
+        <translation type="unfinished">与此地址条目关联的账户</translation>
     </message>
     <message>
         <location filename="../forms/editaddressdialog.ui" line="42"/>
@@ -850,7 +855,14 @@ Address: %4
     <message>
         <location filename="../forms/editaddressdialog.ui" line="52"/>
         <source>The address associated with this address book entry. This can only be modified for sending addresses.</source>
-        <translation>该地址与地址簿中的条目已关联，无法作为发送地址编辑。</translation>
+        <translation type="unfinished">该地址与地址簿中的条目已关联，无法作为转出地址编辑。</translation>
+    </message>
+    <message>
+        <location filename="../forms/editaddressdialog.ui" line="55"/>
+        <location filename="../editaddressdialog.cpp" line="22"/>
+        <source>Automatic generated</source>
+        <translation type="unfinished">自动生成
+</translation>
     </message>
     <message>
         <location filename="../editaddressdialog.cpp" line="20"/>
@@ -858,27 +870,27 @@ Address: %4
         <translation>新接收地址</translation>
     </message>
     <message>
-        <location filename="../editaddressdialog.cpp" line="24"/>
+        <location filename="../editaddressdialog.cpp" line="25"/>
         <source>New sending address</source>
-        <translation>新发送地址</translation>
+        <translation type="unfinished">新转出地址</translation>
     </message>
     <message>
-        <location filename="../editaddressdialog.cpp" line="27"/>
+        <location filename="../editaddressdialog.cpp" line="29"/>
         <source>Edit receiving address</source>
         <translation>编辑接收地址</translation>
     </message>
     <message>
-        <location filename="../editaddressdialog.cpp" line="31"/>
+        <location filename="../editaddressdialog.cpp" line="34"/>
         <source>Edit sending address</source>
-        <translation>编辑发送地址</translation>
+        <translation type="unfinished">编辑转出地址</translation>
     </message>
     <message>
-        <location filename="../editaddressdialog.cpp" line="91"/>
+        <location filename="../editaddressdialog.cpp" line="95"/>
         <source>The entered address &quot;%1&quot; is already in the address book.</source>
         <translation>输入的地址 &quot;%1&quot; 已经存在于地址薄。</translation>
     </message>
     <message>
-        <location filename="../editaddressdialog.cpp" line="96"/>
+        <location filename="../editaddressdialog.cpp" line="100"/>
         <source>The entered address &quot;%1&quot; is not a valid Infinitecoin address.</source>
         <translation type="unfinished">输入的地址 &quot;%1&quot; 不是有效的无限币地址。</translation>
     </message>
@@ -887,12 +899,12 @@ Address: %4
         <translation type="obsolete">您输入的 &quot;%1&quot; 不是合法的无限币地址.</translation>
     </message>
     <message>
-        <location filename="../editaddressdialog.cpp" line="101"/>
+        <location filename="../editaddressdialog.cpp" line="105"/>
         <source>Could not unlock wallet.</source>
         <translation>无法解锁钱包</translation>
     </message>
     <message>
-        <location filename="../editaddressdialog.cpp" line="106"/>
+        <location filename="../editaddressdialog.cpp" line="110"/>
         <source>New key generation failed.</source>
         <translation>密钥创建失败.</translation>
     </message>
@@ -994,7 +1006,7 @@ Address: %4
     </message>
     <message>
         <source>Optional transaction fee per kB that helps make sure your transactions are processed quickly. Most transactions are 1 kB. Fee 0.01 recommended.</source>
-        <translation type="obsolete">建议支付交易费用，有助于您的交易得到尽快处理.  绝大多数交易的字节数为 1 kB. 建议支付0.01个无限币.</translation>
+        <translation type="obsolete">建议支付交易费用，有助于您的交易得到尽快处理. 建议支付1个无限币.</translation>
     </message>
     <message>
         <source>&amp;Start Bitcoin on system login</source>
@@ -1012,11 +1024,11 @@ Address: %4
 <context>
     <name>MessagePage</name>
     <message>
-        <source>Sign Message</source>
+        <source>age</source>
         <translation type="obsolete">对消息签名</translation>
     </message>
     <message>
-        <source>You can sign messages with your addresses to prove you own them. Be careful not to sign anything vague, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
+        <source>You can ages with your addresses to prove you own them. Be careful not to sign anything vague, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
         <translation type="obsolete">您可以用你的地址对消息进行签名，以证明您是该地址的所有人。注意不要对模棱两可的消息签名，以免遭受钓鱼式攻击。请确保消息真实明确的表达了您的意愿。</translation>
     </message>
     <message>
@@ -1052,7 +1064,7 @@ Address: %4
         <translation type="obsolete">&amp;复制签名</translation>
     </message>
     <message>
-        <source>Reset all sign message fields</source>
+        <source>Reset all age fields</source>
         <translation type="obsolete">清空所有签名消息栏</translation>
     </message>
     <message>
@@ -1061,7 +1073,7 @@ Address: %4
     </message>
     <message>
         <source>Click &quot;Sign Message&quot; to get signature</source>
-        <translation type="obsolete">单击“发送签名消息&quot;获取签名</translation>
+        <translation type="obsolete">单击“签名消息&quot;获取签名</translation>
     </message>
     <message>
         <source>Sign a message to prove you own this address</source>
@@ -1069,7 +1081,7 @@ Address: %4
     </message>
     <message>
         <source>&amp;Sign Message</source>
-        <translation type="obsolete">&amp;发送签名消息</translation>
+        <translation type="obsolete">&amp;签名消息</translation>
     </message>
     <message>
         <source>Enter a Bitcoin address (e.g. 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</source>
@@ -1218,7 +1230,7 @@ Address: %4
     <message>
         <location filename="../forms/optionsdialog.ui" line="36"/>
         <source>Optional transaction fee per kB that helps make sure your transactions are processed quickly. Most transactions are 1 kB. Fee 0.01 recommended.</source>
-        <translation type="unfinished">建议支付交易费用，有助于您的交易得到尽快处理.  绝大多数交易的字节数为 1 kB. 建议支付0.01个无限币.</translation>
+        <translation type="unfinished">建议支付交易费用，有助于您的交易得到尽快处理. 建议支付1个无限币.</translation>
     </message>
     <message>
         <location filename="../forms/optionsdialog.ui" line="51"/>
@@ -1415,7 +1427,7 @@ Address: %4
         <translation>余额</translation>
     </message>
     <message>
-        <location filename="../forms/overviewpage.ui" line="147"/>
+        <location filename="../forms/overviewpage.ui" line="173"/>
         <source>Number of transactions:</source>
         <translation>交易笔数</translation>
     </message>
@@ -1431,22 +1443,36 @@ Address: %4
     </message>
     <message>
         <location filename="../forms/overviewpage.ui" line="47"/>
-        <location filename="../forms/overviewpage.ui" line="230"/>
+        <location filename="../forms/overviewpage.ui" line="297"/>
         <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Infinitecoin network after a connection is established, but this process has not completed yet.</source>
         <translation type="unfinished">现在显示的消息可能是过期的. 在连接上无限币网络节点后，您的钱包将自动与网络同步，但是这个过程还没有完成.</translation>
     </message>
     <message>
-        <location filename="../forms/overviewpage.ui" line="164"/>
+        <location filename="../forms/overviewpage.ui" line="147"/>
         <source>Immature:</source>
         <translation type="unfinished">未成熟</translation>
     </message>
     <message>
-        <location filename="../forms/overviewpage.ui" line="177"/>
+        <location filename="../forms/overviewpage.ui" line="160"/>
         <source>Mined balance that has not yet matured</source>
         <translation type="unfinished">挖到的金额尚未成熟</translation>
     </message>
     <message>
-        <location filename="../forms/overviewpage.ui" line="223"/>
+        <location filename="../forms/overviewpage.ui" line="217"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;http://www.ifc123.top/?r=ifc1910&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Navigation Site&lt;/span&gt;&lt;/a&gt; | &lt;a href=&quot;https://chainz.cryptoid.info/ifc/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Blockchain Explorer&lt;/span&gt;&lt;/a&gt; | &lt;a href=&quot;https://www.ifc123.net/archives/147.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Pool List&lt;/span&gt;&lt;/a&gt; | &lt;a href=&quot;https://github.com/withu2018/infinitecoin&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Github&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;http://www.ifc123.top/?r=ifc1910&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;导航站&lt;/span&gt;&lt;/a&gt; | &lt;a href=&quot;https://chainz.cryptoid.info/ifc/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;区块浏览器&lt;/span&gt;&lt;/a&gt; | &lt;a href=&quot;https://www.ifc123.net/archives/147.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;矿池列表&lt;/span&gt;&lt;/a&gt; | &lt;a href=&quot;https://github.com/withu2018/infinitecoin&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;源码&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../forms/overviewpage.ui" line="382"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://www.ifc123.net/archives/108.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Version 1.9.1 (2018-08-16)&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;http://www.ifc123.top/?r=ifc1910&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Navigation Site&lt;/span&gt;&lt;/a&gt; | &lt;a href=&quot;https://chainz.cryptoid.info/ifc&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Blockchain Explorer&lt;/span&gt;&lt;/a&gt; | &lt;a href=&quot;https://www.ifc123.net/archives/147.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Pool List&lt;/span&gt;&lt;/a&gt; | &lt;a href=&quot;https://github.com/withu2018/infinitecoin&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Github&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="obsolete">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;http://www.ifc123.top/?r=ifc1910&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;导航站&lt;/span&gt;&lt;/a&gt; | &lt;a href=&quot;https://chainz.cryptoid.info/ifc&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;区块浏览器&lt;/span&gt;&lt;/a&gt; | &lt;a href=&quot;https://www.ifc123.net/archives/147.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;矿池列表&lt;/span&gt;&lt;/a&gt; | &lt;a href=&quot;https://github.com/withu2018/infinitecoin&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;源码&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../forms/overviewpage.ui" line="290"/>
         <source>&lt;b&gt;Recent transactions&lt;/b&gt;</source>
         <translation>&lt;b&gt;当前交易&lt;/b&gt;</translation>
     </message>
@@ -1461,7 +1487,7 @@ Address: %4
         <translation>尚未确认的交易总额, 未计入当前余额</translation>
     </message>
     <message>
-        <location filename="../forms/overviewpage.ui" line="154"/>
+        <location filename="../forms/overviewpage.ui" line="180"/>
         <source>Total number of transactions in wallet</source>
         <translation>钱包总交易数量</translation>
     </message>
@@ -1504,7 +1530,7 @@ Address: %4
     <message>
         <location filename="../forms/qrcodedialog.ui" line="85"/>
         <source>Label:</source>
-        <translation>标签：</translation>
+        <translation type="unfinished">账户名：</translation>
     </message>
     <message>
         <location filename="../forms/qrcodedialog.ui" line="104"/>
@@ -1529,7 +1555,7 @@ Address: %4
     <message>
         <location filename="../qrcodedialog.cpp" line="125"/>
         <source>Resulting URI too long, try to reduce the text for label / message.</source>
-        <translation>URI 太长, 请试着精简标签/消息的内容.</translation>
+        <translation type="unfinished">URI 太长, 请试着精简账户名/消息的内容.</translation>
     </message>
     <message>
         <location filename="../qrcodedialog.cpp" line="150"/>
@@ -1549,31 +1575,31 @@ Address: %4
         <translation type="obsolete">调试窗口</translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="46"/>
+        <location filename="../forms/rpcconsole.ui" line="49"/>
         <source>Client name</source>
         <translation>客户端名称</translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="56"/>
-        <location filename="../forms/rpcconsole.ui" line="79"/>
-        <location filename="../forms/rpcconsole.ui" line="105"/>
-        <location filename="../forms/rpcconsole.ui" line="128"/>
-        <location filename="../forms/rpcconsole.ui" line="151"/>
-        <location filename="../forms/rpcconsole.ui" line="187"/>
-        <location filename="../forms/rpcconsole.ui" line="240"/>
-        <location filename="../forms/rpcconsole.ui" line="263"/>
-        <location filename="../forms/rpcconsole.ui" line="286"/>
-        <location filename="../rpcconsole.cpp" line="246"/>
+        <location filename="../forms/rpcconsole.ui" line="59"/>
+        <location filename="../forms/rpcconsole.ui" line="82"/>
+        <location filename="../forms/rpcconsole.ui" line="108"/>
+        <location filename="../forms/rpcconsole.ui" line="131"/>
+        <location filename="../forms/rpcconsole.ui" line="154"/>
+        <location filename="../forms/rpcconsole.ui" line="190"/>
+        <location filename="../forms/rpcconsole.ui" line="243"/>
+        <location filename="../forms/rpcconsole.ui" line="266"/>
+        <location filename="../forms/rpcconsole.ui" line="289"/>
+        <location filename="../rpcconsole.cpp" line="330"/>
         <source>N/A</source>
         <translation>不可用</translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="69"/>
+        <location filename="../forms/rpcconsole.ui" line="72"/>
         <source>Client version</source>
         <translation>客户端版本</translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="24"/>
+        <location filename="../forms/rpcconsole.ui" line="27"/>
         <source>&amp;Information</source>
         <translation>&amp;信息</translation>
     </message>
@@ -1582,47 +1608,47 @@ Address: %4
         <translation type="obsolete">客户端</translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="141"/>
+        <location filename="../forms/rpcconsole.ui" line="144"/>
         <source>Startup time</source>
         <translation>启动时间</translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="170"/>
+        <location filename="../forms/rpcconsole.ui" line="173"/>
         <source>Network</source>
         <translation>网络</translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="177"/>
+        <location filename="../forms/rpcconsole.ui" line="180"/>
         <source>Number of connections</source>
         <translation>连接数</translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="200"/>
+        <location filename="../forms/rpcconsole.ui" line="203"/>
         <source>On testnet</source>
         <translation>当前为无限币测试网络</translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="223"/>
+        <location filename="../forms/rpcconsole.ui" line="226"/>
         <source>Block chain</source>
         <translation>区块链</translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="230"/>
+        <location filename="../forms/rpcconsole.ui" line="233"/>
         <source>Current number of blocks</source>
         <translation>当前区块数</translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="253"/>
+        <location filename="../forms/rpcconsole.ui" line="256"/>
         <source>Estimated total blocks</source>
         <translation>预计区块数</translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="276"/>
+        <location filename="../forms/rpcconsole.ui" line="279"/>
         <source>Last block time</source>
         <translation>上一区块时间</translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="318"/>
+        <location filename="../forms/rpcconsole.ui" line="321"/>
         <source>Debug logfile</source>
         <translation>调试日志文件</translation>
     </message>
@@ -1631,17 +1657,17 @@ Address: %4
         <translation type="obsolete">在当前数据目录打开调试日志文件. 大文件，需要等待几秒.</translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="328"/>
+        <location filename="../forms/rpcconsole.ui" line="331"/>
         <source>&amp;Open</source>
         <translation>&amp;打开</translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="381"/>
+        <location filename="../forms/rpcconsole.ui" line="384"/>
         <source>&amp;Console</source>
         <translation>&amp;控制台</translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="118"/>
+        <location filename="../forms/rpcconsole.ui" line="121"/>
         <source>Build date</source>
         <translation>创建时间</translation>
     </message>
@@ -1651,37 +1677,37 @@ Address: %4
         <translation type="unfinished">无限币-调试窗口</translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="39"/>
+        <location filename="../forms/rpcconsole.ui" line="42"/>
         <source>Bitcoin Core</source>
         <translation type="unfinished">核心</translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="92"/>
+        <location filename="../forms/rpcconsole.ui" line="95"/>
         <source>Using OpenSSL version</source>
         <translation type="unfinished">使用的OpenSSL版本</translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="325"/>
+        <location filename="../forms/rpcconsole.ui" line="328"/>
         <source>Open the Infinitecoin debug logfile from the current data directory. This can take a few seconds for large logfiles.</source>
         <translation type="unfinished">从当前数据目录打开 Infinitecoin 调试日志文件。这可能需要几秒钟的大日志。</translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="344"/>
+        <location filename="../forms/rpcconsole.ui" line="347"/>
         <source>Command-line options</source>
         <translation type="unfinished">命令行选项</translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="351"/>
+        <location filename="../forms/rpcconsole.ui" line="354"/>
         <source>Show the Infinitecoin-Qt help message to get a list with possible Infinitecoin command-line options.</source>
         <translation type="unfinished">显示 Infinitecoin Qt 帮助消息，获取 Infinitecoin 命令行选项列表。</translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="354"/>
+        <location filename="../forms/rpcconsole.ui" line="357"/>
         <source>&amp;Show</source>
         <translation type="unfinished">显示</translation>
     </message>
     <message>
-        <location filename="../forms/rpcconsole.ui" line="430"/>
+        <location filename="../forms/rpcconsole.ui" line="437"/>
         <source>Clear console</source>
         <translation>清空控制台</translation>
     </message>
@@ -1690,17 +1716,17 @@ Address: %4
         <translation type="obsolete">欢迎来到 RPC 控制台.</translation>
     </message>
     <message>
-        <location filename="../rpcconsole.cpp" line="213"/>
+        <location filename="../rpcconsole.cpp" line="297"/>
         <source>Welcome to the Infinitecoin RPC console.</source>
         <translation type="unfinished">欢迎来到 RPC 控制台.</translation>
     </message>
     <message>
-        <location filename="../rpcconsole.cpp" line="214"/>
+        <location filename="../rpcconsole.cpp" line="298"/>
         <source>Use up and down arrows to navigate history, and &lt;b&gt;Ctrl-L&lt;/b&gt; to clear screen.</source>
         <translation>使用上下方向键浏览历史,  &lt;b&gt;Ctrl-L&lt;/b&gt;清除屏幕.</translation>
     </message>
     <message>
-        <location filename="../rpcconsole.cpp" line="215"/>
+        <location filename="../rpcconsole.cpp" line="299"/>
         <source>Type &lt;b&gt;help&lt;/b&gt; for an overview of available commands.</source>
         <translation>使用 &lt;b&gt;help&lt;/b&gt; 命令显示帮助信息.</translation>
     </message>
@@ -1717,35 +1743,41 @@ Address: %4
         <location filename="../sendcoinsdialog.cpp" line="149"/>
         <location filename="../sendcoinsdialog.cpp" line="154"/>
         <source>Send Coins</source>
-        <translation>发送货币</translation>
+        <translation type="unfinished">付款</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsdialog.ui" line="64"/>
+        <location filename="../forms/sendcoinsdialog.ui" line="73"/>
+        <source>The fee is charged at 0.2% of the transfer amount, with a minimum of 0.01IFC and a maximum of 10000IFC.</source>
+        <extracomment>111</extracomment>
+        <translation type="unfinished">转账手续费按照转账金额的0.2%收取，最高1万IFC，最低0.01IFC</translation>
+    </message>
+    <message>
+        <location filename="../forms/sendcoinsdialog.ui" line="90"/>
         <source>Send to multiple recipients at once</source>
-        <translation>一次发送给多个接收者</translation>
+        <translation type="unfinished">一次转账给多个收款人</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsdialog.ui" line="67"/>
+        <location filename="../forms/sendcoinsdialog.ui" line="93"/>
         <source>&amp;Add Recipient</source>
         <translation>&amp;添加接收人</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsdialog.ui" line="87"/>
+        <location filename="../forms/sendcoinsdialog.ui" line="113"/>
         <source>Remove all transaction fields</source>
         <translation>移除所有交易项</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsdialog.ui" line="90"/>
+        <location filename="../forms/sendcoinsdialog.ui" line="116"/>
         <source>Clear &amp;All</source>
         <translation>清除 &amp;所有</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsdialog.ui" line="112"/>
+        <location filename="../forms/sendcoinsdialog.ui" line="138"/>
         <source>Balance:</source>
-        <translation>余额</translation>
+        <translation type="unfinished">余额:</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsdialog.ui" line="122"/>
+        <location filename="../forms/sendcoinsdialog.ui" line="148"/>
         <source>123.456 IFC</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1754,14 +1786,14 @@ Address: %4
         <translation type="obsolete">123.456 BTC</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsdialog.ui" line="153"/>
+        <location filename="../forms/sendcoinsdialog.ui" line="179"/>
         <source>Confirm the send action</source>
-        <translation>确认并发送货币</translation>
+        <translation type="unfinished">确认并转出</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsdialog.ui" line="156"/>
+        <location filename="../forms/sendcoinsdialog.ui" line="182"/>
         <source>&amp;Send</source>
-        <translation>&amp;发送</translation>
+        <translation type="unfinished">&amp;转账</translation>
     </message>
     <message>
         <location filename="../sendcoinsdialog.cpp" line="95"/>
@@ -1771,12 +1803,12 @@ Address: %4
     <message>
         <location filename="../sendcoinsdialog.cpp" line="100"/>
         <source>Confirm send coins</source>
-        <translation>确认发送货币</translation>
+        <translation type="unfinished">确认转账</translation>
     </message>
     <message>
         <location filename="../sendcoinsdialog.cpp" line="101"/>
         <source>Are you sure you want to send %1?</source>
-        <translation>确定您要发送 %1?</translation>
+        <translation type="unfinished">确定您要转出 %1?</translation>
     </message>
     <message>
         <location filename="../sendcoinsdialog.cpp" line="101"/>
@@ -1806,7 +1838,7 @@ Address: %4
     <message>
         <location filename="../sendcoinsdialog.cpp" line="145"/>
         <source>Duplicate address found, can only send to each address once per send operation.</source>
-        <translation>发现重复的地址, 每次只能对同一地址发送一次.</translation>
+        <translation type="unfinished">发现重复的地址, 每次只能对同一地址转账.</translation>
     </message>
     <message>
         <location filename="../sendcoinsdialog.cpp" line="150"/>
@@ -1827,64 +1859,81 @@ Address: %4
         <translation>表单</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsentry.ui" line="29"/>
+        <location filename="../forms/sendcoinsentry.ui" line="94"/>
         <source>A&amp;mount:</source>
-        <translation>金额</translation>
+        <translation type="unfinished">金额：</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsentry.ui" line="42"/>
+        <location filename="../forms/sendcoinsentry.ui" line="107"/>
         <source>Pay &amp;To:</source>
         <translation>支付 &amp;到：</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsentry.ui" line="66"/>
-        <location filename="../sendcoinsentry.cpp" line="25"/>
+        <location filename="../forms/sendcoinsentry.ui" line="128"/>
+        <location filename="../sendcoinsentry.cpp" line="26"/>
         <source>Enter a label for this address to add it to your address book</source>
-        <translation>为这个地址输入一个标签，以便将它添加到您的地址簿</translation>
+        <translation type="unfinished">为这个地址输入一个账户名，以便将它添加到您的地址簿</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsentry.ui" line="75"/>
+        <location filename="../forms/sendcoinsentry.ui" line="137"/>
         <source>&amp;Label:</source>
-        <translation>&amp;标签：</translation>
+        <translation type="unfinished">&amp;账户名：</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsentry.ui" line="93"/>
+        <location filename="../forms/sendcoinsentry.ui" line="34"/>
         <source>The address to send the payment to  (e.g. 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</source>
         <translation>付款地址  (例如: 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsentry.ui" line="103"/>
+        <location filename="../forms/sendcoinsentry.ui" line="44"/>
         <source>Choose address from address book</source>
         <translation>从地址薄选择地址</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsentry.ui" line="113"/>
+        <location filename="../forms/sendcoinsentry.ui" line="54"/>
         <source>Alt+A</source>
         <translation>Alt+A</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsentry.ui" line="120"/>
+        <location filename="../forms/sendcoinsentry.ui" line="61"/>
         <source>Paste address from clipboard</source>
         <translation>从剪贴板粘贴地址</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsentry.ui" line="130"/>
+        <location filename="../forms/sendcoinsentry.ui" line="71"/>
         <source>Alt+P</source>
         <translation>Alt+P</translation>
     </message>
     <message>
-        <location filename="../forms/sendcoinsentry.ui" line="137"/>
+        <location filename="../forms/sendcoinsentry.ui" line="78"/>
         <source>Remove this recipient</source>
         <translation>移除此接收者</translation>
+    </message>
+    <message>
+        <location filename="../forms/sendcoinsentry.ui" line="170"/>
+        <source>0.0</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../forms/sendcoinsentry.ui" line="183"/>
+        <source>Fee Calc</source>
+        <translation type="unfinished">计算手续费</translation>
     </message>
     <message>
         <source>Enter a Bitcoin address (e.g. 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</source>
         <translation type="obsolete">请输入无限币地址 (例如: 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</translation>
     </message>
     <message>
-        <location filename="../sendcoinsentry.cpp" line="26"/>
+        <location filename="../sendcoinsentry.cpp" line="27"/>
         <source>Enter a Infinitecoin address (starts with i)</source>
         <translation type="unfinished">请输入无限币地址 (例如: i91dq2WRVtMJWU8snw3b22Dzp22rytvp1e)</translation>
+    </message>
+    <message>
+        <location filename="../sendcoinsentry.cpp" line="186"/>
+        <location filename="../sendcoinsentry.cpp" line="188"/>
+        <location filename="../sendcoinsentry.cpp" line="192"/>
+        <source>Fee:</source>
+        <translation type="unfinished">转账手续费：</translation>
     </message>
 </context>
 <context>
@@ -1898,7 +1947,7 @@ Address: %4
         <location filename="../forms/signverifymessagedialog.ui" line="27"/>
         <location filename="../forms/signverifymessagedialog.ui" line="151"/>
         <source>&amp;Sign Message</source>
-        <translation type="unfinished">&amp;发送签名消息</translation>
+        <translation type="unfinished">&amp;签名消息</translation>
     </message>
     <message>
         <location filename="../forms/signverifymessagedialog.ui" line="33"/>
@@ -1935,7 +1984,7 @@ Address: %4
     <message>
         <location filename="../forms/signverifymessagedialog.ui" line="103"/>
         <source>Enter the message you want to sign here</source>
-        <translation type="unfinished">请输入您要发送的签名消息</translation>
+        <translation type="unfinished">请输入您要签名的消息</translation>
     </message>
     <message>
         <location filename="../forms/signverifymessagedialog.ui" line="127"/>
@@ -1945,7 +1994,7 @@ Address: %4
     <message>
         <location filename="../forms/signverifymessagedialog.ui" line="148"/>
         <source>Sign the message to prove you own this Bitcoin address</source>
-        <translation type="unfinished">签署消息, 以证明你拥有这个比特币地址</translation>
+        <translation type="unfinished">签名消息, 以证明你拥有这个比特币地址</translation>
     </message>
     <message>
         <location filename="../forms/signverifymessagedialog.ui" line="165"/>
@@ -1991,9 +2040,13 @@ Address: %4
         <translation type="unfinished">输入一个无限币地址，如i91dq2WRVtMJWU8snw3b22Dzp22rytvp1e</translation>
     </message>
     <message>
+        <source>Click &quot;age&quot; to generate signature</source>
+        <translation type="obsolete">点击“签名消息”生成签名</translation>
+    </message>
+    <message>
         <location filename="../signverifymessagedialog.cpp" line="28"/>
         <source>Click &quot;Sign Message&quot; to generate signature</source>
-        <translation type="unfinished">点击“签名消息”生成签名</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../signverifymessagedialog.cpp" line="31"/>
@@ -2153,7 +2206,7 @@ Address: %4
     <message>
         <location filename="../transactiondesc.cpp" line="92"/>
         <source>label</source>
-        <translation type="unfinished">标签</translation>
+        <translation type="unfinished">账户名</translation>
     </message>
     <message>
         <location filename="../transactiondesc.cpp" line="129"/>
@@ -2212,7 +2265,7 @@ Address: %4
     <message>
         <location filename="../transactiondesc.cpp" line="220"/>
         <source>Generated coins must mature 120 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to &quot;not accepted&quot; and it won&apos;t be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
-        <translation type="unfinished">生成的币必须成熟120个区块才能使用。当生成此块时，将其广播到区块链网络中。如果它不进入区块，其状态将更改为“不能接受”，如果另一个节点在几秒钟内生成另外一个块，这种情况偶尔也会发生。</translation>
+        <translation type="unfinished">生成的币必须成熟60个区块才能使用。当生成此块时，将其广播到区块链网络中。如果它不进入区块，其状态将更改为“不能接受”，如果另一个节点在几秒钟内生成另外一个块，这种情况偶尔也会发生。</translation>
     </message>
     <message>
         <location filename="../transactiondesc.cpp" line="227"/>
@@ -2328,20 +2381,24 @@ Address: %4
     </message>
     <message>
         <source>Generated coins must wait 120 blocks before they can be spent.  When you generated this block, it was broadcast to the network to be added to the block chain.  If it fails to get into the chain, it will change to &quot;not accepted&quot; and not be spendable.  This may occasionally happen if another node generates a block within a few seconds of yours.</source>
-        <translation type="obsolete">新生产的无限币必须等待120个数据块之后才能被使用. 当您生产出此数据块,它将被广播至无限币网络并添加至数据链. 如果添加到数据链失败, 它的状态将变成&quot;不被接受&quot;，生产的无限币将不能使用. 在您生产新数据块的几秒钟内, 如果其它节点也生产出同样的数据块，有可能会发生这种情况.</translation>
+        <translation type="obsolete">新生产的无限币必须等待60个数据块之后才能被使用. 当您生产出此数据块,它将被广播至无限币网络并添加至数据链. 如果添加到数据链失败, 它的状态将变成&quot;不被接受&quot;，生产的无限币将不能使用. 在您生产新数据块的几秒钟内, 如果其它节点也生产出同样的数据块，有可能会发生这种情况.</translation>
     </message>
 </context>
 <context>
     <name>TransactionDescDialog</name>
     <message>
-        <location filename="../forms/transactiondescdialog.ui" line="14"/>
+        <location filename="../forms/transactiondescdialog.ui" line="26"/>
         <source>Transaction details</source>
         <translation>交易细节</translation>
     </message>
     <message>
-        <location filename="../forms/transactiondescdialog.ui" line="20"/>
+        <location filename="../forms/transactiondescdialog.ui" line="154"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>This pane shows a detailed description of the transaction</source>
-        <translation>当前面板显示了交易的详细描述</translation>
+        <translation type="obsolete">当前面板显示了交易的详细描述</translation>
     </message>
 </context>
 <context>
@@ -2429,7 +2486,7 @@ Address: %4
     <message>
         <location filename="../transactiontablemodel.cpp" line="359"/>
         <source>Sent to</source>
-        <translation>发送到</translation>
+        <translation type="unfinished">转账到</translation>
     </message>
     <message>
         <location filename="../transactiontablemodel.cpp" line="361"/>
@@ -2518,7 +2575,7 @@ Address: %4
     <message>
         <location filename="../transactionview.cpp" line="74"/>
         <source>Sent to</source>
-        <translation>发送到</translation>
+        <translation type="unfinished">转账到</translation>
     </message>
     <message>
         <location filename="../transactionview.cpp" line="76"/>
@@ -2538,7 +2595,7 @@ Address: %4
     <message>
         <location filename="../transactionview.cpp" line="85"/>
         <source>Enter address or label to search</source>
-        <translation>输入地址或标签进行搜索</translation>
+        <translation type="unfinished">输入地址或账户进行搜索</translation>
     </message>
     <message>
         <location filename="../transactionview.cpp" line="92"/>
@@ -2553,7 +2610,7 @@ Address: %4
     <message>
         <location filename="../transactionview.cpp" line="127"/>
         <source>Copy label</source>
-        <translation>复制标签</translation>
+        <translation type="unfinished">复制账户名</translation>
     </message>
     <message>
         <location filename="../transactionview.cpp" line="128"/>
@@ -2563,7 +2620,7 @@ Address: %4
     <message>
         <location filename="../transactionview.cpp" line="129"/>
         <source>Edit label</source>
-        <translation>编辑标签</translation>
+        <translation type="unfinished">编辑账户名</translation>
     </message>
     <message>
         <location filename="../transactionview.cpp" line="130"/>
@@ -2598,7 +2655,7 @@ Address: %4
     <message>
         <location filename="../transactionview.cpp" line="284"/>
         <source>Label</source>
-        <translation>标签</translation>
+        <translation type="unfinished">账户名</translation>
     </message>
     <message>
         <location filename="../transactionview.cpp" line="285"/>
@@ -2704,7 +2761,7 @@ Address: %4
     <message>
         <location filename="../walletmodel.cpp" line="192"/>
         <source>Sending...</source>
-        <translation>发送中...</translation>
+        <translation type="unfinished">转账中...</translation>
     </message>
 </context>
 <context>
@@ -3233,12 +3290,12 @@ SSL 选项: (SSL 安装教程具体见无限币维基百科)
     <message>
         <location filename="../bitcoinstrings.cpp" line="84"/>
         <source>Fee per KB to add to transactions you send</source>
-        <translation>每发送1KB交易所需的费用</translation>
+        <translation type="unfinished">每转账1000交易所需的费用为2</translation>
     </message>
     <message>
         <location filename="../bitcoinstrings.cpp" line="41"/>
         <source>Warning: -paytxfee is set very high. This is the transaction fee you will pay if you send a transaction.</source>
-        <translation>警告: -paytxfee 交易费用设得有点高. 每当您发送一笔交易，将会向网络支付这么多的交易费.</translation>
+        <translation type="unfinished">警告: -paytxfee 交易费请按照转账金额的0.2%设置，最高1万IFC，最低0.01IFC。</translation>
     </message>
     <message>
         <location filename="../bitcoinstrings.cpp" line="102"/>
