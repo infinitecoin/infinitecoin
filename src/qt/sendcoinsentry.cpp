@@ -11,6 +11,7 @@
 #include <QClipboard>
 #include <QTime>
 
+
 SendCoinsEntry::SendCoinsEntry(QWidget *parent) :
     QFrame(parent),
     ui(new Ui::SendCoinsEntry),
@@ -176,9 +177,9 @@ void SendCoinsEntry::updateDisplayUnit()
 }
 
 void SendCoinsEntry::calcFee(){
-     INT64 COIN = 100000000;
+     long long COIN = 100000000;
     if(ui->payAmount->value()>0){
-        INT64 i=ui->payAmount->value()*0.002;
+        long long i=ui->payAmount->value()*0.002;
         if(i>10000*COIN){
             i=10000*COIN;
         }else if(i<=0.01*COIN){
