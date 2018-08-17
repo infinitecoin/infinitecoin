@@ -59,7 +59,7 @@ contains(USE_QRCODE, 1) {
     DEFINES += USE_QRCODE
     LIBS += -lqrencode
 }
-
+USE_UPNP=0
 # use: qmake "USE_UPNP=1" ( enabled by default; default)
 #  or: qmake "USE_UPNP=0" (disabled by default)
 #  or: qmake "USE_UPNP=-" (not supported)
@@ -83,7 +83,7 @@ contains(USE_DBUS, 1) {
     DEFINES += USE_DBUS
     QT += dbus
 }
-
+USE_IPV6=0
 # use: qmake "USE_IPV6=1" ( enabled by default; default)
 #  or: qmake "USE_IPV6=0" (disabled by default)
 #  or: qmake "USE_IPV6=-" (not supported)
