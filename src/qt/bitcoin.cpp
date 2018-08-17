@@ -11,7 +11,9 @@
 #include "init.h"
 #include "ui_interface.h"
 #include "qtipcserver.h"
-#include "tchar.h"
+
+//#include "tchar.h"
+
 
 
 #include <QApplication>
