@@ -15,25 +15,25 @@
 # 'make clean' assumes it is running inside a MSYS shell, and uses 'rm'
 # to remove files.
 
-CXX ?= g++
+CXX ?= gcc
 
-USE_UPNP:=-
+USE_UPNP:=0
 USE_IPV6:=0
 
-BOOST_SUFFIX?=-mgw48-mt-s-1_55
+BOOST_SUFFIX?=-mt-s
 
 INCLUDEPATHS= \
 -I"$(CURDIR)" \
--I"C:/deps/miniupnpc" \
--I"C:/deps/boost_1_55_0" \
--I"C:/deps/db-4.8.30.NC/build_unix" \
--I"C:/deps/openssl-1.0.1g/include"
+-I"../../miniupnpc" \
+-I"../../boost_1_55_0" \
+-I"../../db-4.8.30.NC/build_unix" \
+-I"../../openssl-1.0.1g/include"
 
 LIBPATHS= \
--L"C:/deps/miniupnpc/miniupnpc" \
--L"C:/deps/boost_1_55_0/stage/lib" \
--L"C:/deps/db-4.8.30.NC/build_unix" \
--L"C:/deps/openssl-1.0.1g"
+-L"../../miniupnpc" \
+-L"../../boost_1_55_0/stage/lib" \
+-L"../../db-4.8.30.NC/build_unix" \
+-L"../../openssl-1.0.1g"
 
 LIBS= \
  -l boost_system$(BOOST_SUFFIX) \
@@ -47,7 +47,7 @@ LIBS= \
 
 DEFS=-D_MT -DWIN32 -D_WINDOWS -DBOOST_THREAD_USE_LIB -DBOOST_SPIRIT_THREADSAFE
 DEBUGFLAGS=-g
-CFLAGS=-mthreads -O2 -w -Wall -Wextra -Wformat -Wformat-security -Wno-unused-parameter $(DEBUGFLAGS) $(DEFS) $(INCLUDEPATHS)
+CFLAGS=-static -mthreads -O2 -w -Wall -Wextra -Wformat -Wformat-security -Wno-unused-parameter $(DEBUGFLAGS) $(DEFS) $(INCLUDEPATHS)
 # enable: ASLR, DEP and large address aware
 LDFLAGS=-Wl,--dynamicbase -Wl,--nxcompat -Wl,--large-address-aware
 
@@ -57,8 +57,8 @@ ifndef USE_UPNP
 	override USE_UPNP = -
 endif
 ifneq (${USE_UPNP}, -)
-INCLUDEPATHS += -I"C:\"
-LIBPATHS += -L"C:\miniupnpc"
+INCLUDEPATHS += -I"../../"
+LIBPATHS += -L"../../miniupnpc"
  LIBS += -l miniupnpc -l iphlpapi
  DEFS += -DSTATICLIB -DUSE_UPNP=$(USE_UPNP)
 endif
@@ -98,21 +98,21 @@ OBJS= \
 all: infinitecoind.exe
 
 obj/scrypt.o: scrypt.c
-		$(CXX) -c $(CFLAGS) -o $@ $^
+		$(CXX) -c $(CFLAGS)  -lstdc++  -o $@ $^
 
 obj/%.o: %.cpp $(HEADERS)
-	$(CXX) -c $(CFLAGS) -o $@ $<
+	$(CXX) -c $(CFLAGS)  -lstdc++  -o $@ $<
 
 infinitecoind.exe: $(OBJS:obj/%=obj/%)
-	$(CXX) $(CFLAGS) $(LDFLAGS) -o $@ $(LIBPATHS) $^ $(LIBS)
+	$(CXX) $(CFLAGS) $(LDFLAGS) -lstdc++ -o $@ $(LIBPATHS) $^ $(LIBS)
 
 TESTOBJS := $(patsubst test/%.cpp,obj-test/%.o,$(wildcard test/*.cpp))
 
 obj-test/%.o: test/%.cpp $(HEADERS)
-	$(CXX) -c $(TESTDEFS) $(CFLAGS) -o $@ $<
+	$(CXX) -c $(TESTDEFS) $(CFLAGS)  -lstdc++ -o $@ $<
 
 test_infinitecoin.exe: $(TESTOBJS) $(filter-out obj/init.o,$(OBJS:obj/%=obj/%))
-	$(CXX) $(CFLAGS) $(LDFLAGS) -o $@ $(LIBPATHS) $^ -lboost_unit_test_framework$(BOOST_SUFFIX) $(LIBS)
+	$(CXX) $(CFLAGS) $(LDFLAGS)  -lstdc++ -o $@ $(LIBPATHS) $^ -lboost_unit_test_framework$(BOOST_SUFFIX) $(LIBS)
 
 clean:
 	rm -f infinitecoind.exe test_infinitecoin.exe

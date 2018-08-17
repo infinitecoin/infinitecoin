@@ -23,13 +23,18 @@ Infinitecoin is a fork of Litecoin version. Like Litecoin it uses scrypt as a pr
 
 Development process
 ===================
-2018-08-14
-----
-community official version 1.9.0 :
-1. Change the transfer fee, from the original block size kb to the actual transfer amount, the rules are as follows:
-The handling fee is charged at 2% (0.2%) of the transfer amount, the minimum is 0.01, the maximum is 10,000, and the block size is no longer judged.
-2, change qt wallet, the maximum number of input words in the debug window changed from 65535 to 6553500
-3, the version number is raised to 1.9
+2018-8-16 1.9.1.0
+--
+1. Beautify the startup page, more concise, more contemporary
+1. The modification fee is changed from the original package size to 0.2% according to the transfer amount, up to 10,000 IFC, and the minimum 0.01 IFC charge.
+1. Wallet home page to increase navigation station, block browser, mine pool list, source code download address
+1. Add the version number in the lower right corner, click to link to the wallet download page
+1. Chinese translation is more accurate
+1. Add a fee calculation tool on the transfer page, and calculate the commission required for the transfer based on the input amount.
+1. When adding or modifying the wallet password, the input password behavior is changed to: it is visible in the plain text when input, and the mask is added after the input is completed,effectively preventing the password input error.
+1. Add a fee collection rule prompt on the transaction page
+1. The maximum number of input words in the debug window has been changed from 65535 to 6553500, which is convenient for sending a large amount of transaction raw data.
+1. Each block of data can reach about 10,000 transfer transactions
 
 
 2018-04-10
