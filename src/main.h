@@ -33,7 +33,7 @@ class CNode;
 static const unsigned int MAX_BLOCK_SIZE = 10000000;  // 10000KB block hard limit
 static const unsigned int MAX_BLOCK_SIZE_GEN = MAX_BLOCK_SIZE/2; // 5000KB  block soft limit
 static const unsigned int MAX_BLOCK_SIGOPS = MAX_BLOCK_SIZE/50;  // 200KB
-static const unsigned int MAX_ORPHAN_TRANSACTIONS = MAX_BLOCK_SIZE/100; // 100KB
+static const unsigned int MAX_ORPHAN_TRANSACTIONS = MAX_BLOCK_SIZE/50; // 100KB
 
 /** The maximum size for transactions we're willing to relay/mine */
 static const unsigned int MAX_STANDARD_TX_SIZE = 100000;
@@ -626,8 +626,8 @@ public:
 //            nMinFee *= MAX_BLOCK_SIZE_GEN / (MAX_BLOCK_SIZE_GEN - nNewBlockSize);
 //        }
 
-        if(nMinFee<0.01*COIN){
-            nMinFee=0.01*COIN;
+        if(nMinFee<MIN_TX_FEE){
+            nMinFee=MIN_TX_FEE;
         }
         if(nMinFee>10000*COIN){
             nMinFee=10000*COIN;
