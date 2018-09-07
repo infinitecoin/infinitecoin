@@ -1,3 +1,5 @@
+disk
+disk/*
 src/*.exe
 src/infinitecoind
 src/test_infinitecoin
