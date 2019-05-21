@@ -38,7 +38,7 @@ const std::string CLIENT_NAME("Mobius");
 #define GIT_ARCHIVE 1
 #ifdef GIT_ARCHIVE
 #    define GIT_COMMIT_ID "Community"
-#    define GIT_COMMIT_DATE "2018-09-07 22:55"
+//#    define GIT_COMMIT_DATE __DATE__ " " __TIME__
 #endif
 
 #define STRINGIFY(s) #s
