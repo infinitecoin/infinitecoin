@@ -39,7 +39,7 @@ static const unsigned int MAX_ORPHAN_TRANSACTIONS = MAX_BLOCK_SIZE/50; // 100KB
 static const unsigned int MAX_STANDARD_TX_SIZE = 100000;
 
 //min tx fee
-static const int64 MIN_TX_FEE =1000000;
+static const int64 MIN_TX_FEE =1000000; //0.01
 
 
 static const int64 MIN_RELAY_TX_FEE = MIN_TX_FEE;

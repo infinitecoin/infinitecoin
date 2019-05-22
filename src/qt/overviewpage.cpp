@@ -8,9 +8,12 @@
 #include "transactionfilterproxy.h"
 #include "guiutil.h"
 #include "guiconstants.h"
+#include "version.h"
+
 
 #include <QAbstractItemDelegate>
 #include <QPainter>
+#include <QString>
 
 #define DECORATION_SIZE 64
 #define NUM_ITEMS 3
@@ -181,8 +184,24 @@ void OverviewPage::setModel(WalletModel *model)
 
 void OverviewPage::updateDisplayUnit()
 {
+
+// CLIENT_VERSION_MAJOR       1
+// CLIENT_VERSION_MINOR       9
+// CLIENT_VERSION_REVISION    1
+// CLIENT_VERSION_BUILD       4
+
+QString qs;
+
+qs=QString("<html><head/><body><p><a href='https://www.ifc123.net/archives/108.html'><span style='text-decoration: underline; color:#0000ff;'>Version:%1.%2.%3.%4(%5)</span></a></p></body></html>").arg(CLIENT_VERSION_MAJOR ).arg(CLIENT_VERSION_MINOR).arg(CLIENT_VERSION_REVISION).arg(CLIENT_VERSION_BUILD).arg(QString::fromStdString( CLIENT_NAME));
+
+
+     ui->label_8->setText(qs);
     if(model && model->getOptionsModel())
     {
+
+        ui->label_7->setVisible(model->getOptionsModel()->getShowCommunityLinks());
+        ui->label_8->setVisible(model->getOptionsModel()->getShowCommunityLinks());
+
         if(currentBalance != -1)
             setBalance(currentBalance, currentUnconfirmedBalance, currentImmatureBalance);
 

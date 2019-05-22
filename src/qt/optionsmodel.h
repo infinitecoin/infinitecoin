@@ -20,6 +20,7 @@ public:
         StartAtStartup,    // bool
         MinimizeToTray,    // bool
         MapPortUPnP,       // bool
+        ShowCommunityLinks,//bool
         MinimizeOnClose,   // bool
         ProxyUse,          // bool
         ProxyIP,           // QString
@@ -48,11 +49,13 @@ public:
     bool getMinimizeOnClose();
     int getDisplayUnit();
     bool getDisplayAddresses();
+    bool getShowCommunityLinks();
     QString getLanguage() { return language; }
 
 private:
     int nDisplayUnit;
     bool bDisplayAddresses;
+    bool bShowCommunityLinks;
     bool fMinimizeToTray;
     bool fMinimizeOnClose;
     QString language;
