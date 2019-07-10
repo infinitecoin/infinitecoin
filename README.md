@@ -23,23 +23,35 @@ Infinitecoin is a fork of Litecoin version. Like Litecoin it uses scrypt as a pr
 
 Development process
 ===================
-2018-8-16 1.9.1.0
+
+2019-7-x  1.9.2.x  
+new version is coming
+--
+1. Attempt to solve 51% attack under low mining power (read more https://bbs.ifc123.net/thread-19401.htm)
+2. Interface Community Link Adjustment
+3. new start page
+4. faster loadblockindex 30%
+5. fixed issus #2
+6. fixed issus #3
+
+2018-8-16 1.9.1.4
 --
 1. Beautify the startup page, more concise, more contemporary
-1. The modification fee is changed from the original package size to 0.2% according to the transfer amount, up to 10,000 IFC, and the minimum 0.01 IFC charge.
-1. Wallet home page to increase navigation station, block browser, mine pool list, source code download address
-1. Add the version number in the lower right corner, click to link to the wallet download page
-1. Chinese translation is more accurate
-1. Add a fee calculation tool on the transfer page, and calculate the commission required for the transfer based on the input amount.
-1. When adding or modifying the wallet password, the input password behavior is changed to: it is visible in the plain text when input, and the mask is added after the input is completed,effectively preventing the password input error.
-1. Add a fee collection rule prompt on the transaction page
-1. The maximum number of input words in the debug window has been changed from 65535 to 6553500, which is convenient for sending a large amount of transaction raw data.
-1. Each block of data can reach about 10,000 transfer transactions
+2. The modification fee is changed from the original package size to 0.2% according to the transfer amount, up to 10,000 IFC, and the minimum 0.01 IFC charge.
+3. Wallet home page to increase navigation station, block browser, mine pool list, source code download address
+4. Add the version number in the lower right corner, click to link to the wallet download page
+5. Chinese translation is more accurate
+6. Add a fee calculation tool on the transfer page, and calculate the commission required for the transfer based on the input amount.
+7. When adding or modifying the wallet password, the input password behavior is changed to: it is visible in the plain text when input, and the mask is added after the input is completed,effectively preventing the password input error.
+8. Add a fee collection rule prompt on the transaction page
+9. The maximum number of input words in the debug window has been changed from 65535 to 6553500, which is convenient for sending a large amount of transaction raw data.
+10. Each block of data can reach about 10,000 transfer transactions
 
 
 2018-04-10
 --
 1. Fix the problem that IFC can't start after Linux system is turned off IPv6.
+
 
 2018-03-22
 --
@@ -98,7 +110,7 @@ labeled 'stale'.
 ===================
 最新windows系统钱包的下载，其他版本的钱包请自行编译
 -----
-https://ifc.1e9.cc/archives/108.html
+https://bbs.ifc123.net/thread-19423.htm
 
 2018-4-17
 ---
