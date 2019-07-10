@@ -30,3 +30,6 @@ release/*.*
 .vscode
 .svn
 object_script.*
+/cmake-build-debug
+/.idea
+/src/cmake-build-debug
