@@ -26,7 +26,7 @@
 
 using namespace std;
 using namespace boost;
-//201803131542 shenjinqiang 16 => 32
+//201803131542 WithU2018 16 => 32
 static const int MAX_OUTBOUND_CONNECTIONS = 32;
 
 void ThreadMessageHandler2(void* parg);

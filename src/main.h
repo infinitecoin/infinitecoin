@@ -30,6 +30,12 @@ class CInv;
 class CRequestTracker;
 class CNode;
 
+
+//WithU2018 20190615 195051 old value is 3. add to 6, reduce fork
+//The longer chain is not allowed to be forked after 6 confirmations, and the selection of the longer chain can only be completed less 6 confirmations.
+static const int NumConfirmations = 6;
+
+
 static const unsigned int MAX_BLOCK_SIZE = 10000000;  // 10000KB block hard limit
 static const unsigned int MAX_BLOCK_SIZE_GEN = MAX_BLOCK_SIZE/2; // 5000KB  block soft limit
 static const unsigned int MAX_BLOCK_SIGOPS = MAX_BLOCK_SIZE/50;  // 200KB
@@ -567,7 +573,7 @@ public:
         return dPriority > COIN * 2880 / 250; // Infinitecoin: 2880 blocks found a day. Priority cutoff is 1 infinitecoin day / 250 bytes.
     }
 
-//get min fee
+    //withu2018 20180914 get min fee
     int64 GetMinFee(unsigned int nBlockSize=1, bool fAllowFree=true, enum GetMinFee_mode mode=GMF_BLOCK) const
     {
         // Base fee is either MIN_TX_FEE or MIN_RELAY_TX_FEE
@@ -606,6 +612,7 @@ public:
         int64 i=0;
         BOOST_FOREACH(const CTxOut& txout, vout)
         {
+            //withu2018 the first vout is change,so jump first vout.
             if(i>0){
                 nValueOut += txout.nValue;
             }

@@ -876,7 +876,7 @@ int64 static GetBlockValue(int nHeight, int64 nFees)
 
 static const int64 nTargetTimespan = 60 * 60;	// Infinitecoin: 1 hr
 static const int64 nTargetSpacing = 30;			// Infinitecoin: 30 sec
-static const int64 nInterval = nTargetTimespan / nTargetSpacing;	// 120
+static const int64 nInterval = nTargetTimespan / nTargetSpacing;	// 120 block
 static const int64 nIntervalPPC = 30;
 
 //
@@ -1502,9 +1502,11 @@ bool static Reorganize(CTxDB& txdb, CBlockIndex* pindexNew)
     CBlockIndex* plonger = pindexNew;
     while (pfork != plonger)
     {
-        while (plonger->nHeight > pfork->nHeight)
-            if (!(plonger = plonger->pprev))
+        while (plonger->nHeight > pfork->nHeight){
+            if (!(plonger = plonger->pprev)){
                 return error("Reorganize() : plonger->pprev is null");
+            }
+        }
         if (pfork == plonger)
             break;
         if (!(pfork = pfork->pprev))
@@ -1522,6 +1524,16 @@ bool static Reorganize(CTxDB& txdb, CBlockIndex* pindexNew)
         vConnect.push_back(pindex);
     reverse(vConnect.begin(), vConnect.end());
 
+    //WithU2018 201906180723   if NumConfirmations=6 then vDisconnect.size() must less 6
+    if( vDisconnect.size()>=NumConfirmations){
+        return error("Reorganize() : Disconnect %i blocks is More then %i NumConfirmations\n",vDisconnect.size(),NumConfirmations);
+    }
+
+    //WithU2018 201906180723
+    if( vConnect.size()>=NumConfirmations){
+        return error("Reorganize() : Connect %i blocks is More then %i NumConfirmations\n",vConnect.size(),NumConfirmations);
+    }
+
     printf("REORGANIZE: Disconnect %i blocks; %s..%s\n", vDisconnect.size(), pfork->GetBlockHash().ToString().substr(0,20).c_str(), pindexBest->GetBlockHash().ToString().substr(0,20).c_str());
     printf("REORGANIZE: Connect %i blocks; %s..%s\n", vConnect.size(), pfork->GetBlockHash().ToString().substr(0,20).c_str(), pindexNew->GetBlockHash().ToString().substr(0,20).c_str());
 
@@ -1529,6 +1541,7 @@ bool static Reorganize(CTxDB& txdb, CBlockIndex* pindexNew)
     vector<CTransaction> vResurrect;
     BOOST_FOREACH(CBlockIndex* pindex, vDisconnect)
     {
+
         CBlock block;
         if (!block.ReadFromDisk(pindex))
             return error("Reorganize() : ReadFromDisk for disconnect failed");

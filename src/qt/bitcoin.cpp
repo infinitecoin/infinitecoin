@@ -121,7 +121,7 @@ static void handleRunawayException(std::exception *e)
     exit(1);
 }
 
-//no error message ,shenjinqiang 20180315 ,only test
+//no error message ,WithU2018 20180315 ,only test
 static void handleRunawayException2()
 {
     QMessageBox::critical(0, "Runaway exception", BitcoinGUI::tr("A fatal error occured. Infinitecoin can no longer continue safely and will quit.") + QString("\n\n") + QString::fromStdString(strMiscWarning));
@@ -129,7 +129,7 @@ static void handleRunawayException2()
 }
 
 /*
-//shenjinqiang 20180321
+//WithU2018 20180321
 static void DisableSetUnhandledExceptionFilter()
 
 {
@@ -337,7 +337,7 @@ int main(int argc, char *argv[])
                 }
 #endif
 
-                //shenjinqiang 20180321
+                //WithU2018 20180321
                 //Disable SetUnhandledExceptionFilter vc2005 vcrt80 fixed
                 //DisableSetUnhandledExceptionFilter();
                 app.exec();

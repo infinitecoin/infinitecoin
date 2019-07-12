@@ -1,4 +1,4 @@
-//shenjinqiang 2018-3-22 19:30
+//WithU2018 2018-3-22 19:30
 
 
 
@@ -73,7 +73,7 @@ public:
                                   QString::fromStdString(address.ToString())));
             }
         }
-		//shenjinqiang 2018-3-22 19:29
+		//WithU2018 2018-3-22 19:29
         // qLowerBound() and qUpperBound() require our cachedAddressTable list to be sorted in asc order
         qSort(cachedAddressTable.begin(), cachedAddressTable.end(), AddressTableEntryLessThan());
     }

@@ -694,60 +694,63 @@ bool CTxDB::LoadBlockIndexGuts()
 
     // Load mapBlockIndex
     unsigned int fFlags = DB_SET_RANGE;
-    while(1)
-    {
-        // Read next record
-        CDataStream ssKey(SER_DISK, CLIENT_VERSION);
-        if (fFlags == DB_SET_RANGE)
-            ssKey << make_pair(string("blockindex"), uint256(0));
-        CDataStream ssValue(SER_DISK, CLIENT_VERSION);
-        int ret = ReadAtCursor(pcursor, ssKey, ssValue, fFlags);
-        fFlags = DB_NEXT;
-        if (ret == DB_NOTFOUND)
-            break;
-        else if (ret != 0)
-            return false;
-
-        // Unserialize
-
-        try {
-        string strType;
-        ssKey >> strType;
-        if (strType == "blockindex" && !fRequestShutdown)
+     try {
+        while(1)
         {
-            CDiskBlockIndex diskindex;
-            ssValue >> diskindex;
+            // Read next record
+            CDataStream ssKey(SER_DISK, CLIENT_VERSION);
+            if (fFlags == DB_SET_RANGE)
+                ssKey << make_pair(string("blockindex"), uint256(0));
+            CDataStream ssValue(SER_DISK, CLIENT_VERSION);
+            int ret = ReadAtCursor(pcursor, ssKey, ssValue, fFlags);
+            fFlags = DB_NEXT;
+            if (ret == DB_NOTFOUND)
+                break;
+            else if (ret != 0)
+                return false;
 
-            // Construct block index object
-            CBlockIndex* pindexNew = InsertBlockIndex(diskindex.GetBlockHash());
-            pindexNew->pprev          = InsertBlockIndex(diskindex.hashPrev);
-            pindexNew->pnext          = InsertBlockIndex(diskindex.hashNext);
-            pindexNew->nFile          = diskindex.nFile;
-            pindexNew->nBlockPos      = diskindex.nBlockPos;
-            pindexNew->nHeight        = diskindex.nHeight;
-            pindexNew->nVersion       = diskindex.nVersion;
-            pindexNew->hashMerkleRoot = diskindex.hashMerkleRoot;
-            pindexNew->nTime          = diskindex.nTime;
-            pindexNew->nBits          = diskindex.nBits;
-            pindexNew->nNonce         = diskindex.nNonce;
+            // Unserialize
 
-            // Watch for genesis block
-            if (pindexGenesisBlock == NULL && diskindex.GetBlockHash() == hashGenesisBlock)
-                pindexGenesisBlock = pindexNew;
 
-            if (!pindexNew->CheckIndex())
-                return error("LoadBlockIndex() : CheckIndex failed at %d", pindexNew->nHeight);
+                string strType;
+                ssKey >> strType;
+                if (strType == "blockindex" && !fRequestShutdown)
+                {
+                    CDiskBlockIndex diskindex;
+                    ssValue >> diskindex;
+
+                    // Construct block index object
+                    CBlockIndex* pindexNew = InsertBlockIndex(diskindex.GetBlockHash());
+                    pindexNew->pprev          = InsertBlockIndex(diskindex.hashPrev);
+                    pindexNew->pnext          = InsertBlockIndex(diskindex.hashNext);
+                    pindexNew->nFile          = diskindex.nFile;
+                    pindexNew->nBlockPos      = diskindex.nBlockPos;
+                    pindexNew->nHeight        = diskindex.nHeight;
+                    pindexNew->nVersion       = diskindex.nVersion;
+                    pindexNew->hashMerkleRoot = diskindex.hashMerkleRoot;
+                    pindexNew->nTime          = diskindex.nTime;
+                    pindexNew->nBits          = diskindex.nBits;
+                    pindexNew->nNonce         = diskindex.nNonce;
+
+                    // Watch for genesis block
+                    if (pindexGenesisBlock == NULL && diskindex.GetBlockHash() == hashGenesisBlock)
+                        pindexGenesisBlock = pindexNew;
+
+                    //if (!pindexNew->CheckIndex())
+                    //    return error("LoadBlockIndex() : CheckIndex failed at %d", pindexNew->nHeight);
+                }
+                else
+                {
+                    break; // if shutdown requested or finished loading block index
+                }
+
         }
-        else
-        {
-            break; // if shutdown requested or finished loading block index
-        }
-        }    // try
-        catch (std::exception &e) {
-            return error("%s() : deserialize error", __PRETTY_FUNCTION__);
-        }
+    }    // try
+    catch (std::exception &e) {
+        return error("%s() : deserialize error", __PRETTY_FUNCTION__);
     }
     pcursor->close();
+
 
     return true;
 }

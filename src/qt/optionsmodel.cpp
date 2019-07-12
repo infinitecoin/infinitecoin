@@ -47,7 +47,8 @@ void OptionsModel::Init()
     fMinimizeOnClose = settings.value("fMinimizeOnClose", false).toBool();
     nTransactionFee = settings.value("nTransactionFee").toLongLong();
     language = settings.value("language", "").toString();
-    bShowCommunityLinks=settings.value("bShowCommunityLinks", true).toBool();
+    //WithU2018 default is hidden
+    bShowCommunityLinks=settings.value("bShowCommunityLinks", false).toBool();
 
     // These are shared with core Bitcoin; we want
     // command-line options to override the GUI settings:

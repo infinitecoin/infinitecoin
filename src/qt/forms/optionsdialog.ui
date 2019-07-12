@@ -89,10 +89,10 @@
        <item>
         <widget class="QCheckBox" name="showCommunityLinks">
          <property name="toolTip">
-          <string>At the MainPage show community links</string>
+          <string>Display community links on the home page</string>
          </property>
          <property name="text">
-          <string>&amp;At the MainPage show community links</string>
+          <string>&amp;Display community links on the home page</string>
          </property>
         </widget>
        </item>
