@@ -573,7 +573,7 @@ public:
         return dPriority > COIN * 2880 / 250; // Infinitecoin: 2880 blocks found a day. Priority cutoff is 1 infinitecoin day / 250 bytes.
     }
 
-    //withu2018 20180914 get min fee
+    //withu2018 20180914 get min fee  IIP1
     int64 GetMinFee(unsigned int nBlockSize=1, bool fAllowFree=true, enum GetMinFee_mode mode=GMF_BLOCK) const
     {
         // Base fee is either MIN_TX_FEE or MIN_RELAY_TX_FEE
@@ -612,7 +612,7 @@ public:
         int64 i=0;
         BOOST_FOREACH(const CTxOut& txout, vout)
         {
-            //withu2018 the first vout is change,so jump first vout.
+            //withu2018 the first vout is change,so jump first vout. IIP1
             if(i>0){
                 nValueOut += txout.nValue;
             }

@@ -1151,6 +1151,7 @@ bool CWallet::CreateTransaction(const vector<pair<CScript, int64> >& vecSend, CW
                     nFeeRet += nMoveToFee;
                 }
 
+                //withu2018 old is if (nChange > 0)
                 if (nChange >= 0)
                 {
                     // Note: We use a new key here to keep it from being obvious which side is the change.
@@ -1172,6 +1173,7 @@ bool CWallet::CreateTransaction(const vector<pair<CScript, int64> >& vecSend, CW
 
                     // Insert change txn at random position:
                     // insert 0
+                    //withu2018 modification the chage txn at the first position. wtxNew.vout.begin(). old is wtxNew.vout.begin() + GetRandInt(wtxNew.vout.size());
                     vector<CTxOut>::iterator position = wtxNew.vout.begin();//+GetRandInt(wtxNew.vout.size());
                     wtxNew.vout.insert(position, CTxOut(nChange, scriptChange));
                     
