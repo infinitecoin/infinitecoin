@@ -28,11 +28,11 @@ Development process
 new version is coming
 --
 1. [ ] Attempt to solve 51% attack under low mining power (read more https://bbs.ifc123.net/thread-19401.htm)
-2. [ ] Add option show/hide CommunityLinks,and set default hidden(read more https://bbs.ifc123.net/thread-19487.htm)
+2. [x] Add option show/hide CommunityLinks,and set default hidden(read more https://bbs.ifc123.net/thread-19487.htm)
 3. [ ] Make new startup image
-4. [ ] Loadblockindex faster 30%
-5. [ ] Fix issus #2,fixed at version 1.9.1.4
-6. [ ] Fix issus #3
+4. [x] Loadblockindex faster 30%
+5. [x] Fix issus #2,fixed at version 1.9.1.4
+6. [x] Fix issus #3
 
 2018-8-16 1.9.1.4
 --
