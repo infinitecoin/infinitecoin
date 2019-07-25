@@ -44,6 +44,7 @@ static const unsigned int MAX_ORPHAN_TRANSACTIONS = MAX_BLOCK_SIZE/50; // 100KB
 /** The maximum size for transactions we're willing to relay/mine */
 static const unsigned int MAX_STANDARD_TX_SIZE = 100000;
 
+
 //min tx fee
 static const int64 MIN_TX_FEE =1000000; //0.01
 
@@ -65,12 +66,25 @@ static const unsigned int LOCKTIME_THRESHOLD = 500000000; // Tue Nov  5 00:53:20
 static const unsigned int IFC_SWITCH_TIME = 1377993600;		// Sept 1, 2013 00:00:00 GMT
 static const unsigned int IFC_SWITCH_VER = 1392336000;     // Sept 1, 2013 00:00:00 GMT
 
+//withu2018 20190723 test mining for IIP2
+static const int64 nIIP2SwitchTime=1564592942;//2019-08-01 01:09:02
+
 //multiple
 static const unsigned int IFC_FEE_MULTIPLICATOR = 1;		// Transaction Fee Multiplicator
+#define USE_IIP2 1
 
-static const unsigned int IFC_RETARGET_SWITCH_BLOCK		= 245000;		
-static const unsigned int IFC_RETARGET_SWITCH_BLOCK2	= 248000;		
-static const unsigned int IFC_RETARGET_SWITCH_BLOCK3	= 272000;	
+
+//withu2018 20190723 test mining for IIP2
+static const unsigned int IFC_RETARGET_SWITCH_BLOCK     = 245000;
+static const unsigned int IFC_RETARGET_SWITCH_BLOCK2	= 248000;
+static const unsigned int IFC_RETARGET_SWITCH_BLOCK3	= 272000;
+
+
+static const unsigned int TESTNET_IFC_RETARGET_SWITCH_BLOCK	  = 8300;
+static const unsigned int TESTNET_IFC_RETARGET_SWITCH_BLOCK2	  = 8301;
+static const unsigned int TESTNET_IFC_RETARGET_SWITCH_BLOCK3	  = 8302;
+
+
 
 #ifdef USE_UPNP
 static const int fHaveUPnP = true;

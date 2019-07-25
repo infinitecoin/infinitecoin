@@ -44,6 +44,9 @@ uint256 hashBestChain = 0;
 CBlockIndex* pindexBest = NULL;
 int64 nTimeBestReceived = 0;
 
+//IIP2 withu2018 20190724 newActualTimespan
+int64 lastAtimeSpan=30;
+
 CMedianFilter<int> cPeerBlockCounts(5, 0); // Amount of blocks that other nodes claim to have
 
 map<uint256, CBlock*> mapOrphanBlocks;
@@ -913,7 +916,18 @@ unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast, const CBl
     if (pindexLast == NULL)
         return nProofOfWorkLimit;
 
-	if((pindexLast->nHeight+1) < IFC_RETARGET_SWITCH_BLOCK)	
+
+    //IIP2 withu2018 20190724
+    uint64 retarget_switch_block=IFC_RETARGET_SWITCH_BLOCK;
+    uint64 retarget_switch_block2=IFC_RETARGET_SWITCH_BLOCK2;
+    uint64 retarget_switch_block3=IFC_RETARGET_SWITCH_BLOCK3;
+    if(fTestNet){
+       retarget_switch_block=TESTNET_IFC_RETARGET_SWITCH_BLOCK;
+       retarget_switch_block2=TESTNET_IFC_RETARGET_SWITCH_BLOCK2;
+       retarget_switch_block3=TESTNET_IFC_RETARGET_SWITCH_BLOCK3;
+    }
+
+    if((pindexLast->nHeight+1) < retarget_switch_block)
 	{
 		// Only change once per interval
 		if ((pindexLast->nHeight+1) % nInterval != 0)
@@ -923,7 +937,7 @@ unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast, const CBl
 			{
 				// If the new block's timestamp is more than 2* 10 minutes
 				// then allow mining of a min-difficulty block.
-				if (pblock->nTime > pindexLast->nTime + nTargetSpacing*2)
+                if (pblock->nTime > pindexLast->nTime + nTargetSpacing*2)
 					return nProofOfWorkLimit;
 				else
 				{
@@ -942,7 +956,8 @@ unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast, const CBl
 	int64 nActualTimespan = 30 * 120;
 	const CBlockIndex* pindexFirst = pindexLast;
 
-	if((pindexLast->nHeight+1) < IFC_RETARGET_SWITCH_BLOCK3)	// this is based on 120 blocks
+
+    if((pindexLast->nHeight+1) < retarget_switch_block3)	// this is based on 120 blocks
 	{
 		// Infinitecoin: This fixes an issue where a 51% attack can change difficulty at will.
 		// Go back the full period unless it's the first retarget after genesis. Code courtesy of Art Forz
@@ -973,8 +988,8 @@ unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast, const CBl
 		if (nActualTimespan > nTargetTimespan*4)
 			nActualTimespan = nTargetTimespan*4;
 	}
-	else	// PPCoin formula with 1 block time
-	{
+    else if((fTestNet && pindexLast->nHeight<8370 ) || (!fTestNet && pindexLast->nTime < nIIP2SwitchTime)){	// PPCoin formula with 1 block time
+
 		// get the previous block
 		pindexFirst = pindexLast->pprev;
 		nActualTimespan = (pindexLast->GetBlockTime() - pindexFirst->GetBlockTime()) * nInterval;
@@ -982,29 +997,77 @@ unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast, const CBl
 		// limit the adjustment
 		if (nActualTimespan < nTargetTimespan/16)
 			nActualTimespan = nTargetTimespan/16;
-		if (nActualTimespan > nTargetTimespan*16)
-			nActualTimespan = nTargetTimespan*16;
-	}
+        if (nActualTimespan > nTargetTimespan*16)
+            nActualTimespan = nTargetTimespan*16;
+    }else{
+            // get the previous block
+        pindexFirst = pindexLast->pprev;
+        nActualTimespan = pindexLast->GetBlockTime() - pindexFirst->GetBlockTime();
+
+            // limit the adjustment
+        if (nActualTimespan < nTargetSpacing)
+            nActualTimespan = nTargetSpacing;
+        if (nActualTimespan > nTargetTimespan)
+            nActualTimespan = nTargetTimespan;
+    }
+
+
+
 
 	// Retarget
 	bnNew.SetCompact(pindexLast->nBits);
 
-	if((pindexLast->nHeight+1) < IFC_RETARGET_SWITCH_BLOCK2)		// 120-block linear retarget
+    if((pindexLast->nHeight+1) < retarget_switch_block2)		// 120-block linear retarget
 	{
 		bnNew *= nActualTimespan;
 		bnNew /= nTargetTimespan;
 	}
-	else 															// PPCoin retarget algorithm
-	{
+    //test1
+    else if((fTestNet && pindexLast->nHeight<8370 ) || (!fTestNet && pindexLast->nTime < nIIP2SwitchTime)){
+        // PPCoin formula with 1 block time
+        // PPCoin retarget algorithm
 		bnNew *= ((nIntervalPPC - 1) * nTargetTimespan + nActualTimespan + nActualTimespan);
 		bnNew /= ((nIntervalPPC + 1) * nTargetTimespan);
-	}
+
+    }else if((fTestNet && pindexLast->nHeight<8730 )){
+        //test1
+        // IIP2 withu2018 20190724 nActualTimespan calc
+        // the last block & pre block is not ActualTimespans
+        // if((fTestNet && pindexLast->nHeight>8265 )|| (!fTestNet && pindexLast->nTime>nIIP2SwitchTime)){
+         //
+        // }
+
+        if(nActualTimespan<nTargetSpacing+nTargetSpacing){
+            nActualTimespan/=4;
+        }
+
+        nActualTimespan*=nInterval;
+        bnNew *= ((nIntervalPPC - 1) * nTargetTimespan + nActualTimespan + nActualTimespan);
+        bnNew /= ((nIntervalPPC + 1) * nTargetTimespan);
+
+        //bnNew *= nActualTimespan;
+        //bnNew /= nTargetTimespan;
+    }else{
+        // IIP2 withu2018 20190724 nActualTimespan calc
+        // the last block & pre block is not ActualTimespans
+
+        if(nActualTimespan<nTargetSpacing+nTargetSpacing){
+            nActualTimespan=nActualTimespan*nActualTimespan/(nTargetSpacing*2)/3;
+        }
+
+        nActualTimespan*=nInterval;
+        bnNew *= ((nIntervalPPC - 1) * nTargetTimespan + nActualTimespan + nActualTimespan);
+        bnNew /= ((nIntervalPPC + 1) * nTargetTimespan);
+
+        //bnNew *= nActualTimespan;
+        //bnNew /= nTargetTimespan;
+    }
 
 	if (bnNew > bnProofOfWorkLimit)
 		bnNew = bnProofOfWorkLimit;
 
-	// debug print
-	// printf("nTargetTimespan = %"PRI64d", nActualTimespan = %"PRI64d"\n", nTargetTimespan, nActualTimespan);
+     //debug print
+     printf("nTargetTimespan = %"PRI64d", nActualTimespan = %"PRI64d"\n", nTargetTimespan, nActualTimespan);
 
     return bnNew.GetCompact();
 }
@@ -1065,7 +1128,7 @@ void static InvalidChainFound(CBlockIndex* pindexNew)
       hashBestChain.ToString().substr(0,20).c_str(), nBestHeight, bnBestChainWork.ToString().c_str(),
       DateTimeStrFormat("%x %H:%M:%S", pindexBest->GetBlockTime()).c_str());
 
-    //if mainChain's work < 6 times of newChain's work then show this WARNING
+    //withu2018 20190713 if mainChain's work < 6 multipe of newChain's work then show this WARNING
     if (pindexBest && bnBestInvalidWork > bnBestChainWork + pindexBest->GetBlockWork() * 6)
         printf("InvalidChainFound: WARNING: Displayed transactions may not be correct!  You may need to upgrade, or other nodes may need to upgrade.\n");
 }
@@ -1503,8 +1566,8 @@ bool static Reorganize(CTxDB& txdb, CBlockIndex* pindexNew)
     printf("REORGANIZE\n");
 
     // Find the fork
-    CBlockIndex* pfork = pindexBest;
-    CBlockIndex* plonger = pindexNew;
+    CBlockIndex* pfork = pindexBest; //now chain best first index
+    CBlockIndex* plonger = pindexNew; //next chain lastindex
     while (pfork != plonger)
     {
         while (plonger->nHeight > pfork->nHeight){
@@ -1512,6 +1575,8 @@ bool static Reorganize(CTxDB& txdb, CBlockIndex* pindexNew)
                 return error("Reorganize() : plonger->pprev is null");
             }
         }
+
+        //withu2018 20190714  find fork point
         if (pfork == plonger)
             break;
         if (!(pfork = pfork->pprev))
@@ -1529,12 +1594,12 @@ bool static Reorganize(CTxDB& txdb, CBlockIndex* pindexNew)
         vConnect.push_back(pindex);
     reverse(vConnect.begin(), vConnect.end());
 
-    //WithU2018 201906180723   if NumConfirmations=6 then vDisconnect.size() must less 6
+    //WithU2018 201906180723   IIP2  if NumConfirmations=6 then vDisconnect.size() must less 6
     if( vDisconnect.size()>=NumConfirmations){
         return error("Reorganize() : Disconnect %i blocks is More then %i NumConfirmations\n",vDisconnect.size(),NumConfirmations);
     }
 
-    //WithU2018 201906180723
+    //WithU2018 201906180723 IIP2
     if( vConnect.size()>=NumConfirmations){
         return error("Reorganize() : Connect %i blocks is More then %i NumConfirmations\n",vConnect.size(),NumConfirmations);
     }
@@ -1630,6 +1695,7 @@ bool CBlock::SetBestChainInner(CTxDB& txdb, CBlockIndex *pindexNew)
     BOOST_FOREACH(CTransaction& tx, vtx)
         mempool.remove(tx);
 
+    printf("SetBestChainInner: done\n");
     return true;
 }
 
@@ -1666,6 +1732,11 @@ bool CBlock::SetBestChain(CTxDB& txdb, CBlockIndex* pindexNew)
         while (pindexIntermediate->pprev && pindexIntermediate->pprev->bnChainWork > pindexBest->bnChainWork)
         {
             vpindexSecondary.push_back(pindexIntermediate);
+
+            //withu2018 20190714 IIP2 The time interval between blocks must be more than one the time of nTargetSpacing
+            if(pindexIntermediate->pprev->GetBlockTime()-pindexIntermediate->GetBlockTime()<nTargetSpacing){
+                return error("SetBestChain() : SecondaryChain BlockTime Less nTargetSpacing,so fast");
+            }
             pindexIntermediate = pindexIntermediate->pprev;
         }
 
@@ -1874,9 +1945,29 @@ bool CBlock::AcceptBlock()
     CBlockIndex* pindexPrev = (*mi).second;
     int nHeight = pindexPrev->nHeight+1;
 
+
+
+
+
+
     // Check proof of work
     if (nBits != GetNextWorkRequired(pindexPrev, this))
         return DoS(100, error("AcceptBlock() : incorrect proof of work"));
+
+    // IIP2 withu2018 20190722 check time interval between blocks must be more than one the time of nTargetSpacing
+    if((fTestNet && pindexPrev->nHeight>4240 )|| (!fTestNet && pindexPrev->nTime>nIIP2SwitchTime)){
+        if(this->GetBlockTime()-pindexPrev->GetBlockTime()<nTargetSpacing){
+
+            //IIP2 withu2018 20190724
+            //lastAtimeSpan=this->GetBlockTime()-pindexPrev->GetBlockTime();
+
+             //return DoS(100, error("AcceptBlock() :  New Block BlockTime Less nTargetSpacing,so fast"));
+             return error("AcceptBlock() : New Block BlockTime Less nTargetSpacing,so fast");
+        }
+    }
+
+
+
 
     // Check timestamp against prev
     if (GetBlockTime() <= pindexPrev->GetMedianTimePast())
@@ -1956,6 +2047,7 @@ bool ProcessBlock(CNode* pfrom, CBlock* pblock)
                 pfrom->Misbehaving(100);
             return error("ProcessBlock() : block with too little proof-of-work");
         }
+
     }
 
     // ppcoin: ask for pending sync-checkpoint if any

@@ -591,6 +591,7 @@ bool CNode::Misbehaving(int howmuch)
 {
     if (addr.IsLocal())
     {
+        //withu2018 20190721 test
         printf("Warning: local node %s misbehaving\n", addrName.c_str());
         return false;
     }
