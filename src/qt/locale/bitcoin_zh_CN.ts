@@ -55,12 +55,12 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <source>These are your Bitcoin addresses for receiving payments.  You may want to give a different one to each sender so you can keep track of who is paying you.</source>
-        <translation type="obsolete">这些是你接受支付的无限币地址。当支付时你可以给出不同的地址，以便追踪不同的支付者。</translation>
+        <translation type="obsolete">这些是你收款的无限币地址。当收款时你可以给出不同的地址，以便区分来自不同的支付者。</translation>
     </message>
     <message>
         <location filename="../forms/addressbookpage.ui" line="36"/>
         <source>Double-click to edit address or label</source>
-        <translation type="unfinished">双击以编辑地址或账户名</translation>
+        <translation type="unfinished">双击编辑地址或账户名</translation>
     </message>
     <message>
         <location filename="../forms/addressbookpage.ui" line="63"/>
@@ -80,7 +80,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location filename="../forms/addressbookpage.ui" line="20"/>
         <source>These are your Infinitecoin addresses for receiving payments. You may want to give a different one to each sender so you can keep track of who is paying you.</source>
-        <translation type="unfinished">这些是你接受支付的无限币地址。当支付时你可以给出不同的地址，以便追踪不同的支付者。</translation>
+        <translation type="unfinished">这些是你收款的无限币地址。当收款时你可以给出不同的地址，以便区分来自不同的支付者。</translation>
     </message>
     <message>
         <location filename="../forms/addressbookpage.ui" line="80"/>
