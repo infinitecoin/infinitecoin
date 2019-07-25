@@ -33,3 +33,4 @@ object_script.*
 /cmake-build-debug
 /.idea
 /src/cmake-build-debug
+/Infinitecoin-Qt.app
