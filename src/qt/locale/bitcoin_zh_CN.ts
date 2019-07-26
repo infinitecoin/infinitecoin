@@ -55,12 +55,12 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <source>These are your Bitcoin addresses for receiving payments.  You may want to give a different one to each sender so you can keep track of who is paying you.</source>
-        <translation type="obsolete">这些是你接受支付的无限币地址。当支付时你可以给出不同的地址，以便追踪不同的支付者。</translation>
+        <translation type="obsolete">这些是你收款的无限币地址。当收款时你可以给出不同的地址，以便区分来自不同的支付者。</translation>
     </message>
     <message>
         <location filename="../forms/addressbookpage.ui" line="36"/>
         <source>Double-click to edit address or label</source>
-        <translation type="unfinished">双击以编辑地址或账户名</translation>
+        <translation type="unfinished">双击编辑地址或账户名</translation>
     </message>
     <message>
         <location filename="../forms/addressbookpage.ui" line="63"/>
@@ -80,7 +80,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location filename="../forms/addressbookpage.ui" line="20"/>
         <source>These are your Infinitecoin addresses for receiving payments. You may want to give a different one to each sender so you can keep track of who is paying you.</source>
-        <translation type="unfinished">这些是你接受支付的无限币地址。当支付时你可以给出不同的地址，以便追踪不同的支付者。</translation>
+        <translation type="unfinished">这些是你收款的无限币地址。当收款时你可以给出不同的地址，以便区分来自不同的支付者。</translation>
     </message>
     <message>
         <location filename="../forms/addressbookpage.ui" line="80"/>
@@ -773,8 +773,8 @@ Address: %4
         <translation type="obsolete">发生致命错误. 无限币客户端的安全存在问题，将退出.</translation>
     </message>
     <message>
-        <location filename="../bitcoin.cpp" line="118"/>
-        <location filename="../bitcoin.cpp" line="125"/>
+        <location filename="../bitcoin.cpp" line="120"/>
+        <location filename="../bitcoin.cpp" line="127"/>
         <source>A fatal error occured. Infinitecoin can no longer continue safely and will quit.</source>
         <translation type="unfinished">发生了致命错误。Infinitecoin 无法继续运行，即将退出。</translation>
     </message>
@@ -1249,141 +1249,151 @@ Address: %4
     </message>
     <message>
         <location filename="../forms/optionsdialog.ui" line="92"/>
+        <source>Display community links on the home page</source>
+        <translation>显示钱包首页快捷链接</translation>
+    </message>
+    <message>
+        <location filename="../forms/optionsdialog.ui" line="95"/>
+        <source>&amp;Display community links on the home page</source>
+        <translation>显示钱包首页快捷链接</translation>
+    </message>
+    <message>
+        <location filename="../forms/optionsdialog.ui" line="102"/>
         <source>Detach block and address databases at shutdown. This means they can be moved to another data directory, but it slows down shutdown. The wallet is always detached.</source>
         <translation type="unfinished">关闭时分开区块数据库和地址数据库. 这意味着您可以将数据库文件移动至其他文件夹. 钱包文件始终是分开的.</translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="95"/>
+        <location filename="../forms/optionsdialog.ui" line="105"/>
         <source>&amp;Detach databases at shutdown</source>
         <translation type="unfinished">&amp;关闭客户端时分离数据库</translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="116"/>
+        <location filename="../forms/optionsdialog.ui" line="126"/>
         <source>&amp;Network</source>
         <translation type="unfinished">网络</translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="122"/>
+        <location filename="../forms/optionsdialog.ui" line="132"/>
         <source>Automatically open the Infinitecoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
         <translation type="unfinished">自动打开路由器上的 Infinitecoin 客户端端口。只有当您的路由器支持 UPnP 并且启用了它时, 此功能才有效。</translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="125"/>
+        <location filename="../forms/optionsdialog.ui" line="135"/>
         <source>Map port using &amp;UPnP</source>
         <translation type="unfinished">使用 &amp;UPnP 映射端口</translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="132"/>
+        <location filename="../forms/optionsdialog.ui" line="142"/>
         <source>Connect to the Infinitecoin network through a SOCKS proxy (e.g. when connecting through Tor).</source>
         <translation type="unfinished">通过 SOCKS 代理连接到 Infinitecoin 网络 (比如， 当通过 Tor 连接时)。</translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="135"/>
+        <location filename="../forms/optionsdialog.ui" line="145"/>
         <source>&amp;Connect through SOCKS proxy:</source>
         <translation type="unfinished">&amp;通过SOCKS代理连接</translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="144"/>
+        <location filename="../forms/optionsdialog.ui" line="154"/>
         <source>Proxy &amp;IP:</source>
         <translation type="unfinished">代理服务器&amp;IP:</translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="163"/>
+        <location filename="../forms/optionsdialog.ui" line="173"/>
         <source>IP address of the proxy (e.g. 127.0.0.1)</source>
         <translation type="unfinished">代理服务器IP (如 127.0.0.1)</translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="170"/>
+        <location filename="../forms/optionsdialog.ui" line="180"/>
         <source>&amp;Port:</source>
         <translation type="unfinished">&amp;端口:</translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="189"/>
+        <location filename="../forms/optionsdialog.ui" line="199"/>
         <source>Port of the proxy (e.g. 9050)</source>
         <translation type="unfinished">代理端口 (比如 1234) {9050)?}</translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="196"/>
+        <location filename="../forms/optionsdialog.ui" line="206"/>
         <source>SOCKS &amp;Version:</source>
         <translation type="unfinished">&amp;SOCKS版本</translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="209"/>
+        <location filename="../forms/optionsdialog.ui" line="219"/>
         <source>SOCKS version of the proxy (e.g. 5)</source>
         <translation type="unfinished">&amp;SOCKS版本（如，5）</translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="245"/>
+        <location filename="../forms/optionsdialog.ui" line="255"/>
         <source>&amp;Window</source>
         <translation type="unfinished">&amp;窗口</translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="251"/>
+        <location filename="../forms/optionsdialog.ui" line="261"/>
         <source>Show only a tray icon after minimizing the window.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="254"/>
+        <location filename="../forms/optionsdialog.ui" line="264"/>
         <source>&amp;Minimize to the tray instead of the taskbar</source>
         <translation type="unfinished">&amp;最小化到托盘</translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="261"/>
+        <location filename="../forms/optionsdialog.ui" line="271"/>
         <source>Minimize instead of exit the application when the window is closed. When this option is enabled, the application will be closed only after selecting Quit in the menu.</source>
         <translation type="unfinished">当窗口关闭时程序最小化而不是退出。当使用该选项时，程序只能通过在菜单中选择退出来关闭</translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="264"/>
+        <location filename="../forms/optionsdialog.ui" line="274"/>
         <source>M&amp;inimize on close</source>
         <translation type="unfinished">单击关闭按钮时&amp;最小化</translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="285"/>
+        <location filename="../forms/optionsdialog.ui" line="295"/>
         <source>&amp;Display</source>
         <translation type="unfinished">显示</translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="293"/>
+        <location filename="../forms/optionsdialog.ui" line="303"/>
         <source>User Interface &amp;language:</source>
         <translation type="unfinished">用户界面语言：</translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="306"/>
+        <location filename="../forms/optionsdialog.ui" line="316"/>
         <source>The user interface language can be set here. This setting will take effect after restarting Infinitecoin.</source>
         <translation type="unfinished">可以在此处设置用户界面语言。此设置将在重新启动 Infinitecoin 后生效。</translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="317"/>
+        <location filename="../forms/optionsdialog.ui" line="327"/>
         <source>&amp;Unit to show amounts in:</source>
         <translation type="unfinished">&amp;无限币金额单位:</translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="330"/>
+        <location filename="../forms/optionsdialog.ui" line="340"/>
         <source>Choose the default subdivision unit to show in the interface and when sending coins.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="339"/>
+        <location filename="../forms/optionsdialog.ui" line="349"/>
         <source>Whether to show Infinitecoin addresses in the transaction list or not.</source>
         <translation type="unfinished">是否在交易列表中显示 Infinitecoin 地址</translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="342"/>
+        <location filename="../forms/optionsdialog.ui" line="352"/>
         <source>&amp;Display addresses in transaction list</source>
         <translation type="unfinished">在交易清单中&amp;显示无限币地址</translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="413"/>
+        <location filename="../forms/optionsdialog.ui" line="423"/>
         <source>&amp;OK</source>
         <translation type="unfinished">&amp;确定</translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="420"/>
+        <location filename="../forms/optionsdialog.ui" line="430"/>
         <source>&amp;Cancel</source>
         <translation type="unfinished">&amp;取消</translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="430"/>
+        <location filename="../forms/optionsdialog.ui" line="440"/>
         <source>&amp;Apply</source>
         <translation type="unfinished">&amp;应用</translation>
     </message>
@@ -1393,19 +1403,19 @@ Address: %4
         <translation type="unfinished">缺省</translation>
     </message>
     <message>
-        <location filename="../optionsdialog.cpp" line="196"/>
-        <location filename="../optionsdialog.cpp" line="205"/>
+        <location filename="../optionsdialog.cpp" line="198"/>
+        <location filename="../optionsdialog.cpp" line="207"/>
         <source>Warning</source>
         <translation type="unfinished">警告</translation>
     </message>
     <message>
-        <location filename="../optionsdialog.cpp" line="196"/>
-        <location filename="../optionsdialog.cpp" line="205"/>
+        <location filename="../optionsdialog.cpp" line="198"/>
+        <location filename="../optionsdialog.cpp" line="207"/>
         <source>This setting will take effect after restarting Infinitecoin.</source>
         <translation type="unfinished">此设置将在重新启动后生效 Infinitecoin</translation>
     </message>
     <message>
-        <location filename="../optionsdialog.cpp" line="230"/>
+        <location filename="../optionsdialog.cpp" line="233"/>
         <source>The supplied proxy address is invalid.</source>
         <translation type="unfinished">提供的代理地址无效</translation>
     </message>
@@ -1459,13 +1469,17 @@ Address: %4
     </message>
     <message>
         <location filename="../forms/overviewpage.ui" line="217"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;http://www.ifc123.top/?r=ifc1910&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Navigation Site&lt;/span&gt;&lt;/a&gt; | &lt;a href=&quot;https://chainz.cryptoid.info/ifc/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Blockchain Explorer&lt;/span&gt;&lt;/a&gt; | &lt;a href=&quot;https://www.ifc123.net/archives/147.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Pool List&lt;/span&gt;&lt;/a&gt; | &lt;a href=&quot;https://github.com/withu2018/infinitecoin&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Github&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;http://www.ifc123.top/?r=ifc1910&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;导航站&lt;/span&gt;&lt;/a&gt; | &lt;a href=&quot;https://chainz.cryptoid.info/ifc/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;区块浏览器&lt;/span&gt;&lt;/a&gt; | &lt;a href=&quot;https://www.ifc123.net/archives/147.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;矿池列表&lt;/span&gt;&lt;/a&gt; | &lt;a href=&quot;https://github.com/withu2018/infinitecoin&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;源码&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;http://www.ifc123.top/?r=ifc192x&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Navigation Site&lt;/span&gt;&lt;/a&gt; | &lt;a href=&quot;https://chainz.cryptoid.info/ifc/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Blockchain Explorer&lt;/span&gt;&lt;/a&gt; | &lt;a href=&quot;https://github.com/withu2018/infinitecoin/tree/master/pool&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Pool List&lt;/span&gt;&lt;/a&gt; | &lt;a href=&quot;https://github.com/withu2018/infinitecoin&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Github&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../forms/overviewpage.ui" line="382"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://www.ifc123.net/archives/108.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Version 1.9.1 (2018-08-16)&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://www.ifc123.net/archives/108.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Version 1.9.2.0&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;http://www.ifc123.top/?r=ifc1910&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Navigation Site&lt;/span&gt;&lt;/a&gt; | &lt;a href=&quot;https://chainz.cryptoid.info/ifc/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Blockchain Explorer&lt;/span&gt;&lt;/a&gt; | &lt;a href=&quot;https://www.ifc123.net/archives/147.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Pool List&lt;/span&gt;&lt;/a&gt; | &lt;a href=&quot;https://github.com/withu2018/infinitecoin&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Github&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="obsolete">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;http://www.ifc123.top/?r=ifc1910&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;导航站&lt;/span&gt;&lt;/a&gt; | &lt;a href=&quot;https://chainz.cryptoid.info/ifc/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;区块浏览器&lt;/span&gt;&lt;/a&gt; | &lt;a href=&quot;https://www.ifc123.net/archives/147.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;矿池列表&lt;/span&gt;&lt;/a&gt; | &lt;a href=&quot;https://github.com/withu2018/infinitecoin&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;源码&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;http://www.ifc123.top/?r=ifc1910&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Navigation Site&lt;/span&gt;&lt;/a&gt; | &lt;a href=&quot;https://chainz.cryptoid.info/ifc&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Blockchain Explorer&lt;/span&gt;&lt;/a&gt; | &lt;a href=&quot;https://www.ifc123.net/archives/147.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Pool List&lt;/span&gt;&lt;/a&gt; | &lt;a href=&quot;https://github.com/withu2018/infinitecoin&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Github&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
@@ -1496,8 +1510,8 @@ Address: %4
         <translation type="obsolete">来自同步过程</translation>
     </message>
     <message>
-        <location filename="../overviewpage.cpp" line="112"/>
-        <location filename="../overviewpage.cpp" line="113"/>
+        <location filename="../overviewpage.cpp" line="115"/>
+        <location filename="../overviewpage.cpp" line="116"/>
         <source>Out of sync</source>
         <translation type="unfinished">尚未同步完成</translation>
     </message>
@@ -1870,7 +1884,7 @@ Address: %4
     </message>
     <message>
         <location filename="../forms/sendcoinsentry.ui" line="128"/>
-        <location filename="../sendcoinsentry.cpp" line="26"/>
+        <location filename="../sendcoinsentry.cpp" line="27"/>
         <source>Enter a label for this address to add it to your address book</source>
         <translation type="unfinished">为这个地址输入一个账户名，以便将它添加到您的地址簿</translation>
     </message>
@@ -1924,14 +1938,13 @@ Address: %4
         <translation type="obsolete">请输入无限币地址 (例如: 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</translation>
     </message>
     <message>
-        <location filename="../sendcoinsentry.cpp" line="27"/>
+        <location filename="../sendcoinsentry.cpp" line="28"/>
         <source>Enter a Infinitecoin address (starts with i)</source>
         <translation type="unfinished">请输入无限币地址 (例如: i91dq2WRVtMJWU8snw3b22Dzp22rytvp1e)</translation>
     </message>
     <message>
-        <location filename="../sendcoinsentry.cpp" line="186"/>
         <location filename="../sendcoinsentry.cpp" line="188"/>
-        <location filename="../sendcoinsentry.cpp" line="192"/>
+        <location filename="../sendcoinsentry.cpp" line="190"/>
         <source>Fee:</source>
         <translation type="unfinished">转账手续费：</translation>
     </message>
@@ -2186,114 +2199,113 @@ Address: %4
     </message>
     <message>
         <location filename="../transactiondesc.cpp" line="71"/>
-        <location filename="../transactiondesc.cpp" line="88"/>
         <source>From</source>
         <translation type="unfinished">来自</translation>
     </message>
     <message>
-        <location filename="../transactiondesc.cpp" line="89"/>
-        <location filename="../transactiondesc.cpp" line="111"/>
-        <location filename="../transactiondesc.cpp" line="169"/>
+        <location filename="../transactiondesc.cpp" line="90"/>
+        <location filename="../transactiondesc.cpp" line="112"/>
+        <location filename="../transactiondesc.cpp" line="170"/>
         <source>To</source>
         <translation type="unfinished">到</translation>
     </message>
     <message>
-        <location filename="../transactiondesc.cpp" line="92"/>
-        <location filename="../transactiondesc.cpp" line="94"/>
+        <location filename="../transactiondesc.cpp" line="93"/>
+        <location filename="../transactiondesc.cpp" line="95"/>
         <source>own address</source>
         <translation type="unfinished">自己的地址</translation>
     </message>
     <message>
-        <location filename="../transactiondesc.cpp" line="92"/>
+        <location filename="../transactiondesc.cpp" line="93"/>
         <source>label</source>
         <translation type="unfinished">账户名</translation>
     </message>
     <message>
-        <location filename="../transactiondesc.cpp" line="129"/>
-        <location filename="../transactiondesc.cpp" line="141"/>
-        <location filename="../transactiondesc.cpp" line="186"/>
-        <location filename="../transactiondesc.cpp" line="203"/>
-        <location filename="../transactiondesc.cpp" line="233"/>
+        <location filename="../transactiondesc.cpp" line="130"/>
+        <location filename="../transactiondesc.cpp" line="142"/>
+        <location filename="../transactiondesc.cpp" line="187"/>
+        <location filename="../transactiondesc.cpp" line="204"/>
+        <location filename="../transactiondesc.cpp" line="234"/>
         <source>Credit</source>
         <translation type="unfinished">到帐</translation>
     </message>
     <message numerus="yes">
-        <location filename="../transactiondesc.cpp" line="131"/>
+        <location filename="../transactiondesc.cpp" line="132"/>
         <source>matures in %n more block(s)</source>
         <translation type="unfinished">
             <numerusform>成熟于 %n 个以上数据块</numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../transactiondesc.cpp" line="133"/>
+        <location filename="../transactiondesc.cpp" line="134"/>
         <source>not accepted</source>
         <translation type="unfinished">未接受</translation>
     </message>
     <message>
-        <location filename="../transactiondesc.cpp" line="177"/>
-        <location filename="../transactiondesc.cpp" line="185"/>
-        <location filename="../transactiondesc.cpp" line="200"/>
-        <location filename="../transactiondesc.cpp" line="230"/>
+        <location filename="../transactiondesc.cpp" line="178"/>
+        <location filename="../transactiondesc.cpp" line="186"/>
+        <location filename="../transactiondesc.cpp" line="201"/>
+        <location filename="../transactiondesc.cpp" line="231"/>
         <source>Debit</source>
         <translation type="unfinished">支出</translation>
     </message>
     <message>
-        <location filename="../transactiondesc.cpp" line="191"/>
+        <location filename="../transactiondesc.cpp" line="192"/>
         <source>Transaction fee</source>
         <translation type="unfinished">交易费</translation>
     </message>
     <message>
-        <location filename="../transactiondesc.cpp" line="207"/>
+        <location filename="../transactiondesc.cpp" line="208"/>
         <source>Net amount</source>
         <translation type="unfinished">总金额</translation>
     </message>
     <message>
-        <location filename="../transactiondesc.cpp" line="213"/>
+        <location filename="../transactiondesc.cpp" line="214"/>
         <source>Message</source>
         <translation type="unfinished">消息</translation>
     </message>
     <message>
-        <location filename="../transactiondesc.cpp" line="215"/>
+        <location filename="../transactiondesc.cpp" line="216"/>
         <source>Comment</source>
         <translation type="unfinished">备注</translation>
     </message>
     <message>
-        <location filename="../transactiondesc.cpp" line="217"/>
+        <location filename="../transactiondesc.cpp" line="218"/>
         <source>Transaction ID</source>
         <translation type="unfinished">交易ID(txid)</translation>
     </message>
     <message>
-        <location filename="../transactiondesc.cpp" line="220"/>
+        <location filename="../transactiondesc.cpp" line="221"/>
         <source>Generated coins must mature 120 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to &quot;not accepted&quot; and it won&apos;t be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
         <translation type="unfinished">生成的币必须成熟60个区块才能使用。当生成此块时，将其广播到区块链网络中。如果它不进入区块，其状态将更改为“不能接受”，如果另一个节点在几秒钟内生成另外一个块，这种情况偶尔也会发生。</translation>
     </message>
     <message>
-        <location filename="../transactiondesc.cpp" line="227"/>
+        <location filename="../transactiondesc.cpp" line="228"/>
         <source>Debug information</source>
         <translation type="unfinished">调试信息</translation>
     </message>
     <message>
-        <location filename="../transactiondesc.cpp" line="235"/>
+        <location filename="../transactiondesc.cpp" line="236"/>
         <source>Transaction</source>
         <translation type="unfinished">交易</translation>
     </message>
     <message>
-        <location filename="../transactiondesc.cpp" line="240"/>
+        <location filename="../transactiondesc.cpp" line="241"/>
         <source>Inputs</source>
         <translation type="unfinished">输入</translation>
     </message>
     <message>
-        <location filename="../transactiondesc.cpp" line="263"/>
+        <location filename="../transactiondesc.cpp" line="264"/>
         <source>Amount</source>
         <translation type="unfinished">数量</translation>
     </message>
     <message>
-        <location filename="../transactiondesc.cpp" line="264"/>
+        <location filename="../transactiondesc.cpp" line="265"/>
         <source>true</source>
         <translation type="unfinished">真</translation>
     </message>
     <message>
-        <location filename="../transactiondesc.cpp" line="264"/>
+        <location filename="../transactiondesc.cpp" line="265"/>
         <source>false</source>
         <translation type="unfinished">假</translation>
     </message>
@@ -2327,9 +2339,8 @@ Address: %4
         <translation type="obsolete">&lt;b&gt;从：&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../transactiondesc.cpp" line="88"/>
         <source>unknown</source>
-        <translation>未知</translation>
+        <translation type="obsolete">未知</translation>
     </message>
     <message>
         <source>&lt;b&gt;To:&lt;/b&gt; </source>
@@ -2427,13 +2438,13 @@ Address: %4
         <location filename="../transactiontablemodel.cpp" line="283"/>
         <source>Open for %n block(s)</source>
         <translation>
-            <numerusform>开启 %n 个数据块</numerusform>
+            <numerusform>开启 %n 个区块</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../transactiontablemodel.cpp" line="286"/>
         <source>Open until %1</source>
-        <translation>至 %1 个数据块时开启</translation>
+        <translation>至 %1 个区块时开启</translation>
     </message>
     <message>
         <location filename="../transactiontablemodel.cpp" line="289"/>
@@ -2459,8 +2470,8 @@ Address: %4
     <message numerus="yes">
         <location filename="../transactiontablemodel.cpp" line="303"/>
         <source>Mined balance will be available when it matures in %n more block(s)</source>
-        <translation type="unfinished">
-            <numerusform>挖矿所得将在  %n 个数据块之后可用</numerusform>
+        <translation>
+            <numerusform>挖矿所得将在  %n 个区块之后可用</numerusform>
         </translation>
     </message>
     <message>
@@ -2486,7 +2497,7 @@ Address: %4
     <message>
         <location filename="../transactiontablemodel.cpp" line="359"/>
         <source>Sent to</source>
-        <translation type="unfinished">转账到</translation>
+        <translation>转账到</translation>
     </message>
     <message>
         <location filename="../transactiontablemodel.cpp" line="361"/>
@@ -2595,7 +2606,7 @@ Address: %4
     <message>
         <location filename="../transactionview.cpp" line="85"/>
         <source>Enter address or label to search</source>
-        <translation type="unfinished">输入地址或账户进行搜索</translation>
+        <translation>输入地址或账户进行搜索</translation>
     </message>
     <message>
         <location filename="../transactionview.cpp" line="92"/>
@@ -2610,7 +2621,7 @@ Address: %4
     <message>
         <location filename="../transactionview.cpp" line="127"/>
         <source>Copy label</source>
-        <translation type="unfinished">复制账户名</translation>
+        <translation>复制账户名</translation>
     </message>
     <message>
         <location filename="../transactionview.cpp" line="128"/>
@@ -2620,7 +2631,7 @@ Address: %4
     <message>
         <location filename="../transactionview.cpp" line="129"/>
         <source>Edit label</source>
-        <translation type="unfinished">编辑账户名</translation>
+        <translation>编辑账户名</translation>
     </message>
     <message>
         <location filename="../transactionview.cpp" line="130"/>
@@ -2655,7 +2666,7 @@ Address: %4
     <message>
         <location filename="../transactionview.cpp" line="284"/>
         <source>Label</source>
-        <translation type="unfinished">账户名</translation>
+        <translation>账户名</translation>
     </message>
     <message>
         <location filename="../transactionview.cpp" line="285"/>

@@ -44,9 +44,6 @@ uint256 hashBestChain = 0;
 CBlockIndex* pindexBest = NULL;
 int64 nTimeBestReceived = 0;
 
-//IIP2 withu2018 20190724 newActualTimespan
-int64 lastAtimeSpan=30;
-
 CMedianFilter<int> cPeerBlockCounts(5, 0); // Amount of blocks that other nodes claim to have
 
 map<uint256, CBlock*> mapOrphanBlocks;
@@ -1594,14 +1591,17 @@ bool static Reorganize(CTxDB& txdb, CBlockIndex* pindexNew)
         vConnect.push_back(pindex);
     reverse(vConnect.begin(), vConnect.end());
 
-    //WithU2018 201906180723   IIP2  if NumConfirmations=6 then vDisconnect.size() must less 6
-    if( vDisconnect.size()>=NumConfirmations){
-        return error("Reorganize() : Disconnect %i blocks is More then %i NumConfirmations\n",vDisconnect.size(),NumConfirmations);
-    }
+    //withu2018 20190726 IIP2,switch to mainnet
+    if(fTestNet || (!fTestNet && pindexBest->nTime>nIIP2SwitchTime)){
+        //WithU2018 201906180723   IIP2  if NumConfirmations=6 then vDisconnect.size() must less 6
+        if( vDisconnect.size()>=NumConfirmations){
+            return error("Reorganize() : Disconnect %i blocks is More then %i NumConfirmations\n",vDisconnect.size(),NumConfirmations);
+        }
 
-    //WithU2018 201906180723 IIP2
-    if( vConnect.size()>=NumConfirmations){
-        return error("Reorganize() : Connect %i blocks is More then %i NumConfirmations\n",vConnect.size(),NumConfirmations);
+        //WithU2018 201906180723 IIP2
+        if( vConnect.size()>=NumConfirmations){
+            return error("Reorganize() : Connect %i blocks is More then %i NumConfirmations\n",vConnect.size(),NumConfirmations);
+        }
     }
 
     printf("REORGANIZE: Disconnect %i blocks; %s..%s\n", vDisconnect.size(), pfork->GetBlockHash().ToString().substr(0,20).c_str(), pindexBest->GetBlockHash().ToString().substr(0,20).c_str());
@@ -1733,9 +1733,14 @@ bool CBlock::SetBestChain(CTxDB& txdb, CBlockIndex* pindexNew)
         {
             vpindexSecondary.push_back(pindexIntermediate);
 
-            //withu2018 20190714 IIP2 The time interval between blocks must be more than one the time of nTargetSpacing
-            if(pindexIntermediate->pprev->GetBlockTime()-pindexIntermediate->GetBlockTime()<nTargetSpacing){
-                return error("SetBestChain() : SecondaryChain BlockTime Less nTargetSpacing,so fast");
+
+            //withu2018 20190726 IIP2,switch to mainnet
+            if(fTestNet || (!fTestNet && pindexIntermediate->nTime>nIIP2SwitchTime)){
+
+                //withu2018 20190714 IIP2 The time interval between blocks must be more than one the time of nTargetSpacing
+                if(pindexIntermediate->pprev->GetBlockTime()-pindexIntermediate->GetBlockTime()<nTargetSpacing){
+                    return error("SetBestChain() : SecondaryChain BlockTime Less nTargetSpacing,so fast");
+                }
             }
             pindexIntermediate = pindexIntermediate->pprev;
         }

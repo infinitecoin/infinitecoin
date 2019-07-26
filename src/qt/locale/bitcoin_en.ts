@@ -865,6 +865,14 @@ Address: %4
         <source>This setting will take effect after restarting Infinitecoin.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Display community links on the home page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Display community links on the home page</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>OverviewPage</name>
@@ -921,11 +929,11 @@ Address: %4
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;http://www.ifc123.top/?r=ifc1910&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Navigation Site&lt;/span&gt;&lt;/a&gt; | &lt;a href=&quot;https://chainz.cryptoid.info/ifc/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Blockchain Explorer&lt;/span&gt;&lt;/a&gt; | &lt;a href=&quot;https://www.ifc123.net/archives/147.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Pool List&lt;/span&gt;&lt;/a&gt; | &lt;a href=&quot;https://github.com/withu2018/infinitecoin&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Github&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;http://www.ifc123.top/?r=ifc192x&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Navigation Site&lt;/span&gt;&lt;/a&gt; | &lt;a href=&quot;https://chainz.cryptoid.info/ifc/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Blockchain Explorer&lt;/span&gt;&lt;/a&gt; | &lt;a href=&quot;https://github.com/withu2018/infinitecoin/tree/master/pool&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Pool List&lt;/span&gt;&lt;/a&gt; | &lt;a href=&quot;https://github.com/withu2018/infinitecoin&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Github&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://www.ifc123.net/archives/108.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Version 1.9.1 (2018-08-16)&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://www.ifc123.net/archives/108.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Version 1.9.2.0&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1506,10 +1514,6 @@ Address: %4
     </message>
     <message>
         <source>, has not been successfully broadcast yet</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>unknown</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

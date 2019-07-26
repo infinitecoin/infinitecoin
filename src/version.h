@@ -15,7 +15,7 @@
 #define CLIENT_VERSION_MAJOR       1
 #define CLIENT_VERSION_MINOR       9
 #define CLIENT_VERSION_REVISION    2
-#define CLIENT_VERSION_BUILD       5
+#define CLIENT_VERSION_BUILD       7
 
 static const int CLIENT_VERSION =
                            1000000 * CLIENT_VERSION_MAJOR
@@ -31,7 +31,7 @@ extern const std::string CLIENT_DATE;
 // network protocol versioning
 //
 
-static const int PROTOCOL_VERSION = 69004;
+static const int PROTOCOL_VERSION = 69005;
 
 // earlier versions not supported as of Feb 2012, and are disconnected
 static const int INIT_PROTO_VERSION = 209;
