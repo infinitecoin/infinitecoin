@@ -99,6 +99,7 @@ extern CClientUIInterface uiInterface;
  */
 inline std::string _(const char* psz)
 {
+    //return psz;
     boost::optional<std::string> rv = uiInterface.Translate(psz);
     return rv ? (*rv) : psz;
 }

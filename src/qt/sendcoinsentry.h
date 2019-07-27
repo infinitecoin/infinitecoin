@@ -36,6 +36,7 @@ public:
 public slots:
     void setRemoveEnabled(bool enabled);
     void clear();
+    void calcFee();
 
 signals:
     void removeEntry(SendCoinsEntry *entry);
@@ -46,6 +47,9 @@ private slots:
     void on_addressBookButton_clicked();
     void on_pasteButton_clicked();
     void updateDisplayUnit();
+
+
+    void on_pushButton_feeCalc_clicked();
 
 private:
     Ui::SendCoinsEntry *ui;

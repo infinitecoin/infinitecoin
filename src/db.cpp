@@ -501,8 +501,13 @@ CBlockIndex static * InsertBlockIndex(uint256 hash)
 
 bool CTxDB::LoadBlockIndex()
 {
+    int64 nStart = GetTimeMillis();
+    printf("LoadBlockIndexGuts...\n");
+
     if (!LoadBlockIndexGuts())
         return false;
+
+    printf("LoadedBlockIndexGuts %15"PRI64d"ms\n", GetTimeMillis() - nStart);
 
     if (fRequestShutdown)
         return true;
@@ -689,7 +694,7 @@ bool CTxDB::LoadBlockIndexGuts()
 
     // Load mapBlockIndex
     unsigned int fFlags = DB_SET_RANGE;
-    loop
+    while(1)
     {
         // Read next record
         CDataStream ssKey(SER_DISK, CLIENT_VERSION);

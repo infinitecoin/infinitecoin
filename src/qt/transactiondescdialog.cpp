@@ -11,7 +11,9 @@ TransactionDescDialog::TransactionDescDialog(const QModelIndex &idx, QWidget *pa
 {
     ui->setupUi(this);
     QString desc = idx.data(TransactionTableModel::LongDescriptionRole).toString();
-    ui->detailText->setHtml(desc);
+    //ui->detailText->setHtml(desc);
+    //shenjinqiang 20180322
+    ui->detailText->setText(desc);
 }
 
 TransactionDescDialog::~TransactionDescDialog()

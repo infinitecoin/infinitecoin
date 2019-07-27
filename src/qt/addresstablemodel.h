@@ -27,13 +27,17 @@ public:
         TypeRole = Qt::UserRole /**< Type of address (#Send or #Receive) */
     };
 
+//shenjinqiang 2018-3-22 19:30 NO_CHANGES
+
+
     /** Return status of edit/insert operation */
     enum EditStatus {
-        OK,
-        INVALID_ADDRESS,   /**< Unparseable address */
-        DUPLICATE_ADDRESS,  /**< Address already in address book */
-        WALLET_UNLOCK_FAILURE, /**< Wallet could not be unlocked to create new receiving address */
-        KEY_GENERATION_FAILURE /**< Generating a new public key for a receiving address failed */
+        OK,                     /**< Everything ok */
+        NO_CHANGES,             /**< No changes were made during edit operation */
+        INVALID_ADDRESS,        /**< Unparseable address */
+        DUPLICATE_ADDRESS,      /**< Address already in address book */
+        WALLET_UNLOCK_FAILURE,  /**< Wallet could not be unlocked to create new receiving address */
+        KEY_GENERATION_FAILURE  /**< Generating a new public key for a receiving address failed */
     };
 
     static const QString Send; /**< Specifies send address */

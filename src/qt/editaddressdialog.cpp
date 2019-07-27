@@ -19,16 +19,20 @@ EditAddressDialog::EditAddressDialog(Mode mode, QWidget *parent) :
     case NewReceivingAddress:
         setWindowTitle(tr("New receiving address"));
         ui->addressEdit->setEnabled(false);
+        ui->addressEdit->setPlaceholderText(tr("Automatic generated"));
         break;
     case NewSendingAddress:
         setWindowTitle(tr("New sending address"));
+        ui->addressEdit->setPlaceholderText("");
         break;
     case EditReceivingAddress:
         setWindowTitle(tr("Edit receiving address"));
         ui->addressEdit->setDisabled(true);
+        ui->addressEdit->setPlaceholderText("");
         break;
     case EditSendingAddress:
         setWindowTitle(tr("Edit sending address"));
+        ui->addressEdit->setPlaceholderText("");
         break;
     }
 

@@ -1,0 +1,36 @@
+ubuntu server 1404 and newer
+#setting swap
+dd if=/dev/zero of=/swap bs=1024 count=2048000 && mkswap /swap && swapon /swap && echo "/swap swap swap defaults 0 0">>/etc/fstab 
+
+#update source
+apt-get update 
+
+#update system
+apt-get upgrade 
+
+#install lxde qt4 wget
+apt-get -y install lxde xrdp libqtgui4 wget 
+
+#clear old version infinitecoind-qt
+rm -rf /root/Desktop/infinitecoin-qt
+
+#create Desktop,maybe error,please go on
+mkdir 0777 /root/Desktop
+
+#down ifc1.9.1.0
+wget https://www.ifc123.net/disk/ifc1910-bin.zip
+
+#install unzip and unzip zip
+apt-get install unzip && unzip ifc1910-bin.zip
+
+#copy exectue file to Desktop
+#for 64
+cp ifc1910-bin/64/infinitecoin-qt /root/Desktop/
+#for 32
+cp ifc1910-bin/32/infinitecoin-qt /root/Desktop/
+
+#setting exectue
+chmod 0777 /root/Desktop/*
+
+#restart system
+reboot
