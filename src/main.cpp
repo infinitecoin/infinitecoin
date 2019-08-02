@@ -1030,7 +1030,7 @@ unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast, const CBl
         //test1
         // IIP2 withu2018 20190724 nActualTimespan calc
         // the last block & pre block is not ActualTimespans
-        // if((fTestNet && pindexLast->nHeight>8265 )|| (!fTestNet && pindexLast->nTime>nIIP2SwitchTime)){
+        // if((fTestNet && pindexLast->nHeight>8265 )|| (!fTestNet && pindexLast->nTime>=nIIP2SwitchTime)){
          //
         // }
 
@@ -1592,7 +1592,7 @@ bool static Reorganize(CTxDB& txdb, CBlockIndex* pindexNew)
     reverse(vConnect.begin(), vConnect.end());
 
     //withu2018 20190726 IIP2,switch to mainnet
-    if(fTestNet || (!fTestNet && pindexBest->nTime>nIIP2SwitchTime)){
+    if(fTestNet || (!fTestNet && pindexBest->nTime>=nIIP2SwitchTime)){
         //WithU2018 201906180723   IIP2  if NumConfirmations=6 then vDisconnect.size() must less 6
         if( vDisconnect.size()>=NumConfirmations){
             return error("Reorganize() : Disconnect %i blocks is More then %i NumConfirmations\n",vDisconnect.size(),NumConfirmations);
@@ -1735,10 +1735,11 @@ bool CBlock::SetBestChain(CTxDB& txdb, CBlockIndex* pindexNew)
 
 
             //withu2018 20190726 IIP2,switch to mainnet
-            if(fTestNet || (!fTestNet && pindexIntermediate->nTime>nIIP2SwitchTime)){
+            if(fTestNet || (!fTestNet && pindexIntermediate->nTime>=nIIP2SwitchTime)){
 
                 //withu2018 20190714 IIP2 The time interval between blocks must be more than one the time of nTargetSpacing
-                if(pindexIntermediate->pprev->GetBlockTime()-pindexIntermediate->GetBlockTime()<nTargetSpacing){
+                if(pindexIntermediate->GetBlockTime()-pindexIntermediate->pprev->GetBlockTime()<nTargetSpacing){
+                    printf("height %i ,pindexIntermediate->pprev->GetBlockTime()-pindexIntermediate:%i\n",pindexIntermediate->nHeight,pindexIntermediate->GetBlockTime()-pindexIntermediate->pprev->GetBlockTime());
                     return error("SetBestChain() : SecondaryChain BlockTime Less nTargetSpacing,so fast");
                 }
             }
@@ -1851,6 +1852,15 @@ bool CBlock::AddToBlockIndex(unsigned int nFile, unsigned int nBlockPos)
         pindexNew->pprev = (*miPrev).second;
         pindexNew->nHeight = pindexNew->pprev->nHeight + 1;
     }
+
+    //IIP2 withu2018 20190802
+    if((fTestNet && pindexNew->nHeight>=8370 ) || (!fTestNet && pindexNew->nTime >= nIIP2SwitchTime)){
+        printf("IIP2 AddToBlockIndex check blocktime: height: %i->%i ,%s - %s = %i\n",pindexNew->pprev->nHeight,pindexNew->nHeight,pindexNew->pprev->GetBlockHash().ToString().substr(0,20).c_str(),pindexNew->GetBlockHash().ToString().substr(0,20).c_str(), pindexNew->GetBlockTime()-pindexNew->pprev->GetBlockTime());
+        if(pindexNew->pprev->GetBlockTime()- pindexNew->GetBlockTime()>nTargetTimespan){
+            return false;
+        }
+    }
+
     pindexNew->bnChainWork = (pindexNew->pprev ? pindexNew->pprev->bnChainWork : 0) + pindexNew->GetBlockWork();
 
     CTxDB txdb;
@@ -1862,6 +1872,7 @@ bool CBlock::AddToBlockIndex(unsigned int nFile, unsigned int nBlockPos)
 
     // New best
     if (pindexNew->bnChainWork > bnBestChainWork)
+        printf("AddToBlockIndex:SetBestChain\n");
         if (!SetBestChain(txdb, pindexNew))
             return false;
 
@@ -1960,7 +1971,7 @@ bool CBlock::AcceptBlock()
         return DoS(100, error("AcceptBlock() : incorrect proof of work"));
 
     // IIP2 withu2018 20190722 check time interval between blocks must be more than one the time of nTargetSpacing
-    if((fTestNet && pindexPrev->nHeight>4240 )|| (!fTestNet && pindexPrev->nTime>nIIP2SwitchTime)){
+    if((fTestNet && pindexPrev->nHeight>4240 )|| (!fTestNet && pindexPrev->nTime>=nIIP2SwitchTime)){
         if(this->GetBlockTime()-pindexPrev->GetBlockTime()<nTargetSpacing){
 
             //IIP2 withu2018 20190724
