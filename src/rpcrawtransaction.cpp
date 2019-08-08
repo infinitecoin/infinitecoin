@@ -207,7 +207,7 @@ Value createrawtransaction(const Array& params, bool fHelp)
             throw JSONRPCError(-3, err);
         }
 
-        if(v1.type()!=obj_type || v1.type()!=array_type ){
+        if(v1.type()!=obj_type && v1.type()!=array_type ){
             string err = strprintf("params 2 Expected type %s or %s, got %s",Value_type_name[obj_type],Value_type_name[array_type], Value_type_name[v0.type()]);
             throw JSONRPCError(-3, err);
         }
@@ -261,7 +261,7 @@ Value createrawtransaction(const Array& params, bool fHelp)
         }
     }else{
         //array_type
-        Array sendTo = v1.get_array();
+        Array sendTo = params[1].get_array();
         set<CBitcoinAddress> setAddress;
         BOOST_FOREACH(Value& sendone, sendTo)
         {
