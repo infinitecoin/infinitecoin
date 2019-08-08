@@ -188,21 +188,35 @@ Value createrawtransaction(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() != 2)
         throw runtime_error(
-            "createrawtransaction [{\"txid\":txid,\"vout\":n},...] {address:amount,...}\n"
+            "createrawtransaction [{\"txid\":txid,\"vout\":n},...] {address:amount,...} Or createrawtransaction [{\"txid\":txid,\"vout\":n},...] [{\"address\":address,\"amount\":amount},...]\n"
             "Create a transaction spending given inputs\n"
+            "The first output is Change.\nFees are 0.2% of the sum of Amounts after the second outputs. Fees are the maximum of 10,000 and the minimum of 0.01.\n"
             "(array of objects containing transaction id and output number),\n"
             "sending to given address(es).\n"
             "Returns hex-encoded raw transaction.\n"
             "Note that the transaction's inputs are not signed, and\n"
             "it is not stored in the wallet or transmitted to the network.");
 
-    RPCTypeCheck(params, list_of(array_type)(obj_type));
+    //RPCTypeCheck(params, list_of(array_type)(obj_type));
+
+
+        const Value& v0 = params[0];
+        const Value& v1 = params[1];
+        if(v0.type()!=array_type){
+            string err = strprintf("params 1 Expected type %s, got %s",Value_type_name[array_type], Value_type_name[v0.type()]);
+            throw JSONRPCError(-3, err);
+        }
+
+        if(v1.type()!=obj_type || v1.type()!=array_type ){
+            string err = strprintf("params 2 Expected type %s or %s, got %s",Value_type_name[obj_type],Value_type_name[array_type], Value_type_name[v0.type()]);
+            throw JSONRPCError(-3, err);
+        }
+
+
 
     Array inputs = params[0].get_array();
-    Object sendTo = params[1].get_obj();
 
     CTransaction rawTx;
-
     BOOST_FOREACH(Value& input, inputs)
     {
         const Object& o = input.get_obj();
@@ -225,24 +239,60 @@ Value createrawtransaction(const Array& params, bool fHelp)
         rawTx.vin.push_back(in);
     }
 
-    set<CBitcoinAddress> setAddress;
-    BOOST_FOREACH(const Pair& s, sendTo)
-    {
-        CBitcoinAddress address(s.name_);
-        if (!address.IsValid())
-            throw JSONRPCError(-5, string("Invalid Bitcoin address:")+s.name_);
+    if(v1.type()==obj_type){
+        Object sendTo = params[1].get_obj();
+        set<CBitcoinAddress> setAddress;
+        BOOST_FOREACH(const Pair& s, sendTo)
+        {
+            CBitcoinAddress address(s.name_);
+            if (!address.IsValid())
+                throw JSONRPCError(-5, string("Invalid Bitcoin address:")+s.name_);
 
-        if (setAddress.count(address))
-            throw JSONRPCError(-8, string("Invalid parameter, duplicated address: ")+s.name_);
-        setAddress.insert(address);
+            if (setAddress.count(address))
+                throw JSONRPCError(-8, string("Invalid parameter, duplicated address: ")+s.name_);
+            setAddress.insert(address);
 
-        CScript scriptPubKey;
-        scriptPubKey.SetDestination(address.Get());
-        int64 nAmount = AmountFromValue(s.value_);
+            CScript scriptPubKey;
+            scriptPubKey.SetDestination(address.Get());
+            int64 nAmount = AmountFromValue(s.value_);
 
-        CTxOut out(nAmount, scriptPubKey);
-        rawTx.vout.push_back(out);
+            CTxOut out(nAmount, scriptPubKey);
+            rawTx.vout.push_back(out);
+        }
+    }else{
+        //array_type
+        Array sendTo = v1.get_array();
+        set<CBitcoinAddress> setAddress;
+        BOOST_FOREACH(Value& sendone, sendTo)
+        {
+            const Object& o = sendone.get_obj();
+
+            const Value& address_v = find_value(o, "address");
+            if (address_v.type() != str_type)
+                throw JSONRPCError(-8, "Invalid parameter, missing address key");
+
+
+
+            CBitcoinAddress address(address_v.get_str());
+            if (!address.IsValid())
+                throw JSONRPCError(-5, string("Invalid Infinitecoin address:")+address_v.get_str());
+
+            if (setAddress.count(address))
+                throw JSONRPCError(-8, string("Invalid parameter, duplicated address: ")+address_v.get_str());
+            setAddress.insert(address);
+
+            CScript scriptPubKey;
+            scriptPubKey.SetDestination(address.Get());
+            const Value& amount_v = find_value(o, "amount");
+            int64 nAmount=AmountFromValue(amount_v);
+
+            CTxOut out(nAmount, scriptPubKey);
+            rawTx.vout.push_back(out);
+        }
     }
+
+
+
 
     CDataStream ss(SER_NETWORK, PROTOCOL_VERSION);
     ss << rawTx;

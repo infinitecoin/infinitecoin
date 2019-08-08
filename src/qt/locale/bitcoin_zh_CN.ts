@@ -10,24 +10,8 @@
         <translation>关于无限币</translation>
     </message>
     <message>
-        <location filename="../forms/aboutdialog.ui" line="47"/>
         <source>&lt;b&gt;Infinitecoin&lt;/b&gt; version</source>
-        <translation>&lt;b&gt;无限币&lt;/b&gt;版本</translation>
-    </message>
-    <message>
-        <location filename="../forms/aboutdialog.ui" line="157"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Infinitecoin community website:https://www.infinitecoin.in&lt;/p&gt;&lt;p&gt;Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php.&lt;/p&gt;&lt;p&gt;This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit (http://www.openssl.org/) and cryptographic software written by Eric Young (eay@cryptsoft.com) and UPnP software written by Thomas Bernard.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../forms/aboutdialog.ui" line="190"/>
-        <source>Offical Website: &lt;a href=&quot;http://www.infinitecoin.com/&quot;&gt;www.infinitecoin.com&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../forms/aboutdialog.ui" line="206"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Offical Forums: &lt;a href=&quot;http://www.infinitecointalk.org/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;www.infinitecointalk.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Infinitecoin community website: &lt;a href=&quot;https://www.infinitecoin.in&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://www.infinitecoin.in&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">&lt;b&gt;无限币&lt;/b&gt;版本</translation>
     </message>
     <message>
         <source>Copyright &amp;copy; 2009-2018 Infinitecoin Developers
@@ -695,26 +679,30 @@ Are you sure you wish to encrypt your wallet?</source>
     </message>
     <message>
         <location filename="../bitcoingui.cpp" line="683"/>
-        <source>This transaction is over the size limit.  You can still send it for a fee of %1, which goes to the nodes that process your transaction and helps to support the network.  Do you want to pay the fee?</source>
-        <translation>该笔交易的数据量超限.您需要支付 %1 交易费， 交易费将支付给处理该笔交易的网络节点，有助于维持无限币网络的运行.  您确定支付交易费用吗？</translation>
+        <source>You need to pay a fee of %1 for this transaction. Do you want to continue the transaction?</source>
+        <translation>这笔交易需要支付 %1 手续费，确定继续完成交易？ </translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="688"/>
+        <source>This transaction is over the size limit.  You can still send it for a fee of %1, which goes to the nodes that process your transaction and helps to support the network.  Do you want to pay the fee?</source>
+        <translation type="obsolete">该笔交易的数据量超限.您需要支付 %1 交易费， 交易费将支付给处理该笔交易的网络节点，有助于维持无限币网络的运行.  您确定支付交易费用吗？</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="686"/>
         <source>Confirm transaction fee</source>
         <translation>确认交易费</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="715"/>
+        <location filename="../bitcoingui.cpp" line="713"/>
         <source>Sent transaction</source>
         <translation type="unfinished">已转账交易</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="716"/>
+        <location filename="../bitcoingui.cpp" line="714"/>
         <source>Incoming transaction</source>
         <translation>流入交易</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="717"/>
+        <location filename="../bitcoingui.cpp" line="715"/>
         <source>Date: %1
 Amount: %2
 Type: %3
@@ -727,44 +715,44 @@ Address: %4
 </translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="846"/>
-        <location filename="../bitcoingui.cpp" line="861"/>
+        <location filename="../bitcoingui.cpp" line="844"/>
+        <location filename="../bitcoingui.cpp" line="859"/>
         <source>URI handling</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="846"/>
-        <location filename="../bitcoingui.cpp" line="861"/>
+        <location filename="../bitcoingui.cpp" line="844"/>
+        <location filename="../bitcoingui.cpp" line="859"/>
         <source>URI can not be parsed! This can be caused by an invalid Infinitecoin address or malformed URI parameters.</source>
         <translation type="unfinished">无法解析 URI!这可能是由无效的 Infinitecoin 地址或格式错误的 URI 参数引起的。</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="877"/>
+        <location filename="../bitcoingui.cpp" line="875"/>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
         <translation>钱包已被&lt;b&gt;加密&lt;/b&gt;，当前为&lt;b&gt;解锁&lt;/b&gt;状态</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="885"/>
+        <location filename="../bitcoingui.cpp" line="883"/>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
         <translation>钱包已被&lt;b&gt;加密&lt;/b&gt;，当前为&lt;b&gt;锁定&lt;/b&gt;状态</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="908"/>
+        <location filename="../bitcoingui.cpp" line="906"/>
         <source>Backup Wallet</source>
         <translation>备份钱包</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="908"/>
+        <location filename="../bitcoingui.cpp" line="906"/>
         <source>Wallet Data (*.dat)</source>
         <translation>钱包文件(*.dat)</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="911"/>
+        <location filename="../bitcoingui.cpp" line="909"/>
         <source>Backup Failed</source>
         <translation>备份失败</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="911"/>
+        <location filename="../bitcoingui.cpp" line="909"/>
         <source>There was an error trying to save the wallet data to the new location.</source>
         <translation>备份钱包到其它文件夹失败.</translation>
     </message>
@@ -1654,7 +1642,7 @@ Address: %4
     <message>
         <location filename="../forms/rpcconsole.ui" line="256"/>
         <source>Estimated total blocks</source>
-        <translation>预计区块数</translation>
+        <translation type="unfinished">估计区块数</translation>
     </message>
     <message>
         <location filename="../forms/rpcconsole.ui" line="279"/>
@@ -1749,13 +1737,13 @@ Address: %4
     <name>SendCoinsDialog</name>
     <message>
         <location filename="../forms/sendcoinsdialog.ui" line="14"/>
-        <location filename="../sendcoinsdialog.cpp" line="123"/>
-        <location filename="../sendcoinsdialog.cpp" line="128"/>
-        <location filename="../sendcoinsdialog.cpp" line="133"/>
-        <location filename="../sendcoinsdialog.cpp" line="138"/>
-        <location filename="../sendcoinsdialog.cpp" line="144"/>
-        <location filename="../sendcoinsdialog.cpp" line="149"/>
-        <location filename="../sendcoinsdialog.cpp" line="154"/>
+        <location filename="../sendcoinsdialog.cpp" line="136"/>
+        <location filename="../sendcoinsdialog.cpp" line="141"/>
+        <location filename="../sendcoinsdialog.cpp" line="146"/>
+        <location filename="../sendcoinsdialog.cpp" line="151"/>
+        <location filename="../sendcoinsdialog.cpp" line="157"/>
+        <location filename="../sendcoinsdialog.cpp" line="162"/>
+        <location filename="../sendcoinsdialog.cpp" line="167"/>
         <source>Send Coins</source>
         <translation type="unfinished">付款</translation>
     </message>
@@ -1810,57 +1798,58 @@ Address: %4
         <translation type="unfinished">&amp;转账</translation>
     </message>
     <message>
-        <location filename="../sendcoinsdialog.cpp" line="95"/>
+        <location filename="../sendcoinsdialog.cpp" line="99"/>
         <source>&lt;b&gt;%1&lt;/b&gt; to %2 (%3)</source>
         <translation>&lt;b&gt;%1&lt;/b&gt; 到 %2 (%3)</translation>
     </message>
     <message>
-        <location filename="../sendcoinsdialog.cpp" line="100"/>
+        <location filename="../sendcoinsdialog.cpp" line="112"/>
         <source>Confirm send coins</source>
         <translation type="unfinished">确认转账</translation>
     </message>
     <message>
-        <location filename="../sendcoinsdialog.cpp" line="101"/>
+        <location filename="../sendcoinsdialog.cpp" line="108"/>
+        <location filename="../sendcoinsdialog.cpp" line="110"/>
         <source>Are you sure you want to send %1?</source>
         <translation type="unfinished">确定您要转出 %1?</translation>
     </message>
     <message>
-        <location filename="../sendcoinsdialog.cpp" line="101"/>
+        <location filename="../sendcoinsdialog.cpp" line="110"/>
         <source> and </source>
         <translation> 和 </translation>
     </message>
     <message>
-        <location filename="../sendcoinsdialog.cpp" line="124"/>
+        <location filename="../sendcoinsdialog.cpp" line="137"/>
         <source>The recepient address is not valid, please recheck.</source>
         <translation>接收者地址不合法，请检查。</translation>
     </message>
     <message>
-        <location filename="../sendcoinsdialog.cpp" line="129"/>
+        <location filename="../sendcoinsdialog.cpp" line="142"/>
         <source>The amount to pay must be larger than 0.</source>
         <translation>支付金额必须大于0.</translation>
     </message>
     <message>
-        <location filename="../sendcoinsdialog.cpp" line="134"/>
+        <location filename="../sendcoinsdialog.cpp" line="147"/>
         <source>The amount exceeds your balance.</source>
         <translation>金额超出您的账上余额</translation>
     </message>
     <message>
-        <location filename="../sendcoinsdialog.cpp" line="139"/>
+        <location filename="../sendcoinsdialog.cpp" line="152"/>
         <source>The total exceeds your balance when the %1 transaction fee is included.</source>
         <translation>计入 %1 交易费后的金额超出您的账上余额.</translation>
     </message>
     <message>
-        <location filename="../sendcoinsdialog.cpp" line="145"/>
+        <location filename="../sendcoinsdialog.cpp" line="158"/>
         <source>Duplicate address found, can only send to each address once per send operation.</source>
         <translation type="unfinished">发现重复的地址, 每次只能对同一地址转账.</translation>
     </message>
     <message>
-        <location filename="../sendcoinsdialog.cpp" line="150"/>
+        <location filename="../sendcoinsdialog.cpp" line="163"/>
         <source>Error: Transaction creation failed.</source>
         <translation>错误: 创建交易失败.</translation>
     </message>
     <message>
-        <location filename="../sendcoinsdialog.cpp" line="155"/>
+        <location filename="../sendcoinsdialog.cpp" line="168"/>
         <source>Error: The transaction was rejected. This might happen if some of the coins in your wallet were already spent, such as if you used a copy of wallet.dat and coins were spent in the copy but not marked as spent here.</source>
         <translation>错误: 交易被拒绝. 如果您使用的是备份钱包，可能存在两个钱包不同步的情况，另一个钱包中的无限币已经被使用，但本地的这个钱包尚没有记录。</translation>
     </message>
@@ -2403,7 +2392,7 @@ Address: %4
         <translation>交易细节</translation>
     </message>
     <message>
-        <location filename="../forms/transactiondescdialog.ui" line="154"/>
+        <location filename="../forms/transactiondescdialog.ui" line="186"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>

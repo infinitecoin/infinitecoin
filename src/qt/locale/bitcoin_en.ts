@@ -8,22 +8,6 @@
         <source>About Infinitecoin</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>&lt;b&gt;Infinitecoin&lt;/b&gt; version</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Offical Website: &lt;a href=&quot;http://www.infinitecoin.com/&quot;&gt;www.infinitecoin.com&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Offical Forums: &lt;a href=&quot;http://www.infinitecointalk.org/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;www.infinitecointalk.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Infinitecoin community website: &lt;a href=&quot;https://www.infinitecoin.in&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://www.infinitecoin.in&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Infinitecoin community website:https://www.infinitecoin.in&lt;/p&gt;&lt;p&gt;Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php.&lt;/p&gt;&lt;p&gt;This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit (http://www.openssl.org/) and cryptographic software written by Eric Young (eay@cryptsoft.com) and UPnP software written by Thomas Bernard.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>AddressBookPage</name>
@@ -432,10 +416,6 @@ Are you sure you wish to encrypt your wallet?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>This transaction is over the size limit.  You can still send it for a fee of %1, which goes to the nodes that process your transaction and helps to support the network.  Do you want to pay the fee?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Confirm transaction fee</source>
         <translation type="unfinished"></translation>
     </message>
@@ -552,6 +532,10 @@ Address: %4
     </message>
     <message>
         <source>URI can not be parsed! This can be caused by an invalid Infinitecoin address or malformed URI parameters.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You need to pay a fee of %1 for this transaction. Do you want to continue the transaction?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
