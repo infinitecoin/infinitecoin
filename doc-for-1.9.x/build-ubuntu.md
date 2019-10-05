@@ -1,6 +1,5 @@
 支持 ubuntu 1404 32&64
----
-```
+
 sudo apt-get update
 sudo apt-get upgrade
 
@@ -25,10 +24,10 @@ apt-get install unzip && wget http://download.oracle.com/berkeley-db/db-4.8.30.z
 wget https://www.openssl.org/source/openssl-1.0.1t.tar.gz && tar zvxf openssl-1.0.1t.tar.gz && cd openssl-1.0.1t &&  ./config shared zlib && make && make install
 
 //安装qrcode
-wget 'http://fukuchi.org/works/qrencode/qrencode-3.2.0.tar.bz2' --no-check-certificate && tar xjf qrencode-3.2.0.tar.bz2 && cd qrencode-3.2.0 && ./configure --enable-static --disable-shared && make install
+wget 'http://fukuchi.org/works/qrencode/qrencode-3.2.0.tar.bz2' --no-check-certificate && tar xjf qrencode-3.2.0.tar.bz2 && cd qrencode-3.2.0 && ./configure --enable-static --disable-shared && make install && cd ../
 
 //静态编译qt
-wget http://download.qt.io/archive/qt/4.8/4.8.6/qt-everywhere-opensource-src-4.8.6.tar.gz && gunzip qt-everywhere-opensource-src-4.8.6.tar.gz && tar xvf qt-everywhere-opensource-src-4.8.6.tar && cd qt-everywhere-opensource-src-4.8.6 && ./configure -static -nomake demos -nomake examples -nomake tools -no-exceptions && make && make install
+wget http://download.qt.io/archive/qt/4.8/4.8.6/qt-everywhere-opensource-src-4.8.6.tar.gz && gunzip qt-everywhere-opensource-src-4.8.6.tar.gz && tar xvf qt-everywhere-opensource-src-4.8.6.tar && cd qt-everywhere-opensource-src-4.8.6 && ./configure -static -nomake demos -nomake examples -nomake tools -no-exceptions && make && make install && cd ../
 
 //设置环境变量
 PATH=/usr/local/Trolltech/Qt-4.8.6/bin:$PATH
@@ -52,5 +51,3 @@ cd infinitecoin && qmake bitcoin-qt-linux.pro RELEASE=1 USE_UPNP=0 USE_QRCODE=1 
 
 //静态编译 infinitecoind
 cd src/ && make -f makefile.unix STATIC=1 USE_UPNP=- USE_IPV6=0 && strip infinitecoind
-
-```

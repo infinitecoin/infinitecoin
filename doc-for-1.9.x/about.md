@@ -1,4 +1,7 @@
-2018-08-14 v1.9.0.1 一路有你
+
+
+
+2019-07-25 v1.9.1.5 一路有你
 该版本从 https://github.com/infinitecoin/infinitecoin 创建的分支
 db-4.8.30.NC
 qrencode-3.4.3
