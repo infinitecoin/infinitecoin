@@ -869,7 +869,13 @@ int64 static GetBlockValue(int nHeight, int64 nFees)
     int64 nSubsidy = 524288 * COIN;
 
 	// Subsidy is cut in half every 86400 blocks, which will occur approximately every 1 month
-    nSubsidy >>= (nHeight / 86400); // Infinitecoin: 86400 blocks in ~1 month
+    //IIP3 20190926 Withu2018
+    if(nHeight>5529599){
+        nSubsidy=0;
+    }else{
+        nSubsidy >>= (nHeight / 86400); // Infinitecoin: 86400 blocks in ~1 month
+    }
+
     return nSubsidy + nFees;
 }
 
@@ -984,8 +990,8 @@ unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast, const CBl
 
 		if (nActualTimespan > nTargetTimespan*4)
 			nActualTimespan = nTargetTimespan*4;
-	}
-    else if((fTestNet && pindexLast->nHeight<8370 ) || (!fTestNet && pindexLast->nTime < nIIP2SwitchTime)){	// PPCoin formula with 1 block time
+    } //IIP3 20190926 withu2018
+    else if((fTestNet && pindexLast->nHeight<8370 ) || (!fTestNet && pindexLast->nHeight < nIIP2SwitchHeight)){	// PPCoin formula with 1 block time
 
 		// get the previous block
 		pindexFirst = pindexLast->pprev;
@@ -1020,7 +1026,7 @@ unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast, const CBl
 		bnNew /= nTargetTimespan;
 	}
     //test1
-    else if((fTestNet && pindexLast->nHeight<8370 ) || (!fTestNet && pindexLast->nTime < nIIP2SwitchTime)){
+    else if((fTestNet && pindexLast->nHeight<8370 ) || (!fTestNet && pindexLast->nHeight < nIIP2SwitchHeight)){
         // PPCoin formula with 1 block time
         // PPCoin retarget algorithm
 		bnNew *= ((nIntervalPPC - 1) * nTargetTimespan + nActualTimespan + nActualTimespan);
@@ -1592,7 +1598,7 @@ bool static Reorganize(CTxDB& txdb, CBlockIndex* pindexNew)
     reverse(vConnect.begin(), vConnect.end());
 
     //withu2018 20190726 IIP2,switch to mainnet
-    if(fTestNet || (!fTestNet && pindexBest->nTime>=nIIP2SwitchTime)){
+    if(fTestNet || (!fTestNet && pindexBest->nHeight>=nIIP2SwitchHeight)){
         //WithU2018 201906180723   IIP2  if NumConfirmations=6 then vDisconnect.size() must less 6
         if( vDisconnect.size()>=NumConfirmations){
             return error("Reorganize() : Disconnect %i blocks is More then %i NumConfirmations\n",vDisconnect.size(),NumConfirmations);
@@ -1735,7 +1741,7 @@ bool CBlock::SetBestChain(CTxDB& txdb, CBlockIndex* pindexNew)
 
 
             //withu2018 20190726 IIP2,switch to mainnet
-            if(fTestNet || (!fTestNet && pindexIntermediate->nTime>=nIIP2SwitchTime)){
+            if(fTestNet || (!fTestNet && pindexIntermediate->nHeight>=nIIP2SwitchHeight)){
 
                 //withu2018 20190714 IIP2 The time interval between blocks must be more than one the time of nTargetSpacing
                 if(pindexIntermediate->GetBlockTime()-pindexIntermediate->pprev->GetBlockTime()<nTargetSpacing){
@@ -1854,7 +1860,7 @@ bool CBlock::AddToBlockIndex(unsigned int nFile, unsigned int nBlockPos)
     }
 
     //IIP2 withu2018 20190802
-    if((fTestNet && pindexNew->nHeight>=8370 ) || (!fTestNet && pindexNew->nTime >= nIIP2SwitchTime)){
+    if((fTestNet && pindexNew->nHeight>=8370 ) || (!fTestNet && pindexNew->nHeight >= nIIP2SwitchHeight)){
         printf("IIP2 AddToBlockIndex check blocktime: height: %i->%i ,%s - %s = %i\n",pindexNew->pprev->nHeight,pindexNew->nHeight,pindexNew->pprev->GetBlockHash().ToString().substr(0,20).c_str(),pindexNew->GetBlockHash().ToString().substr(0,20).c_str(), pindexNew->GetBlockTime()-pindexNew->pprev->GetBlockTime());
         if(pindexNew->pprev->GetBlockTime()- pindexNew->GetBlockTime()>nTargetTimespan){
             return false;
@@ -1971,7 +1977,7 @@ bool CBlock::AcceptBlock()
         return DoS(100, error("AcceptBlock() : incorrect proof of work"));
 
     // IIP2 withu2018 20190722 check time interval between blocks must be more than one the time of nTargetSpacing
-    if((fTestNet && pindexPrev->nHeight>4240 )|| (!fTestNet && pindexPrev->nTime>=nIIP2SwitchTime)){
+    if((fTestNet && pindexPrev->nHeight>4240 )|| (!fTestNet && pindexPrev->nHeight>=nIIP2SwitchHeight)){
         if(this->GetBlockTime()-pindexPrev->GetBlockTime()<nTargetSpacing){
 
             //IIP2 withu2018 20190724

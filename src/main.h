@@ -67,7 +67,8 @@ static const unsigned int IFC_SWITCH_TIME = 1377993600;		// Sept 1, 2013 00:00:0
 static const unsigned int IFC_SWITCH_VER = 1392336000;     // Sept 1, 2013 00:00:00 GMT
 
 //withu2018 20190723 test mining for IIP2
-static const int64 nIIP2SwitchTime=1564592942;//2019-08-01 01:09:02
+//IIP3 withu2018 20190926  64bits overflow
+static const int64 nIIP2SwitchHeight=5529600;//2019-08-01 01:09:02
 
 //multiple
 static const unsigned int IFC_FEE_MULTIPLICATOR = 1;		// Transaction Fee Multiplicator

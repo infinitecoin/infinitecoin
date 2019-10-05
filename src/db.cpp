@@ -736,6 +736,7 @@ bool CTxDB::LoadBlockIndexGuts()
                     if (pindexGenesisBlock == NULL && diskindex.GetBlockHash() == hashGenesisBlock)
                         pindexGenesisBlock = pindexNew;
 
+
                     //if (!pindexNew->CheckIndex())
                     //    return error("LoadBlockIndex() : CheckIndex failed at %d", pindexNew->nHeight);
                 }
