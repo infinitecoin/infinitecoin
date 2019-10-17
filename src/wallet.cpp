@@ -337,7 +337,8 @@ bool CWallet::AddToWallet(const CWalletTx& wtxIn)
         CWalletTx& wtx = (*ret.first).second;
         wtx.BindWallet(this);
         bool fInsertedNew = ret.second;
-        if (fInsertedNew)
+        //withu2018 20190712 use wtx's received time if that had
+        if (fInsertedNew && wtx.nTimeReceived == 0)
             wtx.nTimeReceived = GetAdjustedTime();
 
         bool fUpdated = false;
@@ -411,7 +412,11 @@ bool CWallet::AddToWalletIfInvolvingMe(const CTransaction& tx, const CBlock* pbl
             CWalletTx wtx(this,tx);
             // Get merkle branch if transaction was found in a block
             if (pblock)
+            {
+                //withu2018 20190712 use the blocktime fixd the #3
+                wtx.nTimeReceived = pblock->GetBlockTime();
                 wtx.SetMerkleBranch(pblock);
+            }
             return AddToWallet(wtx);
         }
         else
@@ -420,6 +425,7 @@ bool CWallet::AddToWalletIfInvolvingMe(const CTransaction& tx, const CBlock* pbl
     return false;
 }
 
+//withu2018 TODO: add to QT_Wallet
 bool CWallet::EraseFromWallet(uint256 hash)
 {
     if (!fFileBacked)
@@ -1145,6 +1151,7 @@ bool CWallet::CreateTransaction(const vector<pair<CScript, int64> >& vecSend, CW
                     nFeeRet += nMoveToFee;
                 }
 
+                //withu2018 old is if (nChange > 0)
                 if (nChange >= 0)
                 {
                     // Note: We use a new key here to keep it from being obvious which side is the change.
@@ -1166,6 +1173,7 @@ bool CWallet::CreateTransaction(const vector<pair<CScript, int64> >& vecSend, CW
 
                     // Insert change txn at random position:
                     // insert 0
+                    //withu2018 modification the chage txn at the first position. wtxNew.vout.begin(). old is wtxNew.vout.begin() + GetRandInt(wtxNew.vout.size());
                     vector<CTxOut>::iterator position = wtxNew.vout.begin();//+GetRandInt(wtxNew.vout.size());
                     wtxNew.vout.insert(position, CTxOut(nChange, scriptChange));
                     
@@ -1196,7 +1204,11 @@ bool CWallet::CreateTransaction(const vector<pair<CScript, int64> >& vecSend, CW
                 dPriority /= nBytes;
 
                 // Check that enough fee is included
-                int64 nPayFee = nTransactionFee * (1 + (int64)nBytes / 1000);
+                //withu2018 20180819
+                //nPayFee not use
+                //int64 nPayFee = nTransactionFee * (1 + (int64)nBytes / 1000);
+
+
                 bool fAllowFree = CTransaction::AllowFree(dPriority);
                 int64 nMinFee = wtxNew.GetMinFee(1, fAllowFree, GMF_SEND);
                 if (nFeeRet < nMinFee)

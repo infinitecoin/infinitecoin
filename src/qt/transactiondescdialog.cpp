@@ -10,10 +10,15 @@ TransactionDescDialog::TransactionDescDialog(const QModelIndex &idx, QWidget *pa
     ui(new Ui::TransactionDescDialog)
 {
     ui->setupUi(this);
+
     QString desc = idx.data(TransactionTableModel::LongDescriptionRole).toString();
     //ui->detailText->setHtml(desc);
-    //shenjinqiang 20180322
+    //WithU2018  20180322
     ui->detailText->setText(desc);
+    ui->detailText->adjustSize();
+    ui->detailText->setScaledContents(true);
+    ui->scrollAreaWidgetContents->setMinimumSize(ui->detailText->width(),ui->detailText->height());
+    ui->scrollAreaWidgetContents->setGeometry(ui->detailText->geometry());
 }
 
 TransactionDescDialog::~TransactionDescDialog()

@@ -38,26 +38,6 @@ www.transifex.net/projects/p/bitcoin/</translation>
         <source>About Infinitecoin</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <location filename="../forms/aboutdialog.ui" line="47"/>
-        <source>&lt;b&gt;Infinitecoin&lt;/b&gt; version</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../forms/aboutdialog.ui" line="157"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Infinitecoin community website:https://www.infinitecoin.in&lt;/p&gt;&lt;p&gt;Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php.&lt;/p&gt;&lt;p&gt;This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit (http://www.openssl.org/) and cryptographic software written by Eric Young (eay@cryptsoft.com) and UPnP software written by Thomas Bernard.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../forms/aboutdialog.ui" line="190"/>
-        <source>Offical Website: &lt;a href=&quot;http://www.infinitecoin.com/&quot;&gt;www.infinitecoin.com&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../forms/aboutdialog.ui" line="206"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Offical Forums: &lt;a href=&quot;http://www.infinitecointalk.org/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;www.infinitecointalk.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Infinitecoin community website: &lt;a href=&quot;https://www.infinitecoin.in&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://www.infinitecoin.in&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>AddressBookPage</name>
@@ -709,26 +689,30 @@ Are you sure you wish to encrypt your wallet?</source>
     </message>
     <message>
         <location filename="../bitcoingui.cpp" line="683"/>
-        <source>This transaction is over the size limit.  You can still send it for a fee of %1, which goes to the nodes that process your transaction and helps to support the network.  Do you want to pay the fee?</source>
-        <translation>Transakcja przekracza limit. Możesz wysłać ją płacąc prowizję %1, która zostaje przekazana do węzłów, które ją prześlą i pomoże wspierać sieć Bitcoin. Czy chcesz zapłacić prowizję?</translation>
+        <source>You need to pay a fee of %1 for this transaction. Do you want to continue the transaction?</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="688"/>
+        <source>This transaction is over the size limit.  You can still send it for a fee of %1, which goes to the nodes that process your transaction and helps to support the network.  Do you want to pay the fee?</source>
+        <translation type="obsolete">Transakcja przekracza limit. Możesz wysłać ją płacąc prowizję %1, która zostaje przekazana do węzłów, które ją prześlą i pomoże wspierać sieć Bitcoin. Czy chcesz zapłacić prowizję?</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="686"/>
         <source>Confirm transaction fee</source>
         <translation>Potwierdź prowizję transakcyjną</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="715"/>
+        <location filename="../bitcoingui.cpp" line="713"/>
         <source>Sent transaction</source>
         <translation>Transakcja wysłana</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="716"/>
+        <location filename="../bitcoingui.cpp" line="714"/>
         <source>Incoming transaction</source>
         <translation>Transakcja przychodząca</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="717"/>
+        <location filename="../bitcoingui.cpp" line="715"/>
         <source>Date: %1
 Amount: %2
 Type: %3
@@ -741,50 +725,50 @@ Adres: %4
 </translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="846"/>
-        <location filename="../bitcoingui.cpp" line="861"/>
+        <location filename="../bitcoingui.cpp" line="844"/>
+        <location filename="../bitcoingui.cpp" line="859"/>
         <source>URI handling</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="846"/>
-        <location filename="../bitcoingui.cpp" line="861"/>
+        <location filename="../bitcoingui.cpp" line="844"/>
+        <location filename="../bitcoingui.cpp" line="859"/>
         <source>URI can not be parsed! This can be caused by an invalid Infinitecoin address or malformed URI parameters.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="877"/>
+        <location filename="../bitcoingui.cpp" line="875"/>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
         <translation>Portfel jest &lt;b&gt;zaszyfrowany&lt;/b&gt; i obecnie &lt;b&gt;niezablokowany&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="885"/>
+        <location filename="../bitcoingui.cpp" line="883"/>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
         <translation>Portfel jest &lt;b&gt;zaszyfrowany&lt;/b&gt; i obecnie &lt;b&gt;zablokowany&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="908"/>
+        <location filename="../bitcoingui.cpp" line="906"/>
         <source>Backup Wallet</source>
         <translation>Kopia Zapasowa Portfela</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="908"/>
+        <location filename="../bitcoingui.cpp" line="906"/>
         <source>Wallet Data (*.dat)</source>
         <translation>Dane Portfela (*.dat)</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="911"/>
+        <location filename="../bitcoingui.cpp" line="909"/>
         <source>Backup Failed</source>
         <translation>Kopia Zapasowa Nie Została Wykonana</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="911"/>
+        <location filename="../bitcoingui.cpp" line="909"/>
         <source>There was an error trying to save the wallet data to the new location.</source>
         <translation>Wystąpił błąd podczas próby zapisu portfela do nowej lokalizacji.</translation>
     </message>
     <message>
-        <location filename="../bitcoin.cpp" line="118"/>
-        <location filename="../bitcoin.cpp" line="125"/>
+        <location filename="../bitcoin.cpp" line="120"/>
+        <location filename="../bitcoin.cpp" line="127"/>
         <source>A fatal error occured. Infinitecoin can no longer continue safely and will quit.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1180,141 +1164,151 @@ Adres: %4
     </message>
     <message>
         <location filename="../forms/optionsdialog.ui" line="92"/>
-        <source>Detach block and address databases at shutdown. This means they can be moved to another data directory, but it slows down shutdown. The wallet is always detached.</source>
+        <source>Display community links on the home page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../forms/optionsdialog.ui" line="95"/>
+        <source>&amp;Display community links on the home page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../forms/optionsdialog.ui" line="102"/>
+        <source>Detach block and address databases at shutdown. This means they can be moved to another data directory, but it slows down shutdown. The wallet is always detached.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../forms/optionsdialog.ui" line="105"/>
         <source>&amp;Detach databases at shutdown</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="116"/>
+        <location filename="../forms/optionsdialog.ui" line="126"/>
         <source>&amp;Network</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="122"/>
+        <location filename="../forms/optionsdialog.ui" line="132"/>
         <source>Automatically open the Infinitecoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="125"/>
+        <location filename="../forms/optionsdialog.ui" line="135"/>
         <source>Map port using &amp;UPnP</source>
         <translation type="unfinished">Mapuj port używając &amp;UPnP</translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="132"/>
+        <location filename="../forms/optionsdialog.ui" line="142"/>
         <source>Connect to the Infinitecoin network through a SOCKS proxy (e.g. when connecting through Tor).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="135"/>
+        <location filename="../forms/optionsdialog.ui" line="145"/>
         <source>&amp;Connect through SOCKS proxy:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="144"/>
+        <location filename="../forms/optionsdialog.ui" line="154"/>
         <source>Proxy &amp;IP:</source>
         <translation type="unfinished">Proxy &amp;IP: </translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="163"/>
+        <location filename="../forms/optionsdialog.ui" line="173"/>
         <source>IP address of the proxy (e.g. 127.0.0.1)</source>
         <translation type="unfinished">Adres IP serwera proxy (np. 127.0.0.1)</translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="170"/>
+        <location filename="../forms/optionsdialog.ui" line="180"/>
         <source>&amp;Port:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="189"/>
+        <location filename="../forms/optionsdialog.ui" line="199"/>
         <source>Port of the proxy (e.g. 9050)</source>
         <translation type="unfinished">Port proxy (np. 1234) {9050)?}</translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="196"/>
+        <location filename="../forms/optionsdialog.ui" line="206"/>
         <source>SOCKS &amp;Version:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="209"/>
+        <location filename="../forms/optionsdialog.ui" line="219"/>
         <source>SOCKS version of the proxy (e.g. 5)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="245"/>
+        <location filename="../forms/optionsdialog.ui" line="255"/>
         <source>&amp;Window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="251"/>
+        <location filename="../forms/optionsdialog.ui" line="261"/>
         <source>Show only a tray icon after minimizing the window.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="254"/>
+        <location filename="../forms/optionsdialog.ui" line="264"/>
         <source>&amp;Minimize to the tray instead of the taskbar</source>
         <translation type="unfinished">&amp;Minimalizuj do paska przy zegarku zamiast do paska zadań</translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="261"/>
+        <location filename="../forms/optionsdialog.ui" line="271"/>
         <source>Minimize instead of exit the application when the window is closed. When this option is enabled, the application will be closed only after selecting Quit in the menu.</source>
         <translation type="unfinished">Minimalizuje zamiast zakończyć działanie programu przy zamykaniu okna. Kiedy ta opcja jest włączona, program zakończy działanie po wybieraniu Zamknij w menu.</translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="264"/>
+        <location filename="../forms/optionsdialog.ui" line="274"/>
         <source>M&amp;inimize on close</source>
         <translation type="unfinished">M&amp;inimalizuj przy zamknięciu</translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="285"/>
+        <location filename="../forms/optionsdialog.ui" line="295"/>
         <source>&amp;Display</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="293"/>
+        <location filename="../forms/optionsdialog.ui" line="303"/>
         <source>User Interface &amp;language:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="306"/>
+        <location filename="../forms/optionsdialog.ui" line="316"/>
         <source>The user interface language can be set here. This setting will take effect after restarting Infinitecoin.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="317"/>
+        <location filename="../forms/optionsdialog.ui" line="327"/>
         <source>&amp;Unit to show amounts in:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="330"/>
+        <location filename="../forms/optionsdialog.ui" line="340"/>
         <source>Choose the default subdivision unit to show in the interface and when sending coins.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="339"/>
+        <location filename="../forms/optionsdialog.ui" line="349"/>
         <source>Whether to show Infinitecoin addresses in the transaction list or not.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="342"/>
+        <location filename="../forms/optionsdialog.ui" line="352"/>
         <source>&amp;Display addresses in transaction list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="413"/>
+        <location filename="../forms/optionsdialog.ui" line="423"/>
         <source>&amp;OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="420"/>
+        <location filename="../forms/optionsdialog.ui" line="430"/>
         <source>&amp;Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../forms/optionsdialog.ui" line="430"/>
+        <location filename="../forms/optionsdialog.ui" line="440"/>
         <source>&amp;Apply</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1324,19 +1318,19 @@ Adres: %4
         <translation type="unfinished">domyślny</translation>
     </message>
     <message>
-        <location filename="../optionsdialog.cpp" line="196"/>
-        <location filename="../optionsdialog.cpp" line="205"/>
+        <location filename="../optionsdialog.cpp" line="198"/>
+        <location filename="../optionsdialog.cpp" line="207"/>
         <source>Warning</source>
         <translation type="unfinished">Ostrzeżenie</translation>
     </message>
     <message>
-        <location filename="../optionsdialog.cpp" line="196"/>
-        <location filename="../optionsdialog.cpp" line="205"/>
+        <location filename="../optionsdialog.cpp" line="198"/>
+        <location filename="../optionsdialog.cpp" line="207"/>
         <source>This setting will take effect after restarting Infinitecoin.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../optionsdialog.cpp" line="230"/>
+        <location filename="../optionsdialog.cpp" line="233"/>
         <source>The supplied proxy address is invalid.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1386,12 +1380,12 @@ Adres: %4
     </message>
     <message>
         <location filename="../forms/overviewpage.ui" line="217"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;http://www.ifc123.top/?r=ifc1910&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Navigation Site&lt;/span&gt;&lt;/a&gt; | &lt;a href=&quot;https://chainz.cryptoid.info/ifc/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Blockchain Explorer&lt;/span&gt;&lt;/a&gt; | &lt;a href=&quot;https://www.ifc123.net/archives/147.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Pool List&lt;/span&gt;&lt;/a&gt; | &lt;a href=&quot;https://github.com/withu2018/infinitecoin&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Github&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;http://www.ifc123.top/?r=ifc192x&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Navigation Site&lt;/span&gt;&lt;/a&gt; | &lt;a href=&quot;https://chainz.cryptoid.info/ifc/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Blockchain Explorer&lt;/span&gt;&lt;/a&gt; | &lt;a href=&quot;https://github.com/withu2018/infinitecoin/tree/master/pool&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Pool List&lt;/span&gt;&lt;/a&gt; | &lt;a href=&quot;https://github.com/withu2018/infinitecoin&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Github&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../forms/overviewpage.ui" line="382"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://www.ifc123.net/archives/108.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Version 1.9.1 (2018-08-16)&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://www.ifc123.net/archives/108.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Version 1.9.2.0&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1415,8 +1409,8 @@ Adres: %4
         <translation>Całkowita liczba transakcji w portfelu</translation>
     </message>
     <message>
-        <location filename="../overviewpage.cpp" line="112"/>
-        <location filename="../overviewpage.cpp" line="113"/>
+        <location filename="../overviewpage.cpp" line="115"/>
+        <location filename="../overviewpage.cpp" line="116"/>
         <source>Out of sync</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1646,13 +1640,13 @@ Adres: %4
     <name>SendCoinsDialog</name>
     <message>
         <location filename="../forms/sendcoinsdialog.ui" line="14"/>
-        <location filename="../sendcoinsdialog.cpp" line="123"/>
-        <location filename="../sendcoinsdialog.cpp" line="128"/>
-        <location filename="../sendcoinsdialog.cpp" line="133"/>
-        <location filename="../sendcoinsdialog.cpp" line="138"/>
-        <location filename="../sendcoinsdialog.cpp" line="144"/>
-        <location filename="../sendcoinsdialog.cpp" line="149"/>
-        <location filename="../sendcoinsdialog.cpp" line="154"/>
+        <location filename="../sendcoinsdialog.cpp" line="136"/>
+        <location filename="../sendcoinsdialog.cpp" line="141"/>
+        <location filename="../sendcoinsdialog.cpp" line="146"/>
+        <location filename="../sendcoinsdialog.cpp" line="151"/>
+        <location filename="../sendcoinsdialog.cpp" line="157"/>
+        <location filename="../sendcoinsdialog.cpp" line="162"/>
+        <location filename="../sendcoinsdialog.cpp" line="167"/>
         <source>Send Coins</source>
         <translation>Wyślij płatność</translation>
     </message>
@@ -1707,57 +1701,58 @@ Adres: %4
         <translation>Wy&amp;syłka</translation>
     </message>
     <message>
-        <location filename="../sendcoinsdialog.cpp" line="95"/>
+        <location filename="../sendcoinsdialog.cpp" line="99"/>
         <source>&lt;b&gt;%1&lt;/b&gt; to %2 (%3)</source>
         <translation>&lt;b&gt;%1&lt;/b&gt; do %2 (%3)</translation>
     </message>
     <message>
-        <location filename="../sendcoinsdialog.cpp" line="100"/>
+        <location filename="../sendcoinsdialog.cpp" line="112"/>
         <source>Confirm send coins</source>
         <translation>Potwierdź wysyłanie monet</translation>
     </message>
     <message>
-        <location filename="../sendcoinsdialog.cpp" line="101"/>
+        <location filename="../sendcoinsdialog.cpp" line="108"/>
+        <location filename="../sendcoinsdialog.cpp" line="110"/>
         <source>Are you sure you want to send %1?</source>
         <translation>Czy na pewno chcesz wysłać %1?</translation>
     </message>
     <message>
-        <location filename="../sendcoinsdialog.cpp" line="101"/>
+        <location filename="../sendcoinsdialog.cpp" line="110"/>
         <source> and </source>
         <translation> i </translation>
     </message>
     <message>
-        <location filename="../sendcoinsdialog.cpp" line="124"/>
+        <location filename="../sendcoinsdialog.cpp" line="137"/>
         <source>The recepient address is not valid, please recheck.</source>
         <translation>Adres odbiorcy jest niepoprawny, proszę go sprawdzić.</translation>
     </message>
     <message>
-        <location filename="../sendcoinsdialog.cpp" line="129"/>
+        <location filename="../sendcoinsdialog.cpp" line="142"/>
         <source>The amount to pay must be larger than 0.</source>
         <translation>Kwota do zapłacenie musi być większa od 0.</translation>
     </message>
     <message>
-        <location filename="../sendcoinsdialog.cpp" line="134"/>
+        <location filename="../sendcoinsdialog.cpp" line="147"/>
         <source>The amount exceeds your balance.</source>
         <translation>Kwota przekracza twoje saldo.</translation>
     </message>
     <message>
-        <location filename="../sendcoinsdialog.cpp" line="139"/>
+        <location filename="../sendcoinsdialog.cpp" line="152"/>
         <source>The total exceeds your balance when the %1 transaction fee is included.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sendcoinsdialog.cpp" line="145"/>
+        <location filename="../sendcoinsdialog.cpp" line="158"/>
         <source>Duplicate address found, can only send to each address once per send operation.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sendcoinsdialog.cpp" line="150"/>
+        <location filename="../sendcoinsdialog.cpp" line="163"/>
         <source>Error: Transaction creation failed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sendcoinsdialog.cpp" line="155"/>
+        <location filename="../sendcoinsdialog.cpp" line="168"/>
         <source>Error: The transaction was rejected. This might happen if some of the coins in your wallet were already spent, such as if you used a copy of wallet.dat and coins were spent in the copy but not marked as spent here.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1781,7 +1776,7 @@ Adres: %4
     </message>
     <message>
         <location filename="../forms/sendcoinsentry.ui" line="128"/>
-        <location filename="../sendcoinsentry.cpp" line="26"/>
+        <location filename="../sendcoinsentry.cpp" line="27"/>
         <source>Enter a label for this address to add it to your address book</source>
         <translation>Wprowadź etykietę dla tego adresu by dodać go do książki adresowej</translation>
     </message>
@@ -1835,14 +1830,13 @@ Adres: %4
         <translation type="obsolete">Wprowadź adres Bitcoin (np. 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</translation>
     </message>
     <message>
-        <location filename="../sendcoinsentry.cpp" line="27"/>
+        <location filename="../sendcoinsentry.cpp" line="28"/>
         <source>Enter a Infinitecoin address (starts with i)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sendcoinsentry.cpp" line="186"/>
         <location filename="../sendcoinsentry.cpp" line="188"/>
-        <location filename="../sendcoinsentry.cpp" line="192"/>
+        <location filename="../sendcoinsentry.cpp" line="190"/>
         <source>Fee:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2097,39 +2091,38 @@ Adres: %4
     </message>
     <message>
         <location filename="../transactiondesc.cpp" line="71"/>
-        <location filename="../transactiondesc.cpp" line="88"/>
         <source>From</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transactiondesc.cpp" line="89"/>
-        <location filename="../transactiondesc.cpp" line="111"/>
-        <location filename="../transactiondesc.cpp" line="169"/>
+        <location filename="../transactiondesc.cpp" line="90"/>
+        <location filename="../transactiondesc.cpp" line="112"/>
+        <location filename="../transactiondesc.cpp" line="170"/>
         <source>To</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transactiondesc.cpp" line="92"/>
-        <location filename="../transactiondesc.cpp" line="94"/>
+        <location filename="../transactiondesc.cpp" line="93"/>
+        <location filename="../transactiondesc.cpp" line="95"/>
         <source>own address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transactiondesc.cpp" line="92"/>
+        <location filename="../transactiondesc.cpp" line="93"/>
         <source>label</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transactiondesc.cpp" line="129"/>
-        <location filename="../transactiondesc.cpp" line="141"/>
-        <location filename="../transactiondesc.cpp" line="186"/>
-        <location filename="../transactiondesc.cpp" line="203"/>
-        <location filename="../transactiondesc.cpp" line="233"/>
+        <location filename="../transactiondesc.cpp" line="130"/>
+        <location filename="../transactiondesc.cpp" line="142"/>
+        <location filename="../transactiondesc.cpp" line="187"/>
+        <location filename="../transactiondesc.cpp" line="204"/>
+        <location filename="../transactiondesc.cpp" line="234"/>
         <source>Credit</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../transactiondesc.cpp" line="131"/>
+        <location filename="../transactiondesc.cpp" line="132"/>
         <source>matures in %n more block(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -2138,75 +2131,75 @@ Adres: %4
         </translation>
     </message>
     <message>
-        <location filename="../transactiondesc.cpp" line="133"/>
+        <location filename="../transactiondesc.cpp" line="134"/>
         <source>not accepted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transactiondesc.cpp" line="177"/>
-        <location filename="../transactiondesc.cpp" line="185"/>
-        <location filename="../transactiondesc.cpp" line="200"/>
-        <location filename="../transactiondesc.cpp" line="230"/>
+        <location filename="../transactiondesc.cpp" line="178"/>
+        <location filename="../transactiondesc.cpp" line="186"/>
+        <location filename="../transactiondesc.cpp" line="201"/>
+        <location filename="../transactiondesc.cpp" line="231"/>
         <source>Debit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transactiondesc.cpp" line="191"/>
+        <location filename="../transactiondesc.cpp" line="192"/>
         <source>Transaction fee</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transactiondesc.cpp" line="207"/>
+        <location filename="../transactiondesc.cpp" line="208"/>
         <source>Net amount</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transactiondesc.cpp" line="213"/>
+        <location filename="../transactiondesc.cpp" line="214"/>
         <source>Message</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transactiondesc.cpp" line="215"/>
+        <location filename="../transactiondesc.cpp" line="216"/>
         <source>Comment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transactiondesc.cpp" line="217"/>
+        <location filename="../transactiondesc.cpp" line="218"/>
         <source>Transaction ID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transactiondesc.cpp" line="220"/>
+        <location filename="../transactiondesc.cpp" line="221"/>
         <source>Generated coins must mature 120 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to &quot;not accepted&quot; and it won&apos;t be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transactiondesc.cpp" line="227"/>
+        <location filename="../transactiondesc.cpp" line="228"/>
         <source>Debug information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transactiondesc.cpp" line="235"/>
+        <location filename="../transactiondesc.cpp" line="236"/>
         <source>Transaction</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transactiondesc.cpp" line="240"/>
+        <location filename="../transactiondesc.cpp" line="241"/>
         <source>Inputs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transactiondesc.cpp" line="263"/>
+        <location filename="../transactiondesc.cpp" line="264"/>
         <source>Amount</source>
         <translation type="unfinished">Kwota</translation>
     </message>
     <message>
-        <location filename="../transactiondesc.cpp" line="264"/>
+        <location filename="../transactiondesc.cpp" line="265"/>
         <source>true</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../transactiondesc.cpp" line="264"/>
+        <location filename="../transactiondesc.cpp" line="265"/>
         <source>false</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2240,9 +2233,8 @@ Adres: %4
         <translation type="obsolete">&lt;b&gt;Od:&lt;/b&gt; </translation>
     </message>
     <message>
-        <location filename="../transactiondesc.cpp" line="88"/>
         <source>unknown</source>
-        <translation>nieznany</translation>
+        <translation type="obsolete">nieznany</translation>
     </message>
     <message>
         <source>&lt;b&gt;To:&lt;/b&gt; </source>
@@ -2301,7 +2293,7 @@ Adres: %4
         <translation>Szczegóły transakcji</translation>
     </message>
     <message>
-        <location filename="../forms/transactiondescdialog.ui" line="154"/>
+        <location filename="../forms/transactiondescdialog.ui" line="186"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>

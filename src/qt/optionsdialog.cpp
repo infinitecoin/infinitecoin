@@ -135,6 +135,8 @@ void OptionsDialog::setMapper()
     mapper->addMapping(ui->bitcoinAtStartup, OptionsModel::StartAtStartup);
     mapper->addMapping(ui->detachDatabases, OptionsModel::DetachDatabases);
 
+    mapper->addMapping(ui->showCommunityLinks, OptionsModel::ShowCommunityLinks);
+
     /* Network */
     mapper->addMapping(ui->mapPortUpnp, OptionsModel::MapPortUPnP);
     mapper->addMapping(ui->connectSocks, OptionsModel::ProxyUse);
@@ -213,6 +215,7 @@ void OptionsDialog::updateDisplayUnit()
     {
         // Update transactionFee with the current unit
         ui->transactionFee->setDisplayUnit(model->getDisplayUnit());
+
     }
 }
 

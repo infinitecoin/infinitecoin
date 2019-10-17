@@ -27,7 +27,7 @@ public:
         TypeRole = Qt::UserRole /**< Type of address (#Send or #Receive) */
     };
 
-//shenjinqiang 2018-3-22 19:30 NO_CHANGES
+//WithU2018 2018-3-22 19:30 NO_CHANGES
 
 
     /** Return status of edit/insert operation */

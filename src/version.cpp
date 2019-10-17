@@ -9,7 +9,7 @@
 // Name of client reported in the 'version' message. Report the same name
 // for both bitcoind and bitcoin-qt, to make it harder for attackers to
 // target servers or GUI users specifically.
-const std::string CLIENT_NAME("Mobius");
+const std::string CLIENT_NAME("Tortoise");
 
 // Client version number
 #define CLIENT_VERSION_SUFFIX   ""
@@ -57,13 +57,14 @@ const std::string CLIENT_NAME("Mobius");
 #    endif
 #endif
 
-#ifndef BUILD_DATE
-#    ifdef GIT_COMMIT_DATE
-#        define BUILD_DATE GIT_COMMIT_DATE
-#    else
-#        define BUILD_DATE __DATE__ ", " __TIME__
-#    endif
-#endif
+//#ifndef BUILD_DATE
+//#    ifdef GIT_COMMIT_DATE
+//#        define BUILD_DATE GIT_COMMIT_DATE
+//#    else
+//#        define BUILD_DATE __DATE__ ", " __TIME__
+//#    endif
+//#endif
 
+#define BUILD_DATE __DATE__ ", " __TIME__
 const std::string CLIENT_BUILD(BUILD_DESC CLIENT_VERSION_SUFFIX);
 const std::string CLIENT_DATE(BUILD_DATE);

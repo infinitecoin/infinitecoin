@@ -295,8 +295,8 @@ void ThreadIRCSeed2(void* parg)
         }
         
         if (fTestNet) {
-            Send(hSocket, "JOIN #infinitecoinTEST3\r");
-            Send(hSocket, "WHO #infinitecoinTEST3\r");
+            Send(hSocket, "JOIN #infinitecoinTEST4\r");
+            Send(hSocket, "WHO #infinitecoinTEST4\r");
         } else {
             // randomly join #infinitecoin00-#infinitecoin99
             int channel_number = GetRandInt(100);

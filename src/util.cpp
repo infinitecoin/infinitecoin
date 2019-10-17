@@ -1023,13 +1023,14 @@ const boost::filesystem::path &GetDataDir(bool fNetSpecific)
             return path;
         }
     }else if(fs::is_directory(fs::system_complete("./Infinitecoin"))){
-        //shenjinqiang 2018-03-15 local dir load data
+        //WithU2018 2018-03-15 local dir load data
         path=fs::system_complete("./Infinitecoin");
     } else {
         path = GetDefaultDataDir();
     }
+    //WithU2018 2019-06-15 use testnet4
     if (fNetSpecific && GetBoolArg("-testnet", false))
-        path /= "testnet3";
+        path /= "testnet4";
 
     fs::create_directory(path);
 

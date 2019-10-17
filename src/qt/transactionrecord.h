@@ -72,7 +72,11 @@ public:
     };
 
     /** Number of confirmation needed for transaction */
-    static const int NumConfirmations = 3;
+    //WithU2018 20190615 195051 old value is 3. add to 6, reduce fork
+    //The longer chain is not allowed to be forked after 6 confirmations, and the selection of the longer chain can only be completed less 6 confirmations.
+    //must be same to main.h  line of 36.
+    //static const int NumConfirmations = 3;
+    static const int NumConfirmations = 6;
 
     TransactionRecord():
             hash(), time(0), type(Other), address(""), debit(0), credit(0), idx(0)

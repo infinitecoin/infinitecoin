@@ -26,8 +26,9 @@
 
 using namespace std;
 using namespace boost;
-//201803131542 shenjinqiang 16 => 32
-static const int MAX_OUTBOUND_CONNECTIONS = 32;
+//201803131542 WithU2018 16 => 32
+//20190929 WithU2018 32 => 16
+static const int MAX_OUTBOUND_CONNECTIONS = 16;
 
 void ThreadMessageHandler2(void* parg);
 void ThreadSocketHandler2(void* parg);
@@ -591,6 +592,7 @@ bool CNode::Misbehaving(int howmuch)
 {
     if (addr.IsLocal())
     {
+        //withu2018 20190721 test
         printf("Warning: local node %s misbehaving\n", addrName.c_str());
         return false;
     }

@@ -87,6 +87,16 @@
         </widget>
        </item>
        <item>
+        <widget class="QCheckBox" name="showCommunityLinks">
+         <property name="toolTip">
+          <string>Display community links on the home page</string>
+         </property>
+         <property name="text">
+          <string>&amp;Display community links on the home page</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QCheckBox" name="detachDatabases">
          <property name="toolTip">
           <string>Detach block and address databases at shutdown. This means they can be moved to another data directory, but it slows down shutdown. The wallet is always detached.</string>
