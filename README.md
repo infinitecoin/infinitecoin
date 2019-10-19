@@ -3,29 +3,38 @@ Infinitecoin
 Infinitecoin is a fork of Litecoin version. Like Litecoin it uses scrypt as a proof of work scheme.
 
 	- Total coins will be about 90,600 millions 
-	- 30 sec block target
-	- Difficulty retargets once every hour
-	- initially 524,288 (2^19) coins per block, halves every 1 month (86,400 blocks).
-	- The default ports are 9321(connect) and 9322(json rpc).
+	- Fastest 30 sec block target,1.9.3 add PID control technology
+	- Difficulty retargets once every block
+	- Initially 524,288 (2^19) coins per block, halves every 1 month (86,400 blocks).
+	- The default ports are 9321(p2p connect) and 9322(json rpc).
 
 无限币的技术参数：
 ---
 更多：https://ifc.1e9.cc/start-page.html
 
 	- 无限币是从莱特币分支而来，使用scrypt工作量证明机制进行产矿
-	- 每30秒产生一个区块。
+	- 最快每30秒产生一个区块，1.9.3加入产快反馈控制，可减少不必要的空白块产生
 	- 最初每区块524,288 (2^19) 个无限币，每86,400区块产出减半
 	- 每区块调整难度，从发布起开始加速。
-	- 每次交易需要等待3个确认（约10~12秒钟）
-	- 总计约906亿无限币
+	- 每次交易需要等待6个确认（约10~12秒钟）
+	- 总计不超过906亿个无限币
 	- 通信端口 9321, RPC-端口9322
 	- Scrypt Proof-of-Work 算法.
 
 Development process
 ===================
+2019-9-26  1.9.3.1 
+--
+1. [x] Attempt to solve 51% attack under low mining power (read more https://bbs.ifc123.net/thread-19401.htm)
+2. [x] Add option show/hide CommunityLinks,and set default hidden(read more https://bbs.ifc123.net/thread-19487.htm)
+3. [x] Make new startup image
+4. [x] Loadblockindex faster 30%
+5. [x] Fix issus #2,fixed at version 1.9.1.4
+6. [x] Fix issus #3
+7. [x] Fix IIP3,Total amount control Bug
 
-2019-7-x  1.9.2.x  
-new version is coming
+
+2019-7-30  1.9.2  
 --
 1. [ ] Attempt to solve 51% attack under low mining power (read more https://bbs.ifc123.net/thread-19401.htm)
 2. [x] Add option show/hide CommunityLinks,and set default hidden(read more https://bbs.ifc123.net/thread-19487.htm)
