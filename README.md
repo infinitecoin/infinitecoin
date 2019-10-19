@@ -10,7 +10,7 @@ Infinitecoin is a fork of Litecoin version. Like Litecoin it uses scrypt as a pr
 
 无限币的技术参数：
 ---
-更多：https://ifc.1e9.cc/start-page.html
+更多：https://bbs.ifc123.net/thread-19423.htm
 
 	- 无限币是从莱特币分支而来，使用scrypt工作量证明机制进行产矿
 	- 最快每30秒产生一个区块，1.9.3加入产快反馈控制，可减少不必要的空白块产生
@@ -23,7 +23,7 @@ Infinitecoin is a fork of Litecoin version. Like Litecoin it uses scrypt as a pr
 
 Development process
 ===================
-2019-9-26  1.9.3.1 
+2019-9-26  1.9.3.1  more https://bbs.ifc123.net/thread-19423.htm
 --
 1. [x] Attempt to solve 51% attack under low mining power (read more https://bbs.ifc123.net/thread-19401.htm)
 2. [x] Add option show/hide CommunityLinks,and set default hidden(read more https://bbs.ifc123.net/thread-19487.htm)
