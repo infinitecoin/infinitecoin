@@ -2690,6 +2690,9 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
 
         int cVersion = MIN_PEER_PROTO_VERSION;
 
+        // withu2018 20191027
+        int MaxVersion = MAX_PEER_PROTO_VERSION;
+
         //if(GetTime() >= IFC_SWITCH_VER )
         //    cVersion = PROTOCOL_VERSION;
 
@@ -2698,6 +2701,13 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
             // Since February 20, 2012, the protocol is initiated at version 209,
             // and earlier versions are no longer supported
             printf("partner %s using obsolete version %i; disconnecting\n", pfrom->addr.ToString().c_str(), pfrom->nVersion);
+            pfrom->fDisconnect = true;
+            return false;
+        }if (pfrom->nVersion > MaxVersion)
+        {
+            // withu2018 20191027
+            //disconnecting too new version
+            printf("partner %s using too new version %i; disconnecting\n", pfrom->addr.ToString().c_str(), pfrom->nVersion);
             pfrom->fDisconnect = true;
             return false;
         }

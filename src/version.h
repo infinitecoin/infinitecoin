@@ -14,13 +14,8 @@
 // These need to be macro's, as version.cpp's voodoo requires it
 #define CLIENT_VERSION_MAJOR       1
 #define CLIENT_VERSION_MINOR       9
-<<<<<<< HEAD
-#define CLIENT_VERSION_REVISION    1
-#define CLIENT_VERSION_BUILD       5
-=======
 #define CLIENT_VERSION_REVISION    3
-#define CLIENT_VERSION_BUILD       1
->>>>>>> 1148864645694202e7c2f215e8bebbeaa85245e3
+#define CLIENT_VERSION_BUILD       2
 
 static const int CLIENT_VERSION =
                            1000000 * CLIENT_VERSION_MAJOR
@@ -43,7 +38,8 @@ static const int INIT_PROTO_VERSION = 209;
 
 // disconnect from peers older than this proto version
 static const int MIN_PEER_PROTO_VERSION = 69201;
-
+// disconnect from peers great proto version
+static const int MAX_PEER_PROTO_VERSION = 69300;
 // nTime field added to CAddress, starting with this version;
 // if possible, avoid requesting addresses nodes older than this
 static const int CADDR_TIME_VERSION = 31402;
