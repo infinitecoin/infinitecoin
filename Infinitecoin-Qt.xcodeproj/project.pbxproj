@@ -1417,7 +1417,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "in.infinitecoin.Infinitecoin-Qt";
 				PRODUCT_NAME = "Infinitecoin-Qt";
 				QMAKE_FULL_VERSION = 1.9.2;
-				QMAKE_PKGINFO_TYPEINFO = "????";
+				QMAKE_PKGINFO_TYPEINFO = 1;
 				QMAKE_SHORT_VERSION = 1.9;
 				QT_LIBRARY_SUFFIX = "";
 				SDKROOT = macosx;
@@ -1440,7 +1440,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "in.infinitecoin.Infinitecoin-Qt";
 				PRODUCT_NAME = "Infinitecoin-Qt";
 				QMAKE_FULL_VERSION = 1.9.2;
-				QMAKE_PKGINFO_TYPEINFO = "????";
+				QMAKE_PKGINFO_TYPEINFO = 1;
 				QMAKE_SHORT_VERSION = 1.9;
 				QT_LIBRARY_SUFFIX = _debug;
 				SDKROOT = macosx;

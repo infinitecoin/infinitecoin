@@ -5,24 +5,24 @@
 	<key>CFBundleExecutable</key>
 	<string>Infinitecoin-Qt</string>
 	<key>CFBundleGetInfoString</key>
-	<string>$VERSION, Copyright © 2009-$YEAR The Infinitecoin developers</string>
+	<string>1.9.3.2, Copyright © 2009-2019 The Infinitecoin Community</string>
 	<key>CFBundleIconFile</key>
 	<string>infinitecoin.icns</string>
 	<key>CFBundleIdentifier</key>
-	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<string>in.inifinitecoin.fastpay</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>$VERSION</string>
+	<string>1.9.3.2</string>
 	<key>CFBundleSignature</key>
-	<string>????</string>
+	<string>v193</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>org.infinitecoin.InfinitecoinPayment</string>
+			<string>in.inifinitecoin.fastpay</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>infinitecoin</string>
@@ -30,7 +30,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>$VERSION</string>
+	<string>1932</string>
 	<key>NSHighResolutionCapable</key>
 	<true/>
 </dict>
