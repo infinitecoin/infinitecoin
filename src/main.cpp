@@ -975,7 +975,7 @@ unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast, const CBl
 
 		// Limit adjustment step
 		nActualTimespan = pindexLast->GetBlockTime() - pindexFirst->GetBlockTime();
-		// printf("  nActualTimespan = %"PRI64d"  before bounds\n", nActualTimespan);
+		// printf("  nActualTimespan = %" PRI64d"  before bounds\n", nActualTimespan);
 
 		if((pindexLast->nHeight+1) < 1500)
 		{
@@ -1070,7 +1070,7 @@ unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast, const CBl
 		bnNew = bnProofOfWorkLimit;
 
      //debug print
-     printf("nTargetTimespan = %"PRI64d", nActualTimespan = %"PRI64d"\n", nTargetTimespan, nActualTimespan);
+     printf("nTargetTimespan = %" PRI64d", nActualTimespan = %" PRI64d"\n", nTargetTimespan, nActualTimespan);
 
     return bnNew.GetCompact();
 }
@@ -3758,7 +3758,7 @@ CBlock* CreateNewBlock(CReserveKey& reservekey)
                 dPriority += (double)nValueIn * nConf;
 
                 if (fDebug && GetBoolArg("-printpriority"))
-                    printf("priority     nValueIn=%-12"PRI64d" nConf=%-5d dPriority=%-20.1f\n", nValueIn, nConf, dPriority);
+                    printf("priority     nValueIn=%-12" PRI64d" nConf=%-5d dPriority=%-20.1f\n", nValueIn, nConf, dPriority);
             }
 
             // Priority is sum(valuein * age) / txsize

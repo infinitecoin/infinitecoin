@@ -347,7 +347,7 @@ void CDBEnv::Flush(bool fShutdown)
             else
                 mi++;
         }
-        printf("DBFlush(%s)%s ended %15"PRI64d"ms\n", fShutdown ? "true" : "false", fDbEnvInit ? "" : " db not started", GetTimeMillis() - nStart);
+        printf("DBFlush(%s)%s ended %15" PRI64d"ms\n", fShutdown ? "true" : "false", fDbEnvInit ? "" : " db not started", GetTimeMillis() - nStart);
         if (fShutdown)
         {
             char** listp;
@@ -507,7 +507,7 @@ bool CTxDB::LoadBlockIndex()
     if (!LoadBlockIndexGuts())
         return false;
 
-    printf("LoadedBlockIndexGuts %15"PRI64d"ms\n", GetTimeMillis() - nStart);
+    printf("LoadedBlockIndexGuts %15" PRI64d"ms\n", GetTimeMillis() - nStart);
 
     if (fRequestShutdown)
         return true;

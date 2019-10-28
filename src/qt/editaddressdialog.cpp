@@ -113,6 +113,8 @@ void EditAddressDialog::accept()
         case AddressTableModel::OK:
             // Failed with unknown reason. Just reject.
             break;
+        case AddressTableModel::NO_CHANGES:
+            break;
         }
 
         return;
