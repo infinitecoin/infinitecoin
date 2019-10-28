@@ -24,8 +24,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>666</width>
-        <height>145</height>
+        <width>660</width>
+        <height>109</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -99,6 +99,9 @@
        <property name="autoDefault">
         <bool>false</bool>
        </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
       </widget>
      </item>
      <item>
@@ -124,6 +127,9 @@
        </property>
        <property name="autoDefault">
         <bool>false</bool>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
        </property>
       </widget>
      </item>

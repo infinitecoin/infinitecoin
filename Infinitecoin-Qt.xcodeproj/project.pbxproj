@@ -1178,6 +1178,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				OBJROOT = build/;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = (
 					"-pipe",
 					"-O2",
@@ -1412,6 +1413,7 @@
 				DEVELOPMENT_TEAM = W4H9GG8J49;
 				ENABLE_BITCODE = NO;
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "in.infinitecoin.Infinitecoin-Qt";
 				PRODUCT_NAME = "Infinitecoin-Qt";
 				QMAKE_FULL_VERSION = 1.9.2;
