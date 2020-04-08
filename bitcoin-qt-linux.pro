@@ -3,12 +3,12 @@ TARGET = infinitecoin-qt
 macx:TARGET = "Infinitecoin-Qt"
 VERSION = 1.9.2.0
 INCLUDEPATH += src src/json src/qt
-QT += core gui network
+QT += core network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 DEFINES += QT_GUI BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE
 CONFIG += no_include_pwd
 CONFIG += thread
-
+CONFIG += C++11
 # for boost 1.37, add -mt to the boost libraries
 # use: qmake BOOST_LIB_SUFFIX=-mt
 # for boost thread win32 with _win32 sufix

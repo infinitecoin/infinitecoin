@@ -1,15 +1,15 @@
 TEMPLATE = app
 TARGET = infinitecoin-qt
 macx:TARGET = "Infinitecoin-Qt"
-VERSION = 1.8.8.2
+VERSION = 1.9.3.2
 INCLUDEPATH += src src/json src/qt
-QT += core gui network
+QT += core network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 DEFINES += QT_GUI BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE BOOST_THREAD_PROVIDES_GENERIC_SHARED_MUTEX_ON_WIN __NO_SYSTEM_INCLUDES
 
 CONFIG += no_include_pwd
 CONFIG += thread
-
+#CONFIG += C++11
 
 # DEPS_DIR = E:/workspaces/projects/deps
 
@@ -25,22 +25,22 @@ CONFIG += thread
 #BOOST_THREAD_LIB_SUFFIX=_win32-mt-s
 
 
-BOOST_LIB_SUFFIX=-mt-s
-BOOST_INCLUDE_PATH=E:/workspaces/projects/deps/boost_1_55_0
-BOOST_LIB_PATH=E:/workspaces/projects/deps/boost_1_55_0/stage/lib
-BDB_INCLUDE_PATH=E:/workspaces/projects/deps/db-4.8.30.NC/build_unix
-BDB_LIB_PATH=E:/workspaces/projects/deps/db-4.8.30.NC/build_unix
-OPENSSL_INCLUDE_PATH=E:/workspaces/projects/deps/openssl-1.0.1g/include
-OPENSSL_LIB_PATH=E:/workspaces/projects/deps/openssl-1.0.1g
-MINIUPNPC_INCLUDE_PATH=E:/workspaces/projects/deps
-MINIUPNPC_LIB_PATH=E:/workspaces/projects/deps]/miniupnpc
-QRENCODE_INCLUDE_PATH=E:/workspaces/projects/deps/qrencode-3.4.3
-QRENCODE_LIB_PATH=E:/workspaces/projects/deps/qrencode-3.4.3/.libs
+BOOST_LIB_SUFFIX=-mt
+#BOOST_INCLUDE_PATH=E:/workspaces/projects/deps/boost_1_55_0
+#BOOST_LIB_PATH=E:/workspaces/projects/deps/boost_1_55_0/stage/lib
+BDB_INCLUDE_PATH=D:/msys64/home/Administrator/db-4.8.30.NC/build_unix
+BDB_LIB_PATH=D:/msys64/home/Administrator/db-4.8.30.NC/build_unix
+#OPENSSL_INCLUDE_PATH=E:/workspaces/projects/deps/openssl-1.0.1g/include
+#OPENSSL_LIB_PATH=E:/workspaces/projects/deps/openssl-1.0.1g
+MINIUPNPC_INCLUDE_PATH=D:/msys64/home/Administrator/
+MINIUPNPC_LIB_PATH=D:/msys64/home/Administrator/miniupnpc-1.9
+QRENCODE_INCLUDE_PATH=D:/msys64/home/Administrator/qrencode-3.4.3
+QRENCODE_LIB_PATH=D:/msys64/home/Administrator/qrencode-3.4.3/.libs
 
 #uncomment the following section to enable building on windows:
-win32:LIBS += -lshlwapi
+win32:LIBS += -lshlwapi -lssp
 LIBS += $$join(BOOST_LIB_PATH,,-L,) $$join(BDB_LIB_PATH,,-L,) $$join(OPENSSL_LIB_PATH,,-L,) $$join(QRENCODE_LIB_PATH,,-L,)
-LIBS += -lssl -lcrypto -ldb_cxx$$BDB_LIB_SUFFIX
+LIBS += -lssl -lcrypto -ldb_cxx$$BDB_LIB_SUFFIX -Wa,-mbig-obj
 win32:LIBS += -lws2_32 -lole32 -loleaut32 -luuid -lgdi32
 
 
@@ -54,8 +54,10 @@ USE_UPNP=-
 #USE_BUILD_INFO=1
 #USE_SSE2=0
 # use: qmake "RELEASE=1"
+QMAKE_CFLAGS += -pipe -fno-keep-inline-dllexport -Wa,-mbig-obj -fno-stack-protector
+QMAKE_CXXFLAGS += -pipe -fno-keep-inline-dllexport -Wa,-mbig-obj
 
-RELEASE=1
+#RELEASE=1
 contains(RELEASE, 1) {
     # Mac: compile for maximum compatibility (10.5, 32-bit)
     macx:QMAKE_CXXFLAGS += -mmacosx-version-min=10.5 -arch i386 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk
@@ -80,7 +82,7 @@ QMAKE_CXXFLAGS *= -D_FORTIFY_SOURCE=2 -static
 # for extra security on Windows: enable ASLR and DEP via GCC linker flags
 win32:QMAKE_LFLAGS *= -Wl,--dynamicbase -Wl,--nxcompat
 # on Windows: enable GCC large address aware linker flag
-win32:QMAKE_LFLAGS *= -Wl,--large-address-aware
+#win32:QMAKE_LFLAGS *= -Wl,--large-address-aware
 # i686-w64-mingw32
 win32:QMAKE_LFLAGS *=-static-libgcc -static-libstdc++
 
