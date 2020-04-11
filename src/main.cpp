@@ -306,13 +306,13 @@ bool CTransaction::IsStandard() const
             return false;
         }
     }
-    
+
     BOOST_FOREACH(const CTxOut& txout, vout) {
 
        if (!::IsStandard(txout.scriptPubKey)) {
             return false;
         }
-        
+
         if (txout.IsDust()) {
             return false;
         }
@@ -2220,12 +2220,12 @@ bool LoadBlockIndex(bool fAllowNew)
 		// block.GetHash() = a2effa738145e377e08a61d76179c21703e13e48910b30a2a87f0dfe794b64c6
 		// hashGenesisBlock = a2effa738145e377e08a61d76179c21703e13e48910b30a2a87f0dfe794b64c6
 		// block.hashMerkleRoot = 3de124b0274307911fe12550e96bf76cb92c12835db6cb19f82658b8aca1dbc8
-		// CBlock(hash=a2effa738145e377e08a, PoW=f0bb8fb675fe7c363136, ver=1, hashPrevBlock=00000000000000000000, 
+		// CBlock(hash=a2effa738145e377e08a, PoW=f0bb8fb675fe7c363136, ver=1, hashPrevBlock=00000000000000000000,
 		//     hashMerkleRoot=3de124b027, nTime=1367394064, nBits=1e0ffff0, nNonce=112158625, vtx=1)
 		//   CTransaction(hash=3de124b027, ver=1, vin.size=1, vout.size=1, nLockTime=0)
 		//     CTxIn(COutPoint(0000000000, -1), coinbase 04ffff001d01044c5d576564204d617920312c20323031333a2053706f7420676f6c642066656c6c20312e332070657263656e7420746f2024312c3435372e393020616e206f756e636520627920333a313120702e6d2e2045445420283139313120474d5429)
 		//     CTxOut(nValue=50.00000000, scriptPubKey=040184710fa689ad5023690c80f3a4)
-		//   vMerkleTree: 3de124b027 
+		//   vMerkleTree: 3de124b027
 
         // Genesis block
         const char* pszTimestamp = "Miami Heat rout Indiana Pacers 99-76, advance to NBA Finals on June 3, 2013";
@@ -2255,13 +2255,13 @@ bool LoadBlockIndex(bool fAllowNew)
         printf("hashGenesisBlock = %s\n", hashGenesisBlock.ToString().c_str());
         printf("block.hashMerkleRoot = %s\n", block.hashMerkleRoot.ToString().c_str());
         assert(block.hashMerkleRoot == uint256("0x87605f6741961e869237b3d78fb271cdca70c67f1bb876992fda97ccd9036220"));
-		
-		
+
+
 		uint256 hashTarget = CBigNum().SetCompact(block.nBits).getuint256();
         uint256 thash;
         char scratchpad[SCRYPT_SCRATCHPAD_SIZE];
         scrypt_1024_1_1_256_sp(BEGIN(block.nVersion), BEGIN(thash), scratchpad);
-		
+
         printf("nonce %08X: hash = %s (target = %s)\n", block.nNonce, thash.ToString().c_str(), hashTarget.ToString().c_str());
 
         // If genesis block hash does not match, then generate new genesis hash.
@@ -2551,7 +2551,7 @@ bool usefulAlert(CAlert* pAlert)
 			return false;
 		}
 	}
-	
+
 	return true;
 }
 
