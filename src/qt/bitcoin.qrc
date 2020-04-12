@@ -45,7 +45,6 @@
         <file alias="debugwindow">res/icons/debugwindow.png</file>
         <file>res/icons/wait.png</file>
         <file>res/movies/update_spinner.gif</file>
-        <file>res/movies/update_spinner2.gif</file>
     </qresource>
     <qresource prefix="/images">
         <file alias="about">res/images/about.png</file>
