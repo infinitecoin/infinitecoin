@@ -15,10 +15,10 @@
         <file alias="transaction_0">res/icons/transaction0.png</file>
         <file alias="transaction_confirmed">res/icons/transaction2.png</file>
         <file alias="transaction_1">res/icons/clock1.png</file>
-        <file alias="transaction_2">res/icons/clock2.png</file>
-        <file alias="transaction_3">res/icons/clock3.png</file>
+        <file alias="transaction_3">res/icons/clock2.png</file>
+        <file alias="transaction_5">res/icons/clock3.png</file>
         <file alias="transaction_4">res/icons/clock4.png</file>
-        <file alias="transaction_5">res/icons/clock5.png</file>
+        <file alias="transaction_2">res/icons/clock5.png</file>
         <file alias="options">res/icons/configure.png</file>
         <file alias="receiving_addresses">res/icons/receive.png</file>
         <file alias="editpaste">res/icons/editpaste.png</file>
@@ -43,13 +43,13 @@
         <file alias="filesave">res/icons/filesave.png</file>
         <file alias="qrcode">res/icons/qrcode.png</file>
         <file alias="debugwindow">res/icons/debugwindow.png</file>
+        <file>res/icons/wait.png</file>
+        <file>res/movies/update_spinner.gif</file>
     </qresource>
     <qresource prefix="/images">
         <file alias="about">res/images/about.png</file>
         <file alias="splash">res/images/splash2.png</file>
-    </qresource>
-    <qresource prefix="/movies">
-        <file alias="update_spinner">res/movies/update_spinner.mng</file>
+        <file>res/icons/bitcoin.png</file>
     </qresource>
     <qresource prefix="/translations">
         <file alias="bg">locale/bitcoin_bg.qm</file>
@@ -88,4 +88,5 @@
         <file alias="zh_CN">locale/bitcoin_zh_CN.qm</file>
         <file alias="zh_TW">locale/bitcoin_zh_TW.qm</file>
     </qresource>
+    <qresource prefix="/movies"/>
 </RCC>

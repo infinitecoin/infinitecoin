@@ -280,7 +280,7 @@ string vstrprintf(const std::string &format, va_list ap)
     char* p = buffer;
     int limit = sizeof(buffer);
     int ret;
-    loop
+    while(1)
     {
         va_list arg_ptr;
         va_copy(arg_ptr, ap);
@@ -327,7 +327,7 @@ void ParseString(const string& str, char c, vector<string>& v)
         return;
     string::size_type i1 = 0;
     string::size_type i2;
-    loop
+    while(1)
     {
         i2 = str.find(c, i1);
         if (i2 == str.npos)
@@ -348,7 +348,7 @@ string FormatMoney(int64 n, bool fPlus)
     int64 n_abs = (n > 0 ? n : -n);
     int64 quotient = n_abs/COIN;
     int64 remainder = n_abs%COIN;
-    string str = strprintf("%"PRI64d".%08"PRI64d, quotient, remainder);
+    string str = strprintf("%" PRI64d".%08" PRI64d, quotient, remainder);
 
     // Right-trim excess 0's before the decimal point:
     int nTrim = 0;
@@ -443,7 +443,7 @@ vector<unsigned char> ParseHex(const char* psz)
 {
     // convert hex dump to vector
     vector<unsigned char> vch;
-    loop
+    while(1)
     {
         while (isspace(*psz))
             psz++;
@@ -897,7 +897,7 @@ string DecodeBase32(const string& str)
 
 bool WildcardMatch(const char* psz, const char* mask)
 {
-    loop
+    while(1)
     {
         switch (*mask)
         {
@@ -1022,11 +1022,15 @@ const boost::filesystem::path &GetDataDir(bool fNetSpecific)
             path = "";
             return path;
         }
+    }else if(fs::is_directory(fs::system_complete("./Infinitecoin"))){
+        //WithU2018 2018-03-15 local dir load data
+        path=fs::system_complete("./Infinitecoin");
     } else {
         path = GetDefaultDataDir();
     }
+    //WithU2018 2019-06-15 use testnet4
     if (fNetSpecific && GetBoolArg("-testnet", false))
-        path /= "testnet3";
+        path /= "testnet4";
 
     fs::create_directory(path);
 
@@ -1181,7 +1185,7 @@ void AddTimeData(const CNetAddr& ip, int64 nTime)
 
     // Add data
     vTimeOffsets.input(nOffsetSample);
-    printf("Added time data, samples %d, offset %+"PRI64d" (%+"PRI64d" minutes)\n", vTimeOffsets.size(), nOffsetSample, nOffsetSample/60);
+    printf("Added time data, samples %d, offset %+" PRI64d" (%+" PRI64d" minutes)\n", vTimeOffsets.size(), nOffsetSample, nOffsetSample/60);
     if (vTimeOffsets.size() >= 5 && vTimeOffsets.size() % 2 == 1)
     {
         int64 nMedian = vTimeOffsets.median();
@@ -1216,10 +1220,10 @@ void AddTimeData(const CNetAddr& ip, int64 nTime)
         }
         if (fDebug) {
             BOOST_FOREACH(int64 n, vSorted)
-                printf("%+"PRI64d"  ", n);
+                printf("%+" PRI64d"  ", n);
             printf("|  ");
         }
-        printf("nTimeOffset = %+"PRI64d"  (%+"PRI64d" minutes)\n", nTimeOffset, nTimeOffset/60);
+        printf("nTimeOffset = %+" PRI64d"  (%+" PRI64d" minutes)\n", nTimeOffset, nTimeOffset/60);
     }
 }
 
@@ -1289,10 +1293,25 @@ void RenameThread(const char* name)
     //       on FreeBSD or OpenBSD first. When verified the '0 &&' part can be
     //       removed.
     pthread_set_name_np(pthread_self(), name);
-#elif defined(MAC_OSX)
-    pthread_setname_np(name);
+
+// This is XCode 10.6-and-later; bring back if we drop 10.5 support:
+// #elif defined(MAC_OSX)
+//    pthread_setname_np(name);
+
 #else
     // Prevent warnings for unused parameters...
     (void)name;
 #endif
+}
+
+bool CreateThread(void(*pfn)(void*), void* parg)
+{
+    try
+    {
+        boost::thread(pfn, parg); // thread detaches when out of scope
+    } catch(boost::thread_resource_error &e) {
+        printf("Error creating thread: %s\n", e.what());
+        return false;
+    }
+    return true;
 }

@@ -85,7 +85,8 @@ QString TransactionDesc::toHTML(CWallet *wallet, CWalletTx &wtx)
                         {
                             if (wallet->mapAddressBook.count(address))
                             {
-                                strHTML += "<b>" + tr("From") + ":</b> " + tr("unknown") + "<br>";
+                                //withu2018 20190726,hidden the unknown value
+                                //strHTML += "<b>" + tr("From") + ":</b> " + tr("unknown") + "<br>";
                                 strHTML += "<b>" + tr("To") + ":</b> ";
                                 strHTML += GUIUtil::HtmlEscape(CBitcoinAddress(address).ToString());
                                 if (!wallet->mapAddressBook[address].empty())
@@ -214,7 +215,7 @@ QString TransactionDesc::toHTML(CWallet *wallet, CWalletTx &wtx)
         if (!wtx.mapValue["comment"].empty())
             strHTML += "<br><b>" + tr("Comment") + ":</b><br>" + GUIUtil::HtmlEscape(wtx.mapValue["comment"], true) + "<br>";
 
-        strHTML += "<b>" + tr("Transaction ID") + ":</b> " + wtx.GetHash().ToString().c_str() + "<br>";
+        strHTML += "<b>" + tr("Transaction ID") + ":</b><br>" + "<a href='https://www.ifc123.net/exp/?tx="+wtx.GetHash().ToString().c_str()+"'>"+wtx.GetHash().ToString().c_str()+"</a>" + "<br>";
 
         if (wtx.IsCoinBase())
             strHTML += "<br>" + tr("Generated coins must mature 120 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to \"not accepted\" and it won't be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.") + "<br>";

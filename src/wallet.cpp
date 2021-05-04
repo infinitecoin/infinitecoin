@@ -337,7 +337,8 @@ bool CWallet::AddToWallet(const CWalletTx& wtxIn)
         CWalletTx& wtx = (*ret.first).second;
         wtx.BindWallet(this);
         bool fInsertedNew = ret.second;
-        if (fInsertedNew)
+        //withu2018 20190712 use wtx's received time if that had
+        if (fInsertedNew && wtx.nTimeReceived == 0)
             wtx.nTimeReceived = GetAdjustedTime();
 
         bool fUpdated = false;
@@ -411,7 +412,11 @@ bool CWallet::AddToWalletIfInvolvingMe(const CTransaction& tx, const CBlock* pbl
             CWalletTx wtx(this,tx);
             // Get merkle branch if transaction was found in a block
             if (pblock)
+            {
+                //withu2018 20190712 use the blocktime fixd the #3
+                wtx.nTimeReceived = pblock->GetBlockTime();
                 wtx.SetMerkleBranch(pblock);
+            }
             return AddToWallet(wtx);
         }
         else
@@ -420,6 +425,7 @@ bool CWallet::AddToWalletIfInvolvingMe(const CTransaction& tx, const CBlock* pbl
     return false;
 }
 
+//withu2018 TODO: add to QT_Wallet
 bool CWallet::EraseFromWallet(uint256 hash)
 {
     if (!fFileBacked)
@@ -1100,7 +1106,7 @@ bool CWallet::CreateTransaction(const vector<pair<CScript, int64> >& vecSend, CW
         CTxDB txdb("r");
         {
             nFeeRet = nTransactionFee;
-            loop
+            while(1)
             {
                 wtxNew.vin.clear();
                 wtxNew.vout.clear();
@@ -1145,7 +1151,8 @@ bool CWallet::CreateTransaction(const vector<pair<CScript, int64> >& vecSend, CW
                     nFeeRet += nMoveToFee;
                 }
 
-                if (nChange > 0)
+                //withu2018 old is if (nChange > 0)
+                if (nChange >= 0)
                 {
                     // Note: We use a new key here to keep it from being obvious which side is the change.
                     //  The drawback is that by not reusing a previous key, the change may be lost if a
@@ -1165,7 +1172,9 @@ bool CWallet::CreateTransaction(const vector<pair<CScript, int64> >& vecSend, CW
                     scriptChange.SetDestination(vchPubKey.GetID());
 
                     // Insert change txn at random position:
-                    vector<CTxOut>::iterator position = wtxNew.vout.begin()+GetRandInt(wtxNew.vout.size());
+                    // insert 0
+                    //withu2018 modification the chage txn at the first position. wtxNew.vout.begin(). old is wtxNew.vout.begin() + GetRandInt(wtxNew.vout.size());
+                    vector<CTxOut>::iterator position = wtxNew.vout.begin();//+GetRandInt(wtxNew.vout.size());
                     wtxNew.vout.insert(position, CTxOut(nChange, scriptChange));
                     
 
@@ -1195,12 +1204,16 @@ bool CWallet::CreateTransaction(const vector<pair<CScript, int64> >& vecSend, CW
                 dPriority /= nBytes;
 
                 // Check that enough fee is included
-                int64 nPayFee = nTransactionFee * (1 + (int64)nBytes / 1000);
+                //withu2018 20180819
+                //nPayFee not use
+                //int64 nPayFee = nTransactionFee * (1 + (int64)nBytes / 1000);
+
+
                 bool fAllowFree = CTransaction::AllowFree(dPriority);
                 int64 nMinFee = wtxNew.GetMinFee(1, fAllowFree, GMF_SEND);
-                if (nFeeRet < max(nPayFee, nMinFee))
+                if (nFeeRet < nMinFee)
                 {
-                    nFeeRet = max(nPayFee, nMinFee);
+                    nFeeRet = nMinFee;
                     continue;
                 }
 
@@ -1439,7 +1452,7 @@ bool CWallet::NewKeyPool()
             walletdb.WritePool(nIndex, CKeyPool(GenerateNewKey()));
             setKeyPool.insert(nIndex);
         }
-        printf("CWallet::NewKeyPool wrote %"PRI64d" new keys\n", nKeys);
+        printf("CWallet::NewKeyPool wrote %" PRI64d" new keys\n", nKeys);
     }
     return true;
 }
@@ -1464,7 +1477,7 @@ bool CWallet::TopUpKeyPool()
             if (!walletdb.WritePool(nEnd, CKeyPool(GenerateNewKey())))
                 throw runtime_error("TopUpKeyPool() : writing generated key failed");
             setKeyPool.insert(nEnd);
-            printf("keypool added key %"PRI64d", size=%d\n", nEnd, setKeyPool.size());
+            printf("keypool added key %" PRI64d", size=%d\n", nEnd, setKeyPool.size());
         }
     }
     return true;
@@ -1493,7 +1506,7 @@ void CWallet::ReserveKeyFromKeyPool(int64& nIndex, CKeyPool& keypool)
         if (!HaveKey(keypool.vchPubKey.GetID()))
             throw runtime_error("ReserveKeyFromKeyPool() : unknown key in key pool");
         assert(keypool.vchPubKey.IsValid());
-        printf("keypool reserve %"PRI64d"\n", nIndex);
+        printf("keypool reserve %" PRI64d"\n", nIndex);
     }
 }
 
@@ -1520,7 +1533,7 @@ void CWallet::KeepKey(int64 nIndex)
         CWalletDB walletdb(strWalletFile);
         walletdb.ErasePool(nIndex);
     }
-    printf("keypool keep %"PRI64d"\n", nIndex);
+    printf("keypool keep %" PRI64d"\n", nIndex);
 }
 
 void CWallet::ReturnKey(int64 nIndex)
@@ -1530,7 +1543,7 @@ void CWallet::ReturnKey(int64 nIndex)
         LOCK(cs_wallet);
         setKeyPool.insert(nIndex);
     }
-    printf("keypool return %"PRI64d"\n", nIndex);
+    printf("keypool return %" PRI64d"\n", nIndex);
 }
 
 bool CWallet::GetKeyFromPool(CPubKey& result, bool fAllowReuse)

@@ -47,6 +47,8 @@ void OptionsModel::Init()
     fMinimizeOnClose = settings.value("fMinimizeOnClose", false).toBool();
     nTransactionFee = settings.value("nTransactionFee").toLongLong();
     language = settings.value("language", "").toString();
+    //WithU2018 default is hidden
+    bShowCommunityLinks=settings.value("bShowCommunityLinks", false).toBool();
 
     // These are shared with core Bitcoin; we want
     // command-line options to override the GUI settings:
@@ -86,7 +88,7 @@ bool OptionsModel::Upgrade()
         }
     }
     QList<QString> boolOptions;
-    boolOptions << "bDisplayAddresses" << "fMinimizeToTray" << "fMinimizeOnClose" << "fUseProxy" << "fUseUPnP";
+    boolOptions << "bDisplayAddresses" << "fMinimizeToTray" << "fMinimizeOnClose" << "fUseProxy" << "fUseUPnP"<<"bShowCommunityLinks";
     foreach(QString key, boolOptions)
     {
         bool value = false;
@@ -166,6 +168,8 @@ QVariant OptionsModel::data(const QModelIndex & index, int role) const
             return QVariant(nDisplayUnit);
         case DisplayAddresses:
             return QVariant(bDisplayAddresses);
+        case ShowCommunityLinks:
+            return QVariant(bShowCommunityLinks);
         case DetachDatabases:
             return QVariant(bitdb.GetDetach());
         case Language:
@@ -240,6 +244,10 @@ bool OptionsModel::setData(const QModelIndex & index, const QVariant & value, in
             bDisplayAddresses = value.toBool();
             settings.setValue("bDisplayAddresses", bDisplayAddresses);
             break;
+        case ShowCommunityLinks:
+            bShowCommunityLinks=value.toBool();
+            settings.setValue("bShowCommunityLinks",bShowCommunityLinks);
+            break;
         case DetachDatabases: {
             bool fDetachDB = value.toBool();
             bitdb.SetDetach(fDetachDB);
@@ -281,4 +289,8 @@ int OptionsModel::getDisplayUnit()
 bool OptionsModel::getDisplayAddresses()
 {
     return bDisplayAddresses;
+}
+
+bool OptionsModel::getShowCommunityLinks(){
+    return bShowCommunityLinks;
 }

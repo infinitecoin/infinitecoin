@@ -26,7 +26,10 @@
 #include <ifaddrs.h>
 #endif
 
+#ifndef SOCKET
 typedef u_int SOCKET;
+#endif
+
 #ifdef WIN32
 #define MSG_NOSIGNAL        0
 #define MSG_DONTWAIT        0

@@ -1,0 +1,42 @@
+#use root ,press password
+sudo -i
+
+#update soft list
+apt-get update
+
+#install python and more compile 
+apt-get install python python-dev gcc build-essential git
+
+#download  zope.interface and Twisted
+wget https://pypi.python.org/packages/source/z/zope.interface/zope.interface-4.1.3.tar.gz#md5=9ae3d24c0c7415deb249dd1a132f0f79
+wget https://pypi.python.org/packages/source/T/Twisted/Twisted-15.4.0.tar.bz2
+ 
+#uncompress gz package
+tar zxf zope.interface-4.1.3.tar.gz 
+tar jxf Twisted-15.4.0.tar.bz2
+
+#install
+cd ~/zope.interface-4.1.3 
+python setup.py install
+cd ~/Twisted-15.4.0 
+python setup.py install
+cd ~/
+
+#clear
+cd ~/
+rm -rf Twisted-15.4.0
+rm -rf zope.interface-4.1.3
+
+#download infinite-p2pool
+wget https://bbs.ifc123.net/upload/tmp/24_RUV5ZB2N9AD7GDQ.zip
+
+#uncompress
+unzip 24_RUV5ZB2N9AD7GDQ.zip
+cd ~/p2pool-ifc/litecoin_scrypt
+python setup.py install
+
+
+#next step please visit https://bbs.ifc123.net/post-update-23672.htm
+#change p2pool/data.py line 52 to your address public key 
+
+

@@ -79,7 +79,7 @@ static bool Send(SOCKET hSocket, const char* pszSend)
 
 bool RecvLineIRC(SOCKET hSocket, string& strLine)
 {
-    loop
+    while(1)
     {
         bool fRet = RecvLine(hSocket, strLine);
         if (fRet)
@@ -102,7 +102,7 @@ bool RecvLineIRC(SOCKET hSocket, string& strLine)
 
 int RecvUntil(SOCKET hSocket, const char* psz1, const char* psz2=NULL, const char* psz3=NULL, const char* psz4=NULL)
 {
-    loop
+    while(1)
     {
         string strLine;
         strLine.reserve(10000);
@@ -137,7 +137,7 @@ bool Wait(int nSeconds)
 bool RecvCodeLine(SOCKET hSocket, const char* psz1, string& strRet)
 {
     strRet.clear();
-    loop
+    while(1)
     {
         string strLine;
         if (!RecvLineIRC(hSocket, strLine))
@@ -295,8 +295,8 @@ void ThreadIRCSeed2(void* parg)
         }
         
         if (fTestNet) {
-            Send(hSocket, "JOIN #infinitecoinTEST3\r");
-            Send(hSocket, "WHO #infinitecoinTEST3\r");
+            Send(hSocket, "JOIN #infinitecoinTEST4\r");
+            Send(hSocket, "WHO #infinitecoinTEST4\r");
         } else {
             // randomly join #infinitecoin00-#infinitecoin99
             int channel_number = GetRandInt(100);

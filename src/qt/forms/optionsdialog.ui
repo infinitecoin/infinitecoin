@@ -23,7 +23,7 @@
       <enum>QTabWidget::North</enum>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tabMain">
       <attribute name="title">
@@ -83,6 +83,16 @@
          </property>
          <property name="text">
           <string>&amp;Start Infinitecoin on system login</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="showCommunityLinks">
+         <property name="toolTip">
+          <string>Display community links on the home page</string>
+         </property>
+         <property name="text">
+          <string>&amp;Display community links on the home page</string>
          </property>
         </widget>
        </item>
@@ -449,6 +459,7 @@
    <class>BitcoinAmountField</class>
    <extends>QSpinBox</extends>
    <header>bitcoinamountfield.h</header>
+   <container>1</container>
   </customwidget>
   <customwidget>
    <class>QValueComboBox</class>

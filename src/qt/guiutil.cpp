@@ -11,7 +11,7 @@
 #include <QDoubleValidator>
 #include <QFont>
 #include <QLineEdit>
-#include <QUrl>
+
 #include <QTextDocument> // For Qt::escape
 #include <QAbstractItemView>
 #include <QApplication>
@@ -22,6 +22,11 @@
 
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/fstream.hpp>
+#if QT_VERSION < 0x050000
+#include <QUrl>
+#else
+#include <QUrlQuery>
+#endif
 
 #ifdef WIN32
 #ifdef _WIN32_WINNT
@@ -89,7 +94,13 @@ bool parseBitcoinURI(const QUrl &uri, SendCoinsRecipient *out)
     SendCoinsRecipient rv;
     rv.address = uri.path();
     rv.amount = 0;
-    QList<QPair<QString, QString> > items = uri.queryItems();
+    #if QT_VERSION < 0x050000
+        QList<QPair<QString, QString> > items = uri.queryItems();
+    #else
+        QUrlQuery uriQuery(uri);
+        QList<QPair<QString, QString> > items = uriQuery.queryItems();
+    #endif
+    
     for (QList<QPair<QString, QString> >::iterator i = items.begin(); i != items.end(); i++)
     {
         bool fShouldReturnFalse = false;
@@ -143,7 +154,8 @@ bool parseBitcoinURI(QString uri, SendCoinsRecipient *out)
 
 QString HtmlEscape(const QString& str, bool fMultiLine)
 {
-    QString escaped = Qt::escape(str);
+//    QString escaped =  Qt::escape(str);
+    QString escaped =  QString(str).toHtmlEscaped();
     if(fMultiLine)
     {
         escaped = escaped.replace("\n", "<br>\n");
@@ -178,7 +190,7 @@ QString getSaveFileName(QWidget *parent, const QString &caption,
     QString myDir;
     if(dir.isEmpty()) // Default to user documents location
     {
-        myDir = QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation);
+        myDir = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
     }
     else
     {

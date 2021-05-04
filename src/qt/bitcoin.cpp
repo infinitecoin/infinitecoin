@@ -12,6 +12,10 @@
 #include "ui_interface.h"
 #include "qtipcserver.h"
 
+//#include "tchar.h"
+
+
+
 #include <QApplication>
 #include <QMessageBox>
 #include <QTextCodec>
@@ -117,9 +121,44 @@ static void handleRunawayException(std::exception *e)
     exit(1);
 }
 
+//no error message ,WithU2018 20180315 ,only test
+static void handleRunawayException2()
+{
+    QMessageBox::critical(0, "Runaway exception", BitcoinGUI::tr("A fatal error occured. Infinitecoin can no longer continue safely and will quit.") + QString("\n\n") + QString::fromStdString(strMiscWarning));
+    exit(1);
+}
+
+/*
+//WithU2018 20180321
+static void DisableSetUnhandledExceptionFilter()
+
+{
+//    HMODULE hModule=GetModuleHandle("kernel32.dll");
+//    if(hModule){
+        void *addr = (void*)GetProcAddress(LoadLibrary(L"kernel32.dll"),"SetUnhandledExceptionFilter");
+        if (addr)
+        {
+                  unsigned char code[16];
+                  int size = 0;
+                  code[size++] = 0x33;
+                  code[size++] = 0xC0;
+                  code[size++] = 0xC2;
+                  code[size++] = 0x04;
+                  code[size++] = 0x00;
+                  DWORD dwOldFlag, dwTempFlag;
+                 VirtualProtect(addr, size, PAGE_READWRITE, &dwOldFlag);
+                  WriteProcessMemory(GetCurrentProcess(), addr, code, size, NULL);
+                  VirtualProtect(addr, size, dwOldFlag, &dwTempFlag);
+
+        }
+//    }
+}
+*/
+
 #ifndef BITCOIN_QT_TEST
 int main(int argc, char *argv[])
 {
+    QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 // TODO: implement URI support on the Mac.
 #if !defined(MAC_OSX)
     // Do this early as we don't want to bother initializing if we are just calling IPC
@@ -151,8 +190,8 @@ int main(int argc, char *argv[])
 #endif
 
     // Internal string conversion is all UTF-8
-    QTextCodec::setCodecForTr(QTextCodec::codecForName("UTF-8"));
-    QTextCodec::setCodecForCStrings(QTextCodec::codecForTr());
+    //QTextCodec::setCodecForTr(QTextCodec::codecForName("UTF-8"));
+    //QTextCodec::setCodecForCStrings(QTextCodec::codecForTr());
 
     Q_INIT_RESOURCE(bitcoin);
     QApplication app(argc, argv);
@@ -228,6 +267,8 @@ int main(int argc, char *argv[])
     }
 
     QSplashScreen splash(QPixmap(":/images/splash"), 0);
+
+
     if (GetBoolArg("-splash", true) && !GetBoolArg("-min"))
     {
         splash.show();
@@ -296,6 +337,10 @@ int main(int argc, char *argv[])
                     }
                 }
 #endif
+
+                //WithU2018 20180321
+                //Disable SetUnhandledExceptionFilter vc2005 vcrt80 fixed
+                //DisableSetUnhandledExceptionFilter();
                 app.exec();
 
                 window.hide();
@@ -312,8 +357,11 @@ int main(int argc, char *argv[])
         }
     } catch (std::exception& e) {
         handleRunawayException(&e);
+
     } catch (...) {
+        //printf("main() - boost interprocess exception #%d: %s\n", ex.get_error_code(), ex.what());
         handleRunawayException(NULL);
+        //handleRunawayException2();
     }
     return 0;
 }

@@ -61,7 +61,7 @@ double dHashesPerSec;
 int64 nHPSTimerStart;
 
 // Settings
-int64 nTransactionFee = 10.0 * COIN;
+int64 nTransactionFee = 0.01 * COIN;
 int64 nMinimumInputValue = CENT;
 
 
@@ -306,13 +306,13 @@ bool CTransaction::IsStandard() const
             return false;
         }
     }
-    
+
     BOOST_FOREACH(const CTxOut& txout, vout) {
 
        if (!::IsStandard(txout.scriptPubKey)) {
             return false;
         }
-        
+
         if (txout.IsDust()) {
             return false;
         }
@@ -869,14 +869,20 @@ int64 static GetBlockValue(int nHeight, int64 nFees)
     int64 nSubsidy = 524288 * COIN;
 
 	// Subsidy is cut in half every 86400 blocks, which will occur approximately every 1 month
-    nSubsidy >>= (nHeight / 86400); // Infinitecoin: 86400 blocks in ~1 month
+    //IIP3 20190926 Withu2018
+    if(nHeight>5529599){
+        nSubsidy=0;
+    }else{
+        nSubsidy >>= (nHeight / 86400); // Infinitecoin: 86400 blocks in ~1 month
+    }
+
     return nSubsidy + nFees;
 }
 
 
 static const int64 nTargetTimespan = 60 * 60;	// Infinitecoin: 1 hr
 static const int64 nTargetSpacing = 30;			// Infinitecoin: 30 sec
-static const int64 nInterval = nTargetTimespan / nTargetSpacing;	// 120
+static const int64 nInterval = nTargetTimespan / nTargetSpacing;	// 120 block
 static const int64 nIntervalPPC = 30;
 
 //
@@ -913,7 +919,18 @@ unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast, const CBl
     if (pindexLast == NULL)
         return nProofOfWorkLimit;
 
-	if((pindexLast->nHeight+1) < IFC_RETARGET_SWITCH_BLOCK)	
+
+    //IIP2 withu2018 20190724
+    uint64 retarget_switch_block=IFC_RETARGET_SWITCH_BLOCK;
+    uint64 retarget_switch_block2=IFC_RETARGET_SWITCH_BLOCK2;
+    uint64 retarget_switch_block3=IFC_RETARGET_SWITCH_BLOCK3;
+    if(fTestNet){
+       retarget_switch_block=TESTNET_IFC_RETARGET_SWITCH_BLOCK;
+       retarget_switch_block2=TESTNET_IFC_RETARGET_SWITCH_BLOCK2;
+       retarget_switch_block3=TESTNET_IFC_RETARGET_SWITCH_BLOCK3;
+    }
+
+    if((pindexLast->nHeight+1) < retarget_switch_block)
 	{
 		// Only change once per interval
 		if ((pindexLast->nHeight+1) % nInterval != 0)
@@ -923,7 +940,7 @@ unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast, const CBl
 			{
 				// If the new block's timestamp is more than 2* 10 minutes
 				// then allow mining of a min-difficulty block.
-				if (pblock->nTime > pindexLast->nTime + nTargetSpacing*2)
+                if (pblock->nTime > pindexLast->nTime + nTargetSpacing*2)
 					return nProofOfWorkLimit;
 				else
 				{
@@ -942,7 +959,8 @@ unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast, const CBl
 	int64 nActualTimespan = 30 * 120;
 	const CBlockIndex* pindexFirst = pindexLast;
 
-	if((pindexLast->nHeight+1) < IFC_RETARGET_SWITCH_BLOCK3)	// this is based on 120 blocks
+
+    if((pindexLast->nHeight+1) < retarget_switch_block3)	// this is based on 120 blocks
 	{
 		// Infinitecoin: This fixes an issue where a 51% attack can change difficulty at will.
 		// Go back the full period unless it's the first retarget after genesis. Code courtesy of Art Forz
@@ -957,7 +975,7 @@ unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast, const CBl
 
 		// Limit adjustment step
 		nActualTimespan = pindexLast->GetBlockTime() - pindexFirst->GetBlockTime();
-		// printf("  nActualTimespan = %"PRI64d"  before bounds\n", nActualTimespan);
+		// printf("  nActualTimespan = %" PRI64d"  before bounds\n", nActualTimespan);
 
 		if((pindexLast->nHeight+1) < 1500)
 		{
@@ -972,9 +990,9 @@ unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast, const CBl
 
 		if (nActualTimespan > nTargetTimespan*4)
 			nActualTimespan = nTargetTimespan*4;
-	}
-	else	// PPCoin formula with 1 block time
-	{
+    } //IIP3 20190926 withu2018
+    else if((fTestNet && pindexLast->nHeight<8370 ) || (!fTestNet && pindexLast->nHeight < nIIP2SwitchHeight)){	// PPCoin formula with 1 block time
+
 		// get the previous block
 		pindexFirst = pindexLast->pprev;
 		nActualTimespan = (pindexLast->GetBlockTime() - pindexFirst->GetBlockTime()) * nInterval;
@@ -982,29 +1000,77 @@ unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast, const CBl
 		// limit the adjustment
 		if (nActualTimespan < nTargetTimespan/16)
 			nActualTimespan = nTargetTimespan/16;
-		if (nActualTimespan > nTargetTimespan*16)
-			nActualTimespan = nTargetTimespan*16;
-	}
+        if (nActualTimespan > nTargetTimespan*16)
+            nActualTimespan = nTargetTimespan*16;
+    }else{
+            // get the previous block
+        pindexFirst = pindexLast->pprev;
+        nActualTimespan = pindexLast->GetBlockTime() - pindexFirst->GetBlockTime();
+
+            // limit the adjustment
+        if (nActualTimespan < nTargetSpacing)
+            nActualTimespan = nTargetSpacing;
+        if (nActualTimespan > nTargetTimespan)
+            nActualTimespan = nTargetTimespan;
+    }
+
+
+
 
 	// Retarget
 	bnNew.SetCompact(pindexLast->nBits);
 
-	if((pindexLast->nHeight+1) < IFC_RETARGET_SWITCH_BLOCK2)		// 120-block linear retarget
+    if((pindexLast->nHeight+1) < retarget_switch_block2)		// 120-block linear retarget
 	{
 		bnNew *= nActualTimespan;
 		bnNew /= nTargetTimespan;
 	}
-	else 															// PPCoin retarget algorithm
-	{
+    //test1
+    else if((fTestNet && pindexLast->nHeight<8370 ) || (!fTestNet && pindexLast->nHeight < nIIP2SwitchHeight)){
+        // PPCoin formula with 1 block time
+        // PPCoin retarget algorithm
 		bnNew *= ((nIntervalPPC - 1) * nTargetTimespan + nActualTimespan + nActualTimespan);
 		bnNew /= ((nIntervalPPC + 1) * nTargetTimespan);
-	}
+
+    }else if((fTestNet && pindexLast->nHeight<8730 )){
+        //test1
+        // IIP2 withu2018 20190724 nActualTimespan calc
+        // the last block & pre block is not ActualTimespans
+        // if((fTestNet && pindexLast->nHeight>8265 )|| (!fTestNet && pindexLast->nTime>=nIIP2SwitchTime)){
+         //
+        // }
+
+        if(nActualTimespan<nTargetSpacing+nTargetSpacing){
+            nActualTimespan/=4;
+        }
+
+        nActualTimespan*=nInterval;
+        bnNew *= ((nIntervalPPC - 1) * nTargetTimespan + nActualTimespan + nActualTimespan);
+        bnNew /= ((nIntervalPPC + 1) * nTargetTimespan);
+
+        //bnNew *= nActualTimespan;
+        //bnNew /= nTargetTimespan;
+    }else{
+        // IIP2 withu2018 20190724 nActualTimespan calc
+        // the last block & pre block is not ActualTimespans
+
+        if(nActualTimespan<nTargetSpacing+nTargetSpacing){
+            nActualTimespan=nActualTimespan*nActualTimespan/(nTargetSpacing*2)/3;
+        }
+
+        nActualTimespan*=nInterval;
+        bnNew *= ((nIntervalPPC - 1) * nTargetTimespan + nActualTimespan + nActualTimespan);
+        bnNew /= ((nIntervalPPC + 1) * nTargetTimespan);
+
+        //bnNew *= nActualTimespan;
+        //bnNew /= nTargetTimespan;
+    }
 
 	if (bnNew > bnProofOfWorkLimit)
 		bnNew = bnProofOfWorkLimit;
 
-	// debug print
-	// printf("nTargetTimespan = %"PRI64d", nActualTimespan = %"PRI64d"\n", nTargetTimespan, nActualTimespan);
+     //debug print
+     printf("nTargetTimespan = %" PRI64d", nActualTimespan = %" PRI64d"\n", nTargetTimespan, nActualTimespan);
 
     return bnNew.GetCompact();
 }
@@ -1047,6 +1113,8 @@ bool IsInitialBlockDownload()
             pindexBest->GetBlockTime() < GetTime() - 24 * 60 * 60);
 }
 
+//withu2018 20190713 add commit.
+//this is cancel fork function
 void static InvalidChainFound(CBlockIndex* pindexNew)
 {
     if (pindexNew->bnChainWork > bnBestInvalidWork)
@@ -1062,6 +1130,8 @@ void static InvalidChainFound(CBlockIndex* pindexNew)
     printf("InvalidChainFound:  current best=%s  height=%d  work=%s  date=%s\n",
       hashBestChain.ToString().substr(0,20).c_str(), nBestHeight, bnBestChainWork.ToString().c_str(),
       DateTimeStrFormat("%x %H:%M:%S", pindexBest->GetBlockTime()).c_str());
+
+    //withu2018 20190713 if mainChain's work < 6 multipe of newChain's work then show this WARNING
     if (pindexBest && bnBestInvalidWork > bnBestChainWork + pindexBest->GetBlockWork() * 6)
         printf("InvalidChainFound: WARNING: Displayed transactions may not be correct!  You may need to upgrade, or other nodes may need to upgrade.\n");
 }
@@ -1493,18 +1563,23 @@ bool CBlock::ConnectBlock(CTxDB& txdb, CBlockIndex* pindex)
     return true;
 }
 
+//TODO: withu2018 20190712 recontect a new chain
 bool static Reorganize(CTxDB& txdb, CBlockIndex* pindexNew)
 {
     printf("REORGANIZE\n");
 
     // Find the fork
-    CBlockIndex* pfork = pindexBest;
-    CBlockIndex* plonger = pindexNew;
+    CBlockIndex* pfork = pindexBest; //now chain best first index
+    CBlockIndex* plonger = pindexNew; //next chain lastindex
     while (pfork != plonger)
     {
-        while (plonger->nHeight > pfork->nHeight)
-            if (!(plonger = plonger->pprev))
+        while (plonger->nHeight > pfork->nHeight){
+            if (!(plonger = plonger->pprev)){
                 return error("Reorganize() : plonger->pprev is null");
+            }
+        }
+
+        //withu2018 20190714  find fork point
         if (pfork == plonger)
             break;
         if (!(pfork = pfork->pprev))
@@ -1522,6 +1597,19 @@ bool static Reorganize(CTxDB& txdb, CBlockIndex* pindexNew)
         vConnect.push_back(pindex);
     reverse(vConnect.begin(), vConnect.end());
 
+    //withu2018 20190726 IIP2,switch to mainnet
+    if(fTestNet || (!fTestNet && pindexBest->nHeight>=nIIP2SwitchHeight)){
+        //WithU2018 201906180723   IIP2  if NumConfirmations=6 then vDisconnect.size() must less 6
+        if( vDisconnect.size()>=NumConfirmations){
+            return error("Reorganize() : Disconnect %i blocks is More then %i NumConfirmations\n",vDisconnect.size(),NumConfirmations);
+        }
+
+        //WithU2018 201906180723 IIP2
+        if( vConnect.size()>=NumConfirmations){
+            return error("Reorganize() : Connect %i blocks is More then %i NumConfirmations\n",vConnect.size(),NumConfirmations);
+        }
+    }
+
     printf("REORGANIZE: Disconnect %i blocks; %s..%s\n", vDisconnect.size(), pfork->GetBlockHash().ToString().substr(0,20).c_str(), pindexBest->GetBlockHash().ToString().substr(0,20).c_str());
     printf("REORGANIZE: Connect %i blocks; %s..%s\n", vConnect.size(), pfork->GetBlockHash().ToString().substr(0,20).c_str(), pindexNew->GetBlockHash().ToString().substr(0,20).c_str());
 
@@ -1529,6 +1617,7 @@ bool static Reorganize(CTxDB& txdb, CBlockIndex* pindexNew)
     vector<CTransaction> vResurrect;
     BOOST_FOREACH(CBlockIndex* pindex, vDisconnect)
     {
+
         CBlock block;
         if (!block.ReadFromDisk(pindex))
             return error("Reorganize() : ReadFromDisk for disconnect failed");
@@ -1612,6 +1701,7 @@ bool CBlock::SetBestChainInner(CTxDB& txdb, CBlockIndex *pindexNew)
     BOOST_FOREACH(CTransaction& tx, vtx)
         mempool.remove(tx);
 
+    printf("SetBestChainInner: done\n");
     return true;
 }
 
@@ -1644,9 +1734,21 @@ bool CBlock::SetBestChain(CTxDB& txdb, CBlockIndex* pindexNew)
 
         // Reorganize is costly in terms of db load, as it works in a single db transaction.
         // Try to limit how much needs to be done inside
+        // get the first index of forkChain
         while (pindexIntermediate->pprev && pindexIntermediate->pprev->bnChainWork > pindexBest->bnChainWork)
         {
             vpindexSecondary.push_back(pindexIntermediate);
+
+
+            //withu2018 20190726 IIP2,switch to mainnet
+            if(fTestNet || (!fTestNet && pindexIntermediate->nHeight>=nIIP2SwitchHeight)){
+
+                //withu2018 20190714 IIP2 The time interval between blocks must be more than one the time of nTargetSpacing
+                if(pindexIntermediate->GetBlockTime()-pindexIntermediate->pprev->GetBlockTime()<nTargetSpacing){
+                    printf("height %i ,pindexIntermediate->pprev->GetBlockTime()-pindexIntermediate:%i\n",pindexIntermediate->nHeight,pindexIntermediate->GetBlockTime()-pindexIntermediate->pprev->GetBlockTime());
+                    return error("SetBestChain() : SecondaryChain BlockTime Less nTargetSpacing,so fast");
+                }
+            }
             pindexIntermediate = pindexIntermediate->pprev;
         }
 
@@ -1756,6 +1858,15 @@ bool CBlock::AddToBlockIndex(unsigned int nFile, unsigned int nBlockPos)
         pindexNew->pprev = (*miPrev).second;
         pindexNew->nHeight = pindexNew->pprev->nHeight + 1;
     }
+
+    //IIP2 withu2018 20190802
+    if((fTestNet && pindexNew->nHeight>=8370 ) || (!fTestNet && pindexNew->nHeight >= nIIP2SwitchHeight)){
+        printf("IIP2 AddToBlockIndex check blocktime: height: %i->%i ,%s - %s = %i\n",pindexNew->pprev->nHeight,pindexNew->nHeight,pindexNew->pprev->GetBlockHash().ToString().substr(0,20).c_str(),pindexNew->GetBlockHash().ToString().substr(0,20).c_str(), pindexNew->GetBlockTime()-pindexNew->pprev->GetBlockTime());
+        if(pindexNew->pprev->GetBlockTime()- pindexNew->GetBlockTime()>nTargetTimespan){
+            return false;
+        }
+    }
+
     pindexNew->bnChainWork = (pindexNew->pprev ? pindexNew->pprev->bnChainWork : 0) + pindexNew->GetBlockWork();
 
     CTxDB txdb;
@@ -1767,6 +1878,7 @@ bool CBlock::AddToBlockIndex(unsigned int nFile, unsigned int nBlockPos)
 
     // New best
     if (pindexNew->bnChainWork > bnBestChainWork)
+        printf("AddToBlockIndex:SetBestChain\n");
         if (!SetBestChain(txdb, pindexNew))
             return false;
 
@@ -1855,9 +1967,29 @@ bool CBlock::AcceptBlock()
     CBlockIndex* pindexPrev = (*mi).second;
     int nHeight = pindexPrev->nHeight+1;
 
+
+
+
+
+
     // Check proof of work
     if (nBits != GetNextWorkRequired(pindexPrev, this))
         return DoS(100, error("AcceptBlock() : incorrect proof of work"));
+
+    // IIP2 withu2018 20190722 check time interval between blocks must be more than one the time of nTargetSpacing
+    if((fTestNet && pindexPrev->nHeight>4240 )|| (!fTestNet && pindexPrev->nHeight>=nIIP2SwitchHeight)){
+        if(this->GetBlockTime()-pindexPrev->GetBlockTime()<nTargetSpacing){
+
+            //IIP2 withu2018 20190724
+            //lastAtimeSpan=this->GetBlockTime()-pindexPrev->GetBlockTime();
+
+             //return DoS(100, error("AcceptBlock() :  New Block BlockTime Less nTargetSpacing,so fast"));
+             return error("AcceptBlock() : New Block BlockTime Less nTargetSpacing,so fast");
+        }
+    }
+
+
+
 
     // Check timestamp against prev
     if (GetBlockTime() <= pindexPrev->GetMedianTimePast())
@@ -1937,6 +2069,7 @@ bool ProcessBlock(CNode* pfrom, CBlock* pblock)
                 pfrom->Misbehaving(100);
             return error("ProcessBlock() : block with too little proof-of-work");
         }
+
     }
 
     // ppcoin: ask for pending sync-checkpoint if any
@@ -2038,7 +2171,7 @@ static unsigned int nCurrentBlockFile = 1;
 FILE* AppendBlockFile(unsigned int& nFileRet)
 {
     nFileRet = 0;
-    loop
+    while(1)
     {
         FILE* file = OpenBlockFile(nCurrentBlockFile, 0, "ab");
         if (!file)
@@ -2064,7 +2197,7 @@ bool LoadBlockIndex(bool fAllowNew)
         pchMessageStart[1] = 0xc1;
         pchMessageStart[2] = 0xb7;
         pchMessageStart[3] = 0xdc;
-        hashGenesisBlock = uint256("0x47cfc1ea5d27a873dcc90fa8befc9378dbc793ca68dd608d4f6aa123437701ba");
+        hashGenesisBlock = uint256("0xa0d9fb1b5db8c3402289b6632a42adb073d647623d161b81f360d0e62a9c0d77");
     }
 
     //
@@ -2087,12 +2220,12 @@ bool LoadBlockIndex(bool fAllowNew)
 		// block.GetHash() = a2effa738145e377e08a61d76179c21703e13e48910b30a2a87f0dfe794b64c6
 		// hashGenesisBlock = a2effa738145e377e08a61d76179c21703e13e48910b30a2a87f0dfe794b64c6
 		// block.hashMerkleRoot = 3de124b0274307911fe12550e96bf76cb92c12835db6cb19f82658b8aca1dbc8
-		// CBlock(hash=a2effa738145e377e08a, PoW=f0bb8fb675fe7c363136, ver=1, hashPrevBlock=00000000000000000000, 
+		// CBlock(hash=a2effa738145e377e08a, PoW=f0bb8fb675fe7c363136, ver=1, hashPrevBlock=00000000000000000000,
 		//     hashMerkleRoot=3de124b027, nTime=1367394064, nBits=1e0ffff0, nNonce=112158625, vtx=1)
 		//   CTransaction(hash=3de124b027, ver=1, vin.size=1, vout.size=1, nLockTime=0)
 		//     CTxIn(COutPoint(0000000000, -1), coinbase 04ffff001d01044c5d576564204d617920312c20323031333a2053706f7420676f6c642066656c6c20312e332070657263656e7420746f2024312c3435372e393020616e206f756e636520627920333a313120702e6d2e2045445420283139313120474d5429)
 		//     CTxOut(nValue=50.00000000, scriptPubKey=040184710fa689ad5023690c80f3a4)
-		//   vMerkleTree: 3de124b027 
+		//   vMerkleTree: 3de124b027
 
         // Genesis block
         const char* pszTimestamp = "Miami Heat rout Indiana Pacers 99-76, advance to NBA Finals on June 3, 2013";
@@ -2122,13 +2255,13 @@ bool LoadBlockIndex(bool fAllowNew)
         printf("hashGenesisBlock = %s\n", hashGenesisBlock.ToString().c_str());
         printf("block.hashMerkleRoot = %s\n", block.hashMerkleRoot.ToString().c_str());
         assert(block.hashMerkleRoot == uint256("0x87605f6741961e869237b3d78fb271cdca70c67f1bb876992fda97ccd9036220"));
-		
-		
+
+
 		uint256 hashTarget = CBigNum().SetCompact(block.nBits).getuint256();
         uint256 thash;
         char scratchpad[SCRYPT_SCRATCHPAD_SIZE];
         scrypt_1024_1_1_256_sp(BEGIN(block.nVersion), BEGIN(thash), scratchpad);
-		
+
         printf("nonce %08X: hash = %s (target = %s)\n", block.nNonce, thash.ToString().c_str(), hashTarget.ToString().c_str());
 
         // If genesis block hash does not match, then generate new genesis hash.
@@ -2141,7 +2274,7 @@ bool LoadBlockIndex(bool fAllowNew)
             uint256 thash;
             char scratchpad[SCRYPT_SCRATCHPAD_SIZE];
 
-            loop
+            while(1)
             {
                 scrypt_1024_1_1_256_sp(BEGIN(block.nVersion), BEGIN(thash), scratchpad);
                 if (thash <= hashTarget)
@@ -2418,7 +2551,7 @@ bool usefulAlert(CAlert* pAlert)
 			return false;
 		}
 	}
-	
+
 	return true;
 }
 
@@ -2557,6 +2690,9 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
 
         int cVersion = MIN_PEER_PROTO_VERSION;
 
+        // withu2018 20191027
+        int MaxVersion = MAX_PEER_PROTO_VERSION;
+
         //if(GetTime() >= IFC_SWITCH_VER )
         //    cVersion = PROTOCOL_VERSION;
 
@@ -2565,6 +2701,13 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
             // Since February 20, 2012, the protocol is initiated at version 209,
             // and earlier versions are no longer supported
             printf("partner %s using obsolete version %i; disconnecting\n", pfrom->addr.ToString().c_str(), pfrom->nVersion);
+            pfrom->fDisconnect = true;
+            return false;
+        }if (pfrom->nVersion > MaxVersion)
+        {
+            // withu2018 20191027
+            //disconnecting too new version
+            printf("partner %s using too new version %i; disconnecting\n", pfrom->addr.ToString().c_str(), pfrom->nVersion);
             pfrom->fDisconnect = true;
             return false;
         }
@@ -3170,7 +3313,7 @@ bool ProcessMessages(CNode* pfrom)
     //  (x) data
     //
 
-    loop
+    while(1)
     {
         // Don't bother if send buffer is too full to respond anyway
         if (pfrom->vSend.size() >= SendBufferSize())
@@ -3615,7 +3758,7 @@ CBlock* CreateNewBlock(CReserveKey& reservekey)
                 dPriority += (double)nValueIn * nConf;
 
                 if (fDebug && GetBoolArg("-printpriority"))
-                    printf("priority     nValueIn=%-12"PRI64d" nConf=%-5d dPriority=%-20.1f\n", nValueIn, nConf, dPriority);
+                    printf("priority     nValueIn=%-12" PRI64d" nConf=%-5d dPriority=%-20.1f\n", nValueIn, nConf, dPriority);
             }
 
             // Priority is sum(valuein * age) / txsize
@@ -3888,14 +4031,14 @@ void static BitcoinMiner(CWallet *pwallet)
         //
         int64 nStart = GetTime();
         uint256 hashTarget = CBigNum().SetCompact(pblock->nBits).getuint256();
-        loop
+        while(1)
         {
             unsigned int nHashesDone = 0;
             //unsigned int nNonceFound;
 
             uint256 thash;
             char scratchpad[SCRYPT_SCRATCHPAD_SIZE];
-            loop
+            while(1)
             {
                 scrypt_1024_1_1_256_sp(BEGIN(pblock->nVersion), BEGIN(thash), scratchpad);
 

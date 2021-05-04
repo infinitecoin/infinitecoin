@@ -30,20 +30,30 @@ class CInv;
 class CRequestTracker;
 class CNode;
 
-static const unsigned int MAX_BLOCK_SIZE = 1000000;  // 1000KB block hard limit
-static const unsigned int MAX_BLOCK_SIZE_GEN = MAX_BLOCK_SIZE/2; // 500KB  block soft limit
-static const unsigned int MAX_BLOCK_SIGOPS = MAX_BLOCK_SIZE/50;  // 20KB
-static const unsigned int MAX_ORPHAN_TRANSACTIONS = MAX_BLOCK_SIZE/100; // 10KB
+
+//WithU2018 20190615 195051 old value is 3. add to 6, reduce fork
+//The longer chain is not allowed to be forked after 6 confirmations, and the selection of the longer chain can only be completed less 6 confirmations.
+static const int NumConfirmations = 6;
+
+
+static const unsigned int MAX_BLOCK_SIZE = 10000000;  // 10000KB block hard limit
+static const unsigned int MAX_BLOCK_SIZE_GEN = MAX_BLOCK_SIZE/2; // 5000KB  block soft limit
+static const unsigned int MAX_BLOCK_SIGOPS = MAX_BLOCK_SIZE/50;  // 200KB
+static const unsigned int MAX_ORPHAN_TRANSACTIONS = MAX_BLOCK_SIZE/50; // 100KB
 
 /** The maximum size for transactions we're willing to relay/mine */
 static const unsigned int MAX_STANDARD_TX_SIZE = 100000;
 
 
-static const int64 MIN_TX_FEE = 100.0 * COIN;
+//min tx fee
+static const int64 MIN_TX_FEE =1000000; //0.01
+
+
 static const int64 MIN_RELAY_TX_FEE = MIN_TX_FEE;
 
-static const int64 DUST_SOFT_LIMIT = 100.0 * COIN;
-static const int64 DUST_HARD_LIMIT = 1000.0 * COIN; 
+//soft limit
+static const int64 DUST_SOFT_LIMIT = MIN_TX_FEE;
+static const int64 DUST_HARD_LIMIT = MIN_TX_FEE;
 
 
 static const int64 MAX_MONEY = 90600000000 * COIN; // Infinitecoin: maximum of 90600M coins
@@ -55,11 +65,27 @@ static const unsigned int LOCKTIME_THRESHOLD = 500000000; // Tue Nov  5 00:53:20
 
 static const unsigned int IFC_SWITCH_TIME = 1377993600;		// Sept 1, 2013 00:00:00 GMT
 static const unsigned int IFC_SWITCH_VER = 1392336000;     // Sept 1, 2013 00:00:00 GMT
-static const unsigned int IFC_FEE_MULTIPLICATOR = 100;		// Transaction Fee Multiplicator
 
-static const unsigned int IFC_RETARGET_SWITCH_BLOCK		= 245000;		
-static const unsigned int IFC_RETARGET_SWITCH_BLOCK2	= 248000;		
-static const unsigned int IFC_RETARGET_SWITCH_BLOCK3	= 272000;	
+//withu2018 20190723 test mining for IIP2
+//IIP3 withu2018 20190926  64bits overflow
+static const int64 nIIP2SwitchHeight=5529600;//2019-08-01 01:09:02
+
+//multiple
+static const unsigned int IFC_FEE_MULTIPLICATOR = 1;		// Transaction Fee Multiplicator
+#define USE_IIP2 1
+
+
+//withu2018 20190723 test mining for IIP2
+static const unsigned int IFC_RETARGET_SWITCH_BLOCK     = 245000;
+static const unsigned int IFC_RETARGET_SWITCH_BLOCK2	= 248000;
+static const unsigned int IFC_RETARGET_SWITCH_BLOCK3	= 272000;
+
+
+static const unsigned int TESTNET_IFC_RETARGET_SWITCH_BLOCK	  = 8300;
+static const unsigned int TESTNET_IFC_RETARGET_SWITCH_BLOCK2	  = 8301;
+static const unsigned int TESTNET_IFC_RETARGET_SWITCH_BLOCK3	  = 8302;
+
+
 
 #ifdef USE_UPNP
 static const int fHaveUPnP = true;
@@ -379,7 +405,7 @@ public:
     {
         if (scriptPubKey.size() < 6)
             return "CTxOut(error)";
-        return strprintf("CTxOut(nValue=%"PRI64d".%08"PRI64d", scriptPubKey=%s)", nValue / COIN, nValue % COIN, scriptPubKey.ToString().substr(0,30).c_str());
+        return strprintf("CTxOut(nValue=%" PRI64d".%08" PRI64d", scriptPubKey=%s)", nValue / COIN, nValue % COIN, scriptPubKey.ToString().substr(0,30).c_str());
     }
 
     void print() const
@@ -562,6 +588,7 @@ public:
         return dPriority > COIN * 2880 / 250; // Infinitecoin: 2880 blocks found a day. Priority cutoff is 1 infinitecoin day / 250 bytes.
     }
 
+    //withu2018 20180914 get min fee  IIP1
     int64 GetMinFee(unsigned int nBlockSize=1, bool fAllowFree=true, enum GetMinFee_mode mode=GMF_BLOCK) const
     {
         // Base fee is either MIN_TX_FEE or MIN_RELAY_TX_FEE
@@ -571,7 +598,7 @@ public:
         unsigned int nNewBlockSize = nBlockSize + nBytes;
         int64 nMinFee = (1 + (int64)nBytes / 1000) * nBaseFee;
 
-        if (fAllowFree)
+        if (false)
         {
             if (nBlockSize == 1)
             {
@@ -591,16 +618,41 @@ public:
         }
 
         // To limit dust spam, add MIN_TX_FEE/MIN_RELAY_TX_FEE for any output that is less than 0.01
+       // BOOST_FOREACH(const CTxOut& txout, vout)
+       //     if (txout.nValue < DUST_HARD_LIMIT)
+       //         nMinFee += nBaseFee;
+
+
+        int64 nValueOut = 0;
+        int64 i=0;
         BOOST_FOREACH(const CTxOut& txout, vout)
-            if (txout.nValue < DUST_HARD_LIMIT)
-                nMinFee += nBaseFee;
+        {
+            //withu2018 the first vout is change,so jump first vout. IIP1
+            if(i>0){
+                nValueOut += txout.nValue;
+            }
+            i++;
+        }
+
+        if(nValueOut==0){
+            return 0;
+        }
+
+        nMinFee=(int64)nValueOut*0.002;
 
         // Raise the price as the block approaches full
-        if (nBlockSize != 1 && nNewBlockSize >= MAX_BLOCK_SIZE_GEN/2)
-        {
-            if (nNewBlockSize >= MAX_BLOCK_SIZE_GEN)
-                return MAX_MONEY;
-            nMinFee *= MAX_BLOCK_SIZE_GEN / (MAX_BLOCK_SIZE_GEN - nNewBlockSize);
+//        if (nBlockSize != 1 && nNewBlockSize >= MAX_BLOCK_SIZE_GEN/2)
+//        {
+//            if (nNewBlockSize >= MAX_BLOCK_SIZE_GEN)
+//                return MAX_MONEY;
+//            nMinFee *= MAX_BLOCK_SIZE_GEN / (MAX_BLOCK_SIZE_GEN - nNewBlockSize);
+//        }
+
+        if(nMinFee<MIN_TX_FEE){
+            nMinFee=MIN_TX_FEE;
+        }
+        if(nMinFee>10000*COIN){
+            nMinFee=10000*COIN;
         }
 
         if (!MoneyRange(nMinFee))
@@ -1493,8 +1545,8 @@ public:
         return strprintf(
                 "CAlert(\n"
                 "    nVersion     = %d\n"
-                "    nRelayUntil  = %"PRI64d"\n"
-                "    nExpiration  = %"PRI64d"\n"
+                "    nRelayUntil  = %" PRI64d"\n"
+                "    nExpiration  = %" PRI64d"\n"
                 "    nID          = %d\n"
                 "    nCancel      = %d\n"
                 "    setCancel    = %s\n"

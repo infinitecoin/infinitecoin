@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>714</width>
-    <height>463</height>
+    <height>613</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -44,7 +44,7 @@
           <cursorShape>ArrowCursor</cursorShape>
          </property>
          <property name="text">
-          <string>&lt;b&gt;Infinitecoin&lt;/b&gt; version</string>
+          <string notr="true">&lt;b&gt;Infinitecoin&lt;/b&gt; version</string>
          </property>
          <property name="textInteractionFlags">
           <set>Qt::NoTextInteraction</set>
@@ -105,7 +105,7 @@
         <cursorShape>ArrowCursor</cursorShape>
        </property>
        <property name="text">
-        <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Copyright &amp;copy; 2009-2013 The Bitcoin developers&lt;br/&gt;Copyright &amp;copy; 2011-2013 The Litecoin developers &lt;br/&gt;Copyright &amp;copy; 2013-2014 The Infinitecoin developers&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Copyright © 2009-2013 The Bitcoin developers&lt;br/&gt;Copyright © 2011-2013 The Litecoin developers &lt;br/&gt;Copyright © 2013-2014 The Infinitecoin developers&lt;br/&gt;Copyright © 2018-2019 The Infinitecoin community&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="textFormat">
         <enum>Qt::AutoText</enum>
@@ -116,19 +116,6 @@
       </widget>
      </item>
      <item>
-      <spacer name="horizontalSpacer_4">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
       <widget class="Line" name="line_2">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -136,25 +123,12 @@
       </widget>
      </item>
      <item>
-      <spacer name="horizontalSpacer_6">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
       <widget class="QLabel" name="label_2">
        <property name="cursor">
         <cursorShape>ArrowCursor</cursorShape>
        </property>
        <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This is experimental software.&lt;/p&gt;&lt;p&gt;Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php.&lt;/p&gt;&lt;p&gt;This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit (http://www.openssl.org/) and cryptographic software written by Eric Young (eay@cryptsoft.com) and UPnP software written by Thomas Bernard.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Infinitecoin community website:https://www.infinitecoin.in&lt;/p&gt;&lt;p&gt;Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php.&lt;/p&gt;&lt;p&gt;This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit (http://www.openssl.org/) and cryptographic software written by Eric Young (eay@cryptsoft.com) and UPnP software written by Thomas Bernard.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="wordWrap">
         <bool>true</bool>
@@ -163,32 +137,6 @@
         <set>Qt::NoTextInteraction</set>
        </property>
       </widget>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer_5">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer_2">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
      </item>
      <item>
       <widget class="Line" name="line_3">
@@ -211,9 +159,12 @@
       </spacer>
      </item>
      <item>
-      <widget class="QLabel" name="label_3">
+      <widget class="QLabel" name="label_5">
+       <property name="contextMenuPolicy">
+        <enum>Qt::DefaultContextMenu</enum>
+       </property>
        <property name="text">
-        <string>Offical Website: &lt;a href=&quot;http://www.infinitecoin.com/&quot;&gt;www.infinitecoin.com&lt;/a&gt;</string>
+        <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#000000;&quot;&gt;Community Website: &lt;/span&gt;&lt;a href=&quot;https://www.infinitecoin.in&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;https://www.infinitecoin.in&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; color:#000000;&quot;&gt;Community Forums:  &lt;/span&gt;&lt;a href=&quot;https://bbs.ifc123.net&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;https://bbs.ifc123.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; color:#000000;&quot;&gt;Exchange List Page:  &lt;/span&gt;&lt;a href=&quot;https://www.ifc123.top&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;https://www.ifc123.top&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; color:#000000;&quot;&gt;Old Offical Website:  &lt;/span&gt;&lt;a href=&quot;http://www.infinitecoin.com&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;http://www.infinitecoin.com&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; color:#000000;&quot;&gt;Open Source:            &lt;/span&gt;&lt;a href=&quot;https://github.com/withu2018/infinitecoin&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;https://github.com/withu2018/infinitecoin&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; color:#000000;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="openExternalLinks">
         <bool>true</bool>
@@ -224,12 +175,9 @@
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="label_5">
-       <property name="contextMenuPolicy">
-        <enum>Qt::DefaultContextMenu</enum>
-       </property>
+      <widget class="QLabel" name="label_3">
        <property name="text">
-        <string>Offical Forums: &lt;a href=&quot;http://www.infinitecointalk.org/&quot;&gt;www.infinitecointalk.org&lt;/a&gt;</string>
+        <string/>
        </property>
        <property name="openExternalLinks">
         <bool>true</bool>

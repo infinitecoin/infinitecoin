@@ -2582,7 +2582,7 @@ int ReadHTTPStatus(std::basic_istream<char>& stream, int &proto)
 int ReadHTTPHeader(std::basic_istream<char>& stream, map<string, string>& mapHeadersRet)
 {
     int nLen = 0;
-    loop
+    while(1)
     {
         string str;
         std::getline(stream, str);
@@ -2732,6 +2732,14 @@ public:
         fNeedHandshake = fUseSSLIn;
     }
 
+    #if BOOST_VERSION >= 107000
+    template <typename T>
+    io_service& get_io_service(T& o) { return static_cast<io_service&>(o.get_executor().context()); }
+    #else
+    template <typename T>
+    io_service& get_io_service(T& o) { return o.get_io_service(); }
+    #endif
+    
     void handshake(ssl::stream_base::handshake_type role)
     {
         if (!fNeedHandshake) return;
@@ -2752,7 +2760,7 @@ public:
     }
     bool connect(const std::string& server, const std::string& port)
     {
-        ip::tcp::resolver resolver(stream.get_io_service());
+        ip::tcp::resolver resolver(get_io_service(stream));
         ip::tcp::resolver::query query(server.c_str(), port.c_str());
         ip::tcp::resolver::iterator endpoint_iterator = resolver.resolve(query);
         ip::tcp::resolver::iterator end;
@@ -2796,7 +2804,8 @@ public:
         _stream(_d)
     {
     }
-
+    
+    
     virtual std::iostream& stream()
     {
         return _stream;
@@ -2859,8 +2868,18 @@ static void RPCListen(boost::shared_ptr< basic_socket_acceptor<Protocol, SocketA
                    ssl::context& context,
                    const bool fUseSSL)
 {
+    
+    #if BOOST_VERSION >= 107000
+    io_service&  acceptor_ioserver= static_cast<io_service&>(acceptor->get_executor().context());
+    #else
+    io_service&  acceptor_ioserver= acceptor.get_io_service();
+    #endif
+    
+ 
+    
+    
     // Accept connection
-    AcceptedConnectionImpl<Protocol>* conn = new AcceptedConnectionImpl<Protocol>(acceptor->get_io_service(), context, fUseSSL);
+    AcceptedConnectionImpl<Protocol>* conn = new AcceptedConnectionImpl<Protocol>(acceptor_ioserver, context, fUseSSL);
 
     acceptor->async_accept(
             conn->sslStream.lowest_layer(),
@@ -2952,7 +2971,7 @@ void ThreadRPCServer2(void* parg)
 
     asio::io_service io_service;
 
-    ssl::context context(io_service, ssl::context::sslv23);
+    ssl::context context(ssl::context::sslv23);
     if (fUseSSL)
     {
         context.set_options(ssl::context::no_sslv2);
@@ -2968,24 +2987,28 @@ void ThreadRPCServer2(void* parg)
         else printf("ThreadRPCServer ERROR: missing server private key file %s\n", pathPKFile.string().c_str());
 
         string strCiphers = GetArg("-rpcsslciphers", "TLSv1+HIGH:!SSLv2:!aNULL:!eNULL:!AH:!3DES:@STRENGTH");
-        SSL_CTX_set_cipher_list(context.impl(), strCiphers.c_str());
+        SSL_CTX_set_cipher_list(context.native_handle(), strCiphers.c_str());
     }
 
     // Try a dual IPv6/IPv4 socket, falling back to separate IPv4 and IPv6 sockets
     const bool loopback = !mapArgs.count("-rpcallowip");
     asio::ip::address bindAddress = loopback ? asio::ip::address_v6::loopback() : asio::ip::address_v6::any();
     ip::tcp::endpoint endpoint(bindAddress, GetArg("-rpcport", 9322));
+    boost::system::error_code v6_only_error;
+    boost::shared_ptr<ip::tcp::acceptor> acceptor(new ip::tcp::acceptor(io_service));
 
     boost::signals2::signal<void ()> StopRequests;
 
+    bool fListening = false;
+    std::string strerr;
     try
     {
-        boost::shared_ptr<ip::tcp::acceptor> acceptor(new ip::tcp::acceptor(io_service));
+        // boost::shared_ptr<ip::tcp::acceptor> acceptor(new ip::tcp::acceptor(io_service));
         acceptor->open(endpoint.protocol());
         acceptor->set_option(boost::asio::ip::tcp::acceptor::reuse_address(true));
 
         // Try making the socket dual IPv6/IPv4 (if listening on the "any" address)
-        boost::system::error_code v6_only_error;
+        // boost::system::error_code v6_only_error;
         acceptor->set_option(boost::asio::ip::v6_only(loopback), v6_only_error);
 
         acceptor->bind(endpoint);
@@ -2997,8 +3020,16 @@ void ThreadRPCServer2(void* parg)
                     static_cast<void (ip::tcp::acceptor::*)()>(&ip::tcp::acceptor::close), acceptor.get())
                 .track(acceptor));
 
+        fListening = true;
+    }
+    catch(boost::system::system_error &e)
+    {
+        strerr = strprintf(_("An error occurred while setting up the RPC port %i for listening on IPv6, falling back to IPv4: %s"), endpoint.port(), e.what());
+    }
+
+    try {
         // If dual IPv6/IPv4 failed (or we're opening loopback interfaces only), open IPv4 separately
-        if (loopback || v6_only_error)
+        if (!fListening || loopback || v6_only_error)
         {
             bindAddress = loopback ? asio::ip::address_v4::loopback() : asio::ip::address_v4::any();
             endpoint.address(bindAddress);
@@ -3014,12 +3045,17 @@ void ThreadRPCServer2(void* parg)
             StopRequests.connect(signals2::slot<void ()>(
                         static_cast<void (ip::tcp::acceptor::*)()>(&ip::tcp::acceptor::close), acceptor.get())
                     .track(acceptor));
+
+            fListening = true;
         }
     }
     catch(boost::system::system_error &e)
     {
-        uiInterface.ThreadSafeMessageBox(strprintf(_("An error occured while setting up the RPC port %i for listening: %s"), endpoint.port(), e.what()),
-                             _("Error"), CClientUIInterface::OK | CClientUIInterface::MODAL);
+        strerr = strprintf(_("An error occurred while setting up the RPC port %i for listening on IPv4: %s"), endpoint.port(), e.what());
+    }
+
+    if (!fListening) {
+        uiInterface.ThreadSafeMessageBox(strerr, _("Error"), CClientUIInterface::OK | CClientUIInterface::MODAL);
         StartShutdown();
         return;
     }
@@ -3121,7 +3157,7 @@ void ThreadRPCServer3(void* parg)
     AcceptedConnection *conn = (AcceptedConnection *) parg;
 
     bool fRun = true;
-    loop {
+    while(1) {
         if (fShutdown || !fRun)
         {
             conn->close();
@@ -3245,7 +3281,7 @@ Object CallRPC(const string& strMethod, const Array& params)
     // Connect to localhost
     bool fUseSSL = GetBoolArg("-rpcssl");
     asio::io_service io_service;
-    ssl::context context(io_service, ssl::context::sslv23);
+    ssl::context context(ssl::context::sslv23);
     context.set_options(ssl::context::no_sslv2);
     asio::ssl::stream<asio::ip::tcp::socket> sslStream(io_service, context);
     SSLIOStreamDevice<asio::ip::tcp> d(sslStream, fUseSSL);
@@ -3355,7 +3391,16 @@ Array RPCConvertValues(const std::string &strMethod, const std::vector<std::stri
     if (strMethod == "listunspent"            && n > 1) ConvertTo<boost::int64_t>(params[1]);
     if (strMethod == "getrawtransaction"      && n > 1) ConvertTo<boost::int64_t>(params[1]);
     if (strMethod == "createrawtransaction"   && n > 0) ConvertTo<Array>(params[0]);
-    if (strMethod == "createrawtransaction"   && n > 1) ConvertTo<Object>(params[1]);
+    if (strMethod == "createrawtransaction"   && n > 1)
+    {
+
+        try{
+            ConvertTo<Object>(params[1]);
+        }catch(std::exception& e){
+            ConvertTo<Array>(params[1]);
+        }
+
+    }
     if (strMethod == "signrawtransaction"     && n > 1) ConvertTo<Array>(params[1]);
     if (strMethod == "signrawtransaction"     && n > 2) ConvertTo<Array>(params[2]);
 
